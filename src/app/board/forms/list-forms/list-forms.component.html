@@ -1,0 +1,98 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<div class="header row">
+    <h1 class="header-title">
+        Liste des Formulaires
+    </h1>
+
+
+    <div class="ml-auto col-6" style="display: flex;justify-content: space-between;">
+
+        <select name="" id=""  class=" form-control" style="width: 250px;height: 50px" (change)="onChange($event.target.value)">
+            <option value=""> Tout </option>
+            <option [value]="item._id" *ngFor="let item of dossier"> {{item.name}} </option>
+        </select>
+        <div class="box">
+
+            <i class="fa fa-search" aria-hidden="true"></i>
+        
+            <input type="text" placeholder="Nom formulaire ..." (input)="filterItem($event.target.value)"
+           >
+        
+        </div>
+   <!--      <input type="text" placeholder="Nom formulaire ..." (input)="filterItem($event.target.value)"
+        class="col-2 form-control form-control-sm" style="height: 50px"  > -->
+        <button routerLink="/admin/forms/new" mat-raised-button>Créer un nouveau formulaire</button>
+    </div>
+</div>
+
+
+
+<div class="row" *ngIf="!forms" style="display: flex;justify-content: center;align-items: center;height: 50vh;">
+    <mat-spinner></mat-spinner>
+
+</div>
+
+
+<div class="row" *ngIf="forms">
+    
+  
+
+    
+    <div *ngFor="let form of allForms | paginate: { itemsPerPage: 18, currentPage: page,totalItem:totalLength }" class=" col-md-6 col-lg-2 col-sm-6" style="height: 20%;">
+     
+        <div class="card" style="height: 210px;">
+           
+            <mat-select class=" form-control"
+            [(value)]="form.name"
+            (click)="getData(form.nameAff)"
+             [placeholder]="form.nameAff">
+          <mat-option
+        
+          *ngFor="let item of listeDossier"
+          [value]="form.nameAff"
+          (click)="item.name=='Aucune dossier'? disaffect(form._id,item._id) :affect(form._id,item._id)">
+          {{item.name}}
+          </mat-option>
+          
+        </mat-select>
+            <mat-icon  [routerLink]="['/admin/forms/detail' , form._id]"  class="card-img-top w-50 mx-auto mt-2" style="font-size: 60px ;height: 70px;text-align: center;">
+                view_list
+
+            </mat-icon>
+            <div class="card-header" 
+           matTooltip="{{form.title}}"
+           matTooltipPosition="above"
+>
+                <h3 class="card-title mb-0">{{form.title}}</h3>
+                <div class="row mt-1" style="margin-left: 1px;padding-bottom: 5px;">
+                    <mat-icon style="font-size: 20px;color: grey;">access_time</mat-icon>
+                   <span> {{form.created_date | date}} </span>
+              
+                </div>
+                <div *ngIf="form.update_date" class="row mt-1" style="margin-left: 1px;padding-bottom: 5px;">
+                    <mat-icon style="font-size: 20px;color: grey;">access_time</mat-icon>
+                   <span> {{form.update_date | date}} </span>
+              
+                </div>
+            </div>
+   
+        </div>
+
+    </div>
+   
+</div>
+<div  *ngIf="mesgEmpty" class="text-center mt-5" style="width: 100%;height: 100%;padding-bottom: 15%;">   
+    <h1 class="header-title" style="color: transparent;padding-bottom: 15%;font-size: 0px;">A</h1>
+    <h1 class="header-title" style="color: red;padding-bottom: 15%;">AUCUNE FORMULAIRE AFFECTEER DANS DOSSSIER {{nameDossier}} </h1>
+
+</div>
+<div  *ngIf="allFrormsNumber==0" class="text-center mt-5" style="width: 100%;height: 100%;padding-bottom: 15%;">   
+    <h1 class="header-title" style="color: transparent;padding-bottom: 15%;font-size: 0px;">A</h1>
+    <h1 class="header-title" style="color: red;padding-bottom: 15%;">AUCUNE FORMULAIRE  </h1>
+
+</div>
+<div *ngIf="!mesgEmpty" class="text-center mt-5"> 
+    <pagination-controls class="my-pagination" previousLabel="Précédent"
+    nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
+</div>
+
