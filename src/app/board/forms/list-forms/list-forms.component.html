@@ -44,12 +44,12 @@
            
             <mat-select class=" form-control"
             [(value)]="form.name"
-            (click)="getData(form.nameAff)"
-             [placeholder]="form.nameAff">
+            (click)="getData(form.nameAff2)"
+             [placeholder]="form.nameAff2[0].Aff1">
           <mat-option
         
           *ngFor="let item of listeDossier"
-          [value]="form.nameAff"
+          [value]="form.nameAff2[0].Aff1"
           (click)="item.name=='Aucune dossier'? disaffect(form._id,item._id) :affect(form._id,item._id)">
           {{item.name}}
           </mat-option>

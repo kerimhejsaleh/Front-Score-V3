@@ -163,7 +163,7 @@ export class NgbdModalContent {
 
 
     affect(id: any){
-/*     console.log("iiiiiiddd",id,this.iddossier) */
+     console.log("iiiiiiddd",id,this.iddossier) 
       let affectation = {
       dossier: this.iddossier,
       form: id
@@ -189,7 +189,7 @@ export class NgbdModalContent {
 
 
       disaffect(f: any){
-
+            console.log("hhhhhddd",f)
         this._dossier.disaffect(this.iddossier, f).subscribe(
           res=>{
             

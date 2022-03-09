@@ -20,7 +20,7 @@ export class FormsDataService {
 
 
   createNewForm(form: any){
- console.log("fff",form)
+/*  console.log("fff",form) */
     return this.http.post<any>(this.url + 'addforms' , form);
 
 
@@ -61,7 +61,7 @@ export class FormsDataService {
   }
 
   updateForm(id: any, form: any){
-
+   
     return this.http.put<any>(this.url + 'updateforms/' + id , form);
 
   }

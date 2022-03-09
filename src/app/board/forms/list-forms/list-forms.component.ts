@@ -76,16 +76,17 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
    // console.log(this.allForms.length)
   }
   getData(data){
+    console.log("data",data) 
     this.listeDossier.map((res)=>{
-      if(res.name==data){
- /*        console.log(res._id) */
+      if(res.name==data[0].Aff1){
+       console.log(res._id) 
       this.idDisaff=res._id
       }
     })
    // console.log("dataa0",data)
   }
   disaffect(id,iddossier){
-   // console.log("dataa0",id,iddossier)
+ console.log("dataa0",id,iddossier,this.idDisaff)
    this._dossier.disaffect(this.idDisaff,id).subscribe(
       res=>{
         
@@ -104,15 +105,22 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
   
   }
   affect(id,iddossier){
-   
-   // console.log("item",id,iddossier)
-    this.listeDossier.map((res)=>{
+   this._formData.getFormById(id).subscribe((ress)=>{
+/*     console.log("resbyid", ress.nameAff2[0].Aff1)  */
+    
+
+         this.listeDossier.map((res)=>{
+           
       if(res._id==iddossier){
-        console.log("name",res.name)
+        ress.nameAff2.push({Aff1:res.name})
+ if(ress.nameAff2[0].Aff1=="Aucune dossier"&&ress.nameAff2.length>1){
+   ress.nameAff2.splice(0,1)} 
+  
+  console.log("ress.nameAff",ress.nameAff2)
         let affectation = {
           dossier: iddossier,
           form: id,
-          nameDossier:res.name
+          nameDossier:ress.nameAff2,
           }
           
        /*    console.log("affectation",affectation) */
@@ -131,6 +139,9 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
           );
       }
     })
+   })
+   // console.log("item",id,iddossier)
+
 
       
       

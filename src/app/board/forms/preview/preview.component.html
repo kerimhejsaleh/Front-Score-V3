@@ -97,8 +97,9 @@
 
                     <div *ngIf="section.questions[i].type == 'Choix multiples'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
                     <div style="width: 100%;" *ngFor="let op of section.questions[i].optioncm; let o = index;">
-                      
-                        <mat-checkbox class="m-2 w-100" style="width: 100%;" >
+                      <div class="row">
+                        <div class="col">
+                          <mat-checkbox class="m-2 w-100" style="width: 100%;" >
                             <h1 class="question-short-text-response">{{section.questions[i].optioncm[o].text}}</h1>
                         </mat-checkbox>
                         <p class="hint"> {{section.questions[i].optioncm[o]?.hint}} </p>
@@ -107,11 +108,15 @@
                             <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].optioncm[o].image " alt="">
                     
                         </div>
+                        </div>
+                        <div class="col-2">
+                          <input  [(ngModel)]="section.questions[i].optioncm[o].score"  class="question-score" value="0" disabled>
+                        </div>
+           
+                      </div>
+                     
                         <br>
-                        <div class="col">
-                           
-                            <input  [(ngModel)]="section.questions[i].optioncm[o].score"  class="question-score" value="0" disabled>
-                          </div>
+                  
                     </div>
                   
                
@@ -307,22 +312,31 @@
                   
                 </div>
                     <div *ngIf="section.questions[i].type == 'Cases à cocher'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
-                      
+                
                         <div style="width: 100%;" *ngFor="let op of section.questions[i].options; let o = index;">
-                        <mat-radio-button class="m-2 w-100" style="width: 100%;" >
-                            <h1 *ngIf="section.questions[i].options[o].text.length > 0" class="question-short-text-response">{{section.questions[i].options[o].text}}</h1>
-                        </mat-radio-button>
-                        <p class="hint"> {{section.questions[i].options[o]?.hint}} </p>
-
-                        <div  *ngIf="section.questions[i].options[o].image.length > 1 " style="width: 100%; margin-left: 44px;margin-top: -16px;">
-                            <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].options[o].image " alt="">
-                    
-                        </div>
+                          <div class="row">
+                            <div class="col">
+                              <mat-radio-button class="m-2 w-100" style="width: 100%;" >
+                                <h1 *ngIf="section.questions[i].options[o].text.length > 0" class="question-short-text-response">{{section.questions[i].options[o].text}}</h1>
+                            </mat-radio-button>
+                            <p class="hint"> {{section.questions[i].options[o]?.hint}} </p>
+    
+                            <div  *ngIf="section.questions[i].options[o].image.length > 1 " style="width: 100%; margin-left: 44px;margin-top: -16px;">
+                                <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].options[o].image " alt="">
+                        
+                            </div>
+                            </div>
+                            <div class="col-2">
+                              <div class="m-2 w-100">
+                                Score:
+                                <input  [(ngModel)]="section.questions[i].options[o].score"  class="question-score" value="0" disabled>
+                              </div>
+                            </div>
                        
-                        <div class="m-2 w-100">
-                            Score:
-                            <input  [(ngModel)]="section.questions[i].options[o].score"  class="question-score" value="0" disabled>
                           </div>
+                      
+                       
+                     
                         </div>
                     
     
@@ -333,7 +347,7 @@
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th *ngFor="let question of section.questions[i].grille.scoreS" scope="col">{{question.title}}</th>
+                                <th *ngFor="let question of section.questions[i].grille.scoreS" scope="col">{{question.title}} || score : {{question.score}}</th>
                               
                               </tr>
                             </thead>

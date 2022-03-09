@@ -66,12 +66,12 @@
           
                           </mat-radio-button>
                           <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9"
-                          [checked]="form.genre ==='Indifférent'"  (change)="handleChange('Indifférent')" >
+                          [checked]="form.genre ==='indifférent'"  (change)="handleChange('indifférent')" >
                             <input  class="question-short-text-response" readonly style="border: none;" value="Indifférent">
                        
                         </mat-radio-button>
                         <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9"
-                        [checked]="form.genre ==='Enfant'"  (change)="handleChange('Enfant')" >
+                        [checked]="form.genre ==='enfant'"  (change)="handleChange('enfant')" >
                           <input  class="question-short-text-response" readonly style="border: none;" value="Enfant">
                      
                       </mat-radio-button>
@@ -408,11 +408,16 @@
                                                 (click)="removeOptionGrille2(i, o,s)"
                                                  *ngIf="section.questions[i].grille.scoreS.length > 1"
                                                    color="primary" >close</mat-icon>
+                                                   <p>
+                                                    Score: 
+                                                    <input  [(ngModel)]="op.score"  class="question-score" placeholder="0">
+                                    
+                                                    </p>
                                             </mat-checkbox>
 
             
                                         </div>
-
+                                    
                                     </div>
                                     <mat-icon style="cursor: help;" >library_add</mat-icon>
                                     <span (click)="section.questions[i].grille.scoreS.push({title:''})" style="cursor: pointer;"> Ajouter une option </span>
@@ -763,6 +768,22 @@
        <button class="button button5" (click) = "getNumber('(',k)" value="(">(</button>
        <button class="button button5" (click) = "getNumber(')',k)" value=")">)</button>
        <button class="button button5" (click) = "clear(k)"  value="all-clear">AC</button>
+       <section>
+       
+        <div class="example-button-row">
+            <button mat-button (click) = "getNumber('0',k)" color="primary">0</button>
+          <button mat-button (click) = "getNumber('1',k)" color="primary">1</button>
+          <button mat-button (click) = "getNumber('2',k)" color="primary">2</button>
+          <button mat-button (click) = "getNumber('3',k)" color="primary">3</button>
+          <button mat-button (click) = "getNumber('4',k)" color="primary">4</button><br>
+          <button mat-button (click) = "getNumber('5',k)" color="primary">5</button>
+          <button mat-button (click) = "getNumber('6',k)" color="primary">6</button>
+          <button mat-button (click) = "getNumber('7',k)" color="primary">7</button>
+          <button mat-button (click) = "getNumber('8',k)" color="primary">8</button>
+          <button mat-button (click) = "getNumber('9',k)" color="primary">9</button>
+ 
+        </div>
+      </section>
        <div style="background-color: transparent">
           <div *ngFor="let section of form.sections ;let s = index">
               <div class="row">   <h2 style="padding: 2%;" >Section {{s}}:</h2>     

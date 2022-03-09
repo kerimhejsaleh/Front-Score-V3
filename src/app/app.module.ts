@@ -18,7 +18,8 @@ import {AutosizeModule} from 'ngx-autosize';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { HttpClient, HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClient, HttpClientModule , HTTP_INTERCEPTORS,} from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 
 import { InterceptorService } from './interceptor.service';
@@ -83,7 +84,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true
-  }
+  },
+  {provide: LocationStrategy, useClass: HashLocationStrategy}
   
   ],
   bootstrap: [AppComponent],

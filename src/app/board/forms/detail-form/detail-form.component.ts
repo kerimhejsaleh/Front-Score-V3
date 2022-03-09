@@ -327,6 +327,20 @@ export class DetailFormComponent implements OnInit , AfterViewInit{
   
   ];
   dataRange : []
+  GenerForm:[
+    {
+      name:"Homme",
+    },
+    {
+      name:"Femme",
+    },
+    {
+      name:"Indifférent",
+    },
+    {
+      name:"Enfant",
+    }
+  ]
   sliderOptions(slider): Options {
     return {
       floor: 10,
@@ -505,7 +519,9 @@ newRange(i:any,s:any){
     this.form.sections[s].questions[i].option.ceil=newCeil;}
   }
   ngOnInit(): void {
+   
   setTimeout(()=>{
+ /*    console.log(this.form) */
 /*       console.log(this.form) */
     },5000)
  /*    console.log("ggg",this.sliders)  */
@@ -684,7 +700,15 @@ createNewSection(){
           optioncm: [
             {text: '' , score: 0 , image:'', hint: '' , next: '' }
           ],
-      
+          grille:{
+            options:[{
+              title:''
+          }],
+            scoreS:[{
+              title:'',
+              score:0
+            }]
+          }
         }
       ],
    
@@ -697,7 +721,7 @@ createNewSection(){
 }
 handleChange(event){
   this.form.genre = event;
-/*   console.log(this.form.genre); */
+ /*  console.log(this.form.genre);  */
   
   
 }
@@ -734,6 +758,15 @@ createNewQuestion(section: any){
         optionsSaint: [
           {text: '' , score: 0 , image:'', hint: '' , next: '' }
         ],
+        grille:{
+          options:[{
+            title:''
+        }],
+          scoreS:[{
+            title:'',
+            score:0
+          }]
+        }
    
   
     }
@@ -898,6 +931,7 @@ if(this.form.sections[s].questions[q].switch==true){
       } else {
         this._formData.updateForm(this.id, this.form).subscribe(
           (res) => {
+          /*   console.log("jjdjjdjd",this.form) */
             this.toastr.success(
               'Formulaire mis à jour avec succès! ',
               'succès!'

@@ -463,7 +463,8 @@ setNewCeil(newCeil: number,i:any,s:any): void {
                 title:''
             }],
               scoreS:[{
-                title:''
+                title:'',
+                score:0
               }]
             }
           }
@@ -526,7 +527,8 @@ onAddForm(){
             title:''
         }],
           scoreS:[{
-            title:''
+            title:'',
+            score:0
           }]
         }
       }
@@ -535,7 +537,7 @@ onAddForm(){
     
   }
   test(i,o,s){
-    console.log('  this.form.sections[i].questions.grille',this.form.sections[o].questions)
+ /*    console.log('  this.form.sections[i].questions.grille',this.form.sections[o].questions) */
   //  this.form.sections[i].questions[0].grille.options.push({title:''})
    // this.form.sections[i].questions.grille.options[o].push({title:''})
   }
