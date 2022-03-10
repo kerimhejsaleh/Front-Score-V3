@@ -76,17 +76,17 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
    // console.log(this.allForms.length)
   }
   getData(data){
-    console.log("data",data) 
+/*     console.log("data",data)  */
     this.listeDossier.map((res)=>{
       if(res.name==data[0].Aff1){
-       console.log(res._id) 
+     /*   console.log(res._id)  */
       this.idDisaff=res._id
       }
     })
    // console.log("dataa0",data)
   }
   disaffect(id,iddossier){
- console.log("dataa0",id,iddossier,this.idDisaff)
+ /* console.log("dataa0",id,iddossier,this.idDisaff) */
    this._dossier.disaffect(this.idDisaff,id).subscribe(
       res=>{
         
@@ -116,7 +116,7 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
  if(ress.nameAff2[0].Aff1=="Aucune dossier"&&ress.nameAff2.length>1){
    ress.nameAff2.splice(0,1)} 
   
-  console.log("ress.nameAff",ress.nameAff2)
+ /*  console.log("ress.nameAff",ress.nameAff2) */
         let affectation = {
           dossier: iddossier,
           form: id,

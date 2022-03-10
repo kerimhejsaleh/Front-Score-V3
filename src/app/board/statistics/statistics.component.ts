@@ -4,6 +4,8 @@ import { FormsDataService } from '../forms/services/forms-data.service';
 import { DataPatientService } from '../patient/services/data-patient.service';
 import { ChartDataSets, ChartType } from 'chart.js';
 import { MultiDataSet, Label, Color } from 'ng2-charts';
+import { DossierService } from '../dossier/services/dossier.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-statistics',
@@ -15,6 +17,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   constructor(private _doctor: DoctorDataService,
               private _patient: DataPatientService,
               private _form: FormsDataService,
+              private _dossier: DossierService,
             ) { }
 
 
@@ -115,11 +118,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   
 
   ngOnInit(): void {
-/*     console.log("currentYear",this.currentYear) */
 
-
-    
-    //console.log("currentYssssear",this.currentYear)
   }
 
 

@@ -15,7 +15,7 @@ import { InterceptorService } from '../interceptor.service';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [BoardComponent, HeaderComponent, SidebarComponent, FooterComponent, ArchiveComponent, StatisticsComponent, ProfileComponent],
@@ -25,7 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatButtonModule,
     ChartsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatTooltipModule
 
   ],
   providers: [

@@ -347,7 +347,7 @@
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
-                                <th *ngFor="let question of section.questions[i].grille.scoreS" scope="col">{{question.title}} || score : {{question.score}}</th>
+                                <th *ngFor="let question of section.questions[i].grille.scoreS" scope="col">{{question.title}} ||  {{question.score}}</th>
                               
                               </tr>
                             </thead>
@@ -412,7 +412,7 @@
               <div *ngFor="let section of form.sections ;let s = index">
             </div>
             <div class="col-lg-12">
-                  <textarea autosize  rows="20" autosize    [(ngModel)]="formCalucl.formulCalcul" [value]="formCalucl.formulCalcul" rows="2" class="question-title"  placeholder="Titre du Question" disabled>
+                  <textarea autosize  rows="20" autosize    [(ngModel)]="formCalucl.formulCalcul" [value]="formCalucl.formulCalcul" rows="2" class="question-title"  placeholder="0" disabled>
                 </textarea>
               </div>
             </div>

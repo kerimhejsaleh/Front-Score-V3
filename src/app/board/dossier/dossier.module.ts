@@ -21,7 +21,7 @@ import { DossierService } from './services/dossier.service';
 import { InterceptorService } from 'src/app/interceptor.service';
 import { FormDossierComponent } from './form-dossier/form-dossier.component';
 import { FormDossierAffectComponent } from './form-dossier-affect/form-dossier-affect.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [DossierComponent, AddDossierComponent, ListDossierComponent, DetailDossierComponent, FormDossierComponent, FormDossierAffectComponent],
   imports: [
@@ -36,7 +36,8 @@ import { FormDossierAffectComponent } from './form-dossier-affect/form-dossier-a
     MatRadioModule,
     MatDatepickerModule,
     HttpClientModule,
-    NgbAlertModule
+    NgbAlertModule,
+    NgxPaginationModule
    
   ],
   providers: [DossierService ,

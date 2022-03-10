@@ -11,11 +11,15 @@ export class ListDossierComponent implements OnInit {
   constructor(private _dossierData: DossierService) { }
 
   dossiers: any;
-
+  page:number=1;
+  totalLength:any;
+  allDossier:any;
   ngOnInit(): void {
     this._dossierData.getAlldossier().subscribe(
       res=>{
         this.dossiers = res;
+        this.totalLength=res.length;
+        this.allDossier=  res
       /*   console.log(this.dossiers); */
         
         
@@ -26,5 +30,14 @@ export class ListDossierComponent implements OnInit {
       }
     );
   }
-
+  filterItem(value) {
+    this.allDossier=  this.dossiers.filter(d => {
+     //  console.log(d)
+        return (
+          d.name.toLowerCase().includes(value.toLowerCase()) 
+        )
+      })  
+     // this.allFrormsNumber=this.allForms.length
+     // console.log(this.allForms.length)
+    }
 }

@@ -843,11 +843,11 @@ changeFormTitle() {
     }
 
     this.testFormSections = this.form.sections.some((section, idx) => {
-      if (section.title.length === 0) {
+   /*    if (section.title.length === 0) {
         this.toastr.warning(
           `Le titre de section N° ${idx + 1} est obligatoire`
         );
-      }
+      } */
       this.testFormQuestions = Array.from(section.questions).some(
         (question: any, index) => {
           if (question.title.length === 0) {
@@ -860,7 +860,7 @@ changeFormTitle() {
           return question.title.length === 0;
         }
       );
-      return section.title.length === 0;
+ /*      return section.title.length === 0; */
     });
 
     if (this.testFormSections) {

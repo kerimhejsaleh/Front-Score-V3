@@ -67,14 +67,14 @@ export class DossierService {
 
 
   affect(affectation: any){
- console.log(affectation)
+ /* console.log(affectation) */
     return this.http.post(this.urlAffectation + 'addinside' , affectation);
 
   }
 
 
   disaffect(dossier: any , form: any){
- console.log(4444)
+ /*  console.log("dossier",dossier,form)  */
     return this.http.delete(this.urlAffectation + 'deleteinside/' +dossier + '/' + form );
 
   }

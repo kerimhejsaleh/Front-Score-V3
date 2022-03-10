@@ -1,9 +1,21 @@
+
 <div class="header">
     <h1 class="header-title">
         Liste des dossiers
     </h1>
 </div>
+<div class="ml-auto col-2" >
 
+    <div class="box">
+
+        <i class="fa fa-search" aria-hidden="true"></i>
+    
+        <input type="text" placeholder="Nom dossier ..." (input)="filterItem($event.target.value)"
+       >
+    
+    </div>
+
+</div>
 <div class="row">
     
     <div class="col-md-6 col-lg-2 col-sm-5">
@@ -33,7 +45,7 @@
     </div>
 
         
-    <div  [routerLink]="['/admin/dossier/detail' , dossier._id]" *ngFor="let dossier of dossiers" class="row" style="padding-bottom: 5%;">
+    <div  [routerLink]="['/admin/dossier/detail' , dossier._id]" *ngFor="let dossier of allDossier | paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLength }" class="row" style="padding-bottom: 5%;">
         <div class="card1" style="height: 150px;">
             <img src="assets/dossier.svg" alt="" srcset="">
             <div class="card-header">
@@ -58,4 +70,8 @@
 
 
 
+</div>
+<div *ngIf="totalLength>8" class="text-center mt-5"> 
+    <pagination-controls class="my-pagination" previousLabel="Précédent"
+    nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
 </div>
