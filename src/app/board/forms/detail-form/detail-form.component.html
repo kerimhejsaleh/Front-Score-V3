@@ -98,15 +98,16 @@
       
                       </mat-radio-button>
                       <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9"
+                      [checked]="form.genre ==='enfant'"  (change)="handleChange('enfant')" >
+                        <input  class="question-short-text-response" readonly style="border: none;" value="Enfant">
+                   
+                    </mat-radio-button>
+                      <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9"
                       [checked]="form.genre ==='indifférent'"  (change)="handleChange('indifférent')" >
                         <input  class="question-short-text-response" readonly style="border: none;" value="Indifférent">
                    
                     </mat-radio-button>
-                    <mat-radio-button class=" inp col-md-8 col-lg-9 col-sm-9 col-xs-9 col-9"
-                    [checked]="form.genre ==='enfant'"  (change)="handleChange('enfant')" >
-                      <input  class="question-short-text-response" readonly style="border: none;" value="Enfant">
-                 
-                  </mat-radio-button>
+                   
                     </div>
 
 
@@ -801,6 +802,7 @@
        <button class="button button5" (click) = "getNumber('/',k)" value="/">/</button>
        <button class="button button5" (click) = "getNumber('(',k)" value="(">(</button>
        <button class="button button5" (click) = "getNumber(')',k)" value=")">)</button>
+       <button class="button button5" (click) = "getNumber(',',k)" value=")">,</button>
        <button class="button button5" (click) = "clear(k)"  value="all-clear">AC</button><br>
       <!--  <button class="buttonNumber button5" (click) = "getNumber(')',k)" value=")">)</button> -->
       <section>

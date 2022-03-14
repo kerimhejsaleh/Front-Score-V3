@@ -11,7 +11,10 @@
 
 }
 
-
+textarea{ line-height: 1;
+    /*  display: none; */
+     white-space: pre-wrap;
+     word-wrap: break-word; }
 .hint{
     margin-left: 12px;
     margin-top: -8px;

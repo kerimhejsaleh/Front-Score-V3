@@ -412,9 +412,11 @@
               <div *ngFor="let section of form.sections ;let s = index">
             </div>
             <div class="col-lg-12">
-                  <textarea autosize  rows="20" autosize    [(ngModel)]="formCalucl.formulCalcul" [value]="formCalucl.formulCalcul" rows="2" class="question-title"  placeholder="0" disabled>
-                </textarea>
-              </div>
+              <textarea autosize  rows="20" autosize    [(ngModel)]="formCalucl.formulCalcul" [value]="formCalucl.formulCalcul" rows="2" class="question-title"  placeholder="0" disabled>
+              </textarea>
+         <!--      <input type="text" class="form-control question-short-text-response w-100"
+                placeholder="Message descriptif selon le score" [(ngModel)]="formCalucl.formulCalcul" [value]="formCalucl.formulCalcul" style="width: 150%;" disabled> -->
+            </div>
             </div>
           </div>
         </div>
