@@ -449,10 +449,10 @@ setNewCeil(newCeil: number,i:any,s:any): void {
             obligatoire: false,
             switch: false,
             options: [
-              {text: '' , score: 0 , image:'', hint: '' , next: '' }
+              {text: '' , score: 0 , image:'', hint: '' , next: '',textecourt:false }
             ],
             optioncm: [
-              {text: '' , score: 0 , image:'', hint: '' , next: '' }
+              {text: '' , score: 0 , image:'', hint: '' , next: '',textecourt:false }
             ],
             optionsSaint: [
               {text: '' , score: 0 , image:'', hint: '' , next: '' }
@@ -462,6 +462,7 @@ setNewCeil(newCeil: number,i:any,s:any): void {
               options:[{
                 title:''
             }],
+            textecourt:false,
               scoreS:[{
                 title:'',
                 score:0
@@ -514,10 +515,10 @@ onAddForm(){
         switch: false,
         obligatoire: false,
         options: [
-          {text: '' , score: 0 , image:'', hint: '', next:'' }
+          {text: '' , score: 0 , image:'', hint: '', next:'',textecourt:false }
         ],
         optioncm: [
-          {text: '' , score: 0 , image:'', hint: '' , next: '' }
+          {text: '' , score: 0 , image:'', hint: '' , next: '',textecourt:false }
         ],
         optionsSaint: [
           {text: '' , score: 0 , image:'', hint: '' , next: '' }
@@ -526,6 +527,7 @@ onAddForm(){
           options:[{
             title:''
         }],
+        textecourt:false,
           scoreS:[{
             title:'',
             score:0
@@ -873,6 +875,7 @@ changeFormTitle() {
     if (this.countError == 0) {
       this.formService.createNewForm(this.form).subscribe(
         (res) => {
+     
           this.toastr.success('Formulaire créé avec succès! ', 'succès!');
           this.router.navigate(['/admin/forms']);
         },

@@ -60,6 +60,7 @@ export class DossierService {
 
 
   archivedossier(id: any){
+    /* console.log(id) */
     return this.http.get<any>(this.url + 'archived/' + id);
   }
 

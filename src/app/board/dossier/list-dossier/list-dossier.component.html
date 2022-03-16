@@ -45,7 +45,9 @@
     </div>
 
         
-    <div  [routerLink]="['/admin/dossier/detail' , dossier._id]" *ngFor="let dossier of allDossier | paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLength }" class="row" style="padding-bottom: 5%;">
+    <div  [routerLink]="['/admin/dossier/detail' , dossier._id]" *ngFor="let dossier of allDossier | paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLength }" class="row" style="padding-bottom: 5%;"
+    matTooltip="{{dossier.name}}"
+    matTooltipPosition="above">
         <div class="card1" style="height: 150px;">
             <img src="assets/dossier.svg" alt="" srcset="">
             <div class="card-header">
@@ -54,7 +56,7 @@
                    <span> {{dossier.added_date | date}} </span>
                 </div>
 
-                <h3 class="card-title mb-0">{{dossier.name}}</h3>
+                <h3 class="card-title mb-0">{{dossier.name.slice(0,50)}}</h3>
             
             </div>
    

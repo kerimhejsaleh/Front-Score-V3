@@ -406,9 +406,19 @@
                             </div>
                         </div>
                             
-        
-                        <mat-icon style="cursor: help;" >library_add</mat-icon>
-                            <span (click)="section.questions[i].optioncm.push({text: '', score: 0 , image: ''})" style="cursor: pointer;"> Ajouter une option </span>
+                  
+                            <div *ngIf="section.questions[i].textecourt" class="col-lg-8 col-sm-12">
+                                <input disabled class="question-short-text-response" value="réponse courte">
+                               
+    
+                            </div>
+                            <mat-icon style="cursor: help;" >library_add</mat-icon>
+                                <span (click)="section.questions[i].optioncm.push({text: '', score: 0 , image: '', hint:'' , next:''})" style="cursor: pointer;"> Ajouter une option </span>
+                                <mat-icon *ngIf="!section.questions[i].textecourt" style="cursor: help;" >library_add</mat-icon>
+                                <span *ngIf="!section.questions[i].textecourt" (click)="section.questions[i].textecourt=true" style="cursor: pointer;"> Ajouter une textecourt </span>
+                                <mat-icon style="cursor: help;" *ngIf="section.questions[i].textecourt">clear</mat-icon>
+                                <span *ngIf="section.questions[i].textecourt" (click)="section.questions[i].textecourt=false" style="cursor: pointer;"> Ajouter une textecourt </span>
+                          
                         </div>
 
 
@@ -495,8 +505,18 @@
                             </div>
                         
         
-                            <mat-icon style="cursor: help;" >library_add</mat-icon>
-                            <span (click)="section.questions[i].options.push({text: '', score: 0 , image: ''})" style="cursor: pointer;"> Ajouter une option </span>
+                            <div *ngIf="section.questions[i].textecourt" class="col-lg-8 col-sm-12">
+                                <input disabled class="question-short-text-response" value="réponse courte">
+                               
+    
+                            </div>
+                                <mat-icon style="cursor: help;" >library_add</mat-icon>
+                                <span (click)="section.questions[i].options.push({text: '', score: 0 , image: '' , hint:'' , next:''})" style="cursor: pointer;"> Ajouter une option </span>
+                                <mat-icon *ngIf="!section.questions[i].options.textecourt" style="cursor: help;" >library_add</mat-icon>
+                                <span *ngIf="!section.questions[i].textecourt" (click)="section.questions[i].textecourt=true" style="cursor: pointer;"> Ajouter une textecourt </span>
+                                <mat-icon style="cursor: help;" *ngIf="section.questions[i].textecourt">clear</mat-icon>
+                                <span *ngIf="section.questions[i].textecourt" (click)="section.questions[i].textecourt=false" style="cursor: pointer;"> Supprimer  textecourt </span>
+                          
                         </div>
                         <div *ngIf="section.questions[i].type == 'Grille de cases à cocher'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
                             <div  *ngFor="let op of section.questions[i].optionsSaint; let o = index;">

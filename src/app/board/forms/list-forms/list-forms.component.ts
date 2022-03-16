@@ -107,6 +107,7 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
         this.dossier = res;
   //  this.listeDossier.push(res) 
     res.map((res)=>{
+ 
     return this.listeDossier.push({_id:res._id,name:res.name,cheked:false})
     })
       }
@@ -134,26 +135,32 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
     })  
     this.allFrormsNumber=this.allForms.length
   }
+  functionTest(text,nameAff2){
+/*    console.log(nameAff2) */
+    return true
+  }
   testData(test,data){
- /*    console.log("form.nameAff",test,data) */
-  /*   console.log("test",this.listeDossier)
-    console.log("data",data) */
+   /*  console.log(test,data) */
     this.listeDossier.map((res)=>{
+      if(res.cheked=true){
+        res.cheked=false
+      }
       if(res.name==data[0].Aff1){
-       /*  console.log("res._id",res._id) */
       this.idDisaff=res._id
       }
     })
     test.nameAff=this.listeDossier
     test.nameAff2.map((result)=>{
-/*       console.log("test1",result) */
+
       test.nameAff.map((result2)=>{
         if(result.Aff1==result2.name){
- /*          console.log("result",result2) */
+          result.cheked=true
           result2.cheked=true
-   /*        console.log("result24",result2) */
-        }
-      }) })
+       }
+      })
+    })
+
+
   }
   getData(data){
     this.listeDossier.map((res)=>{
@@ -170,7 +177,7 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
           /*   form.nameAff[0].cheked=true */
         
           }else{
-        
+        console.log(resultId._id,id)
          this._dossier.disaffect(resultId._id,id).subscribe(
             res=>{
               
@@ -201,19 +208,77 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
   
 });
 }
+
   affect(id,iddossier,item){
+
    this.affEmpty=false;
    this._formData.getFormById(id).subscribe((ress)=>{
+  
     ress.nameAff2.map((matDialog)=>{
+   
       if(matDialog.Aff1==item.name){
+       
         this.affEmpty=true;
-       // this.open()
-      console.log(matDialog)}
+      
+       var filtered = ress.nameAff2.filter(function(value, index, arr){ 
+     
+        return value.Aff1 != matDialog.Aff1;
+    });
+
+      this.listeDossier.map((res)=>{
+ 
+        if(res._id==iddossier){
+      
+          ress.nameAff2.push({Aff1:res.name,cheked:true})
+             if(ress.nameAff2[0].Aff1=="Aucune dossier"&&ress.nameAff2.length>1){
+                 ress.nameAff2.splice(0,1)
+                } 
+                  
+                   if(ress.nameAff2.length==2){
+
+                    let affectation = {
+                      dossier: iddossier,
+                      form: id,
+                      nameDossier:[{Aff1:"Aucune dossier",checked:false}],
+                      
+                      }
+                      this._dossier.affect(affectation).subscribe(
+                        res=>{
+                          this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+                          this.router.navigate(['/admin/dossier/affect' , iddossier])); },
+                        err=>{
+            
+                           console.log(err);
+              
+                      }
+                 );
+                   }else{
+                  let affectation = {
+                    dossier: iddossier,
+                    form: id,
+                    nameDossier:filtered,
+                    }
+                    this._dossier.affect(affectation).subscribe(
+                      res=>{
+                        this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+                        this.router.navigate(['/admin/dossier/affect' , iddossier])); },
+                      err=>{
+          
+                         console.log(err);
+            
+                    }
+               );}
+                  
+           }
+        })}
     })
          this.listeDossier.map((res)=>{
       if(res._id==iddossier&&!this.affEmpty){
-        ress.nameAff2.push({Aff1:res.name})
+     
+        ress.nameAff2.push({Aff1:res.name,cheked:true})
+    /*     console.log(ress.nameAff2) */
            if(ress.nameAff2[0].Aff1=="Aucune dossier"&&ress.nameAff2.length>1){
+            
                ress.nameAff2.splice(0,1)} 
                 let affectation = {
                   dossier: iddossier,

@@ -109,10 +109,16 @@
                     
                         </div>
                         </div>
+                        
                         <div class="col-2">
                           <input  [(ngModel)]="section.questions[i].optioncm[o].score"  class="question-score" value="0" disabled>
                         </div>
-           
+                        <div *ngIf="section.questions[i].textecourt" class="col-2">
+                          <div class="m-2 w-100">
+                            <input   class="form-control" value="" disabled>
+                          
+                          </div>
+                        </div>
                       </div>
                      
                         <br>
@@ -326,13 +332,19 @@
                         
                             </div>
                             </div>
+                           
                             <div class="col-2">
                               <div class="m-2 w-100">
-                                Score:
+                                *
                                 <input  [(ngModel)]="section.questions[i].options[o].score"  class="question-score" value="0" disabled>
                               </div>
                             </div>
-                       
+                            <div *ngIf="section.questions[i].textecourt" class="col-2">
+                              <div class="m-2 w-100">
+                                <input   class="form-control" value="" disabled>
+                                
+                              </div>
+                            </div>
                           </div>
                       
                        

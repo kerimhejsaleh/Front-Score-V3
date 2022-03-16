@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DossierService } from '../services/dossier.service';
-
+import { FormsDataService } from '../../forms/services/forms-data.service';
 @Component({
   selector: 'app-form-dossier-affect',
   templateUrl: './form-dossier-affect.component.html',
@@ -15,6 +15,7 @@ export class FormDossierAffectComponent implements OnInit {
   constructor(private _dossier : DossierService,
     private router: ActivatedRoute,
     private modalService: NgbModal, 
+    private _formData: FormsDataService,
   
 
 ) { }
@@ -148,7 +149,7 @@ export class NgbdModalContent {
     private _dossier: DossierService,
     private toastr: ToastrService,
     private router : Router, 
-    
+    private _formData: FormsDataService,
 
     ) {}
 
@@ -163,33 +164,97 @@ export class NgbdModalContent {
 
 
     affect(id: any){
-     console.log("iiiiiiddd",id,this.iddossier) 
-      let affectation = {
-      dossier: this.iddossier,
-      form: id
-      }
-      
-    /*   console.log("affectation",affectation) */
-      this._dossier.affect(affectation).subscribe(
-      res=>{
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-        this.router.navigate(['/admin/dossier/affect' , this.iddossier]));
-
+  
+     this._formData.getFormById(id).subscribe((resForm)=>{
      
-      },
-      err=>{
-    
-      console.log(err);
-      
+      if(resForm.nameAff.length==1&&resForm.nameAff2.length==1&&resForm.nameAff[0].Aff1=="Aucune dossier"&&resForm.nameAff2[0].Aff1=="Aucune dossier")
+      {
+        this._dossier.getdossierById(this.iddossier).subscribe(
+             res=>{
+               console.log(res)
+               let affectation = {
+                dossier: this.iddossier,
+                form: id,
+                nameDossier:[{Aff1:res.name,checked:true}],
+                }
+                
+             
+                this._dossier.affect(affectation).subscribe(
+                res=>{
+                  this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+                  this.router.navigate(['/admin/dossier/affect' , this.iddossier]));
+          
+               
+                },
+                err=>{
+              
+                console.log(err);
+                
+                }
+                );
+             }
+          );
+      }else{
+        
+        this._dossier.getdossierById(this.iddossier).subscribe(
+          res=>{
+           
+            resForm.nameAff.push({Aff1:res.name,cheked: true})
+            resForm.nameAff2.push({Aff1:res.name,cheked: true})
+            let affectation = {
+             dossier: this.iddossier,
+             form: id,
+             nameDossier:resForm.nameAff,
+             }
+             
+          
+             this._dossier.affect(affectation).subscribe(
+             res=>{
+               this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+               this.router.navigate(['/admin/dossier/affect' , this.iddossier]));
+       
+            
+             },
+             err=>{
+           
+             console.log(err);
+             
+             }
+             );
+          }
+       ); 
       }
-      );
-      
-      
+     })
       }
 
 
       disaffect(f: any){
-            console.log("hhhhhddd",f)
+            /* console.log("hhhhhddd",f) */
+            this._formData.getFormById(f).subscribe((resForm)=>{
+              //console.log("hhhhhddd",resForm.nameAff.length,resForm.nameAff2.length)
+              this._dossier.getdossierById(this.iddossier).subscribe(
+                res=>{
+                 
+                  
+                  if(resForm.nameAff.length>1&&resForm.nameAff2.length>1){
+                  /*   let i=0;
+                     resForm.nameAff.map((resMap)=>{
+                      console.log("res",res.name,resMap.Aff1)
+                       i++;
+                        if(resMap.Aff1==res.name){
+                          console.log(i,resForm.nameAff)
+                          resForm.nameAff.splice(i-1,i)
+                          resForm.nameAff2.splice(i-1,i)
+                          console.log(i,resForm.nameAff)
+                        }
+                     }) */
+                   }
+                   
+          
+                }
+             ); 
+        
+            })
         this._dossier.disaffect(this.iddossier, f).subscribe(
           res=>{
             

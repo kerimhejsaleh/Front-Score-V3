@@ -114,6 +114,8 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   lineChartTypeF = 'bar';
   lineChartTypeFT = 'bar';
   numberFormulAff;
+  spinerFormulaire = false;
+  spinerFormulaireAff = false;
   dataFormAFF;
   
 
@@ -137,12 +139,17 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
       res=>{
      
         this.forms = res;
+        if(res.length>0){
+          this.spinerFormulaire=true;
+        }
         this._form.getAllFormAff().subscribe(
           resq=>{
             this.numberFormulAff=resq.length
             this.dataFormAFF=resq
-        //   console.log('ress',this.dataFormAFF)
-            
+            if(resq.length>0){
+            this.spinerFormulaireAff=true
+         /*   console.log('ress',this.spinerFormulaire) */
+            }
     
           }
         );

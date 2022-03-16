@@ -520,10 +520,10 @@ newRange(i:any,s:any){
   }
   ngOnInit(): void {
    
-  setTimeout(()=>{
- /*    console.log(this.form) */
-/*       console.log(this.form) */
-    },5000)
+  /* setTimeout(()=>{
+     console.log(this.form) 
+      console.log(this.form) 
+    },5000) */
  /*    console.log("ggg",this.sliders)  */
     this.id = this.router.snapshot.paramMap.get('id');
 
@@ -692,10 +692,10 @@ createNewSection(){
           obligatoire: false,
           switch: false,
           options: [
-            {text: '' , score: 0 , image:'', hint: '' , next: '' }
+            {text: '' , score: 0 , image:'', hint: '' , next: '',textecourt:false }
           ],
           optionsSaint: [
-            {text: '' , score: 0 , image:'', hint: '' , next: '' }
+            {text: '' , score: 0 , image:'', hint: '' , next: '',textecourt:false }
           ],
           optioncm: [
             {text: '' , score: 0 , image:'', hint: '' , next: '' }
@@ -704,6 +704,7 @@ createNewSection(){
             options:[{
               title:''
           }],
+          textecourt:false,
             scoreS:[{
               title:'',
               score:0
@@ -750,10 +751,10 @@ createNewQuestion(section: any){
         switch: false,
         obligatoire: false,
         options: [
-          {text: '' , score: 0 , image:'', hint: '', next:'' }
+          {text: '' , score: 0 , image:'', hint: '', next:'',textecourt:false }
         ],
         optioncm: [
-          {text: '' , score: 0 , image:'', hint: '' , next: '' }
+          {text: '' , score: 0 , image:'', hint: '' , next: '',textecourt:false }
         ],
         optionsSaint: [
           {text: '' , score: 0 , image:'', hint: '' , next: '' }
@@ -762,6 +763,7 @@ createNewQuestion(section: any){
           options:[{
             title:''
         }],
+        textecourt:false,
           scoreS:[{
             title:'',
             score:0
