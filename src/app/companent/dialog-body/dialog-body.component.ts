@@ -76,7 +76,7 @@ rangeType:string="";
             }
      }
    if(this.addmore.value.itemRows.length-1==j){
-     console.log("kjdd",this.addmore.value.itemRows)
+    /*  console.log("kjdd",this.addmore.value.itemRows) */
     this.dialogRef.close(this.addmore.value.itemRows);}else{
       this.errorRange=false;
       this.mesgError=j+1;

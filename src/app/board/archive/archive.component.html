@@ -22,10 +22,16 @@
 
 
     <div class="row text-center mx-auto" style="margin-top: -30px;margin-bottom: 8px;">
-
-        <button class="ml-auto mr-1"  (click)="selectedtab = 1"  mat-raised-button>professionnels de santé</button>
-        <button (click)="selectedtab = 2"  mat-raised-button>Patients</button>
-        <button  class="mr-auto ml-1" (click)="selectedtab = 3"  mat-raised-button>Formulaires</button>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="row text-center mx-auto">
+        <mat-button-toggle class="ml-auto mr-1"  (click)="selectedtab = 1"  mat-raised-button>Professionnels de santé</mat-button-toggle>
+        <mat-button-toggle (click)="selectedtab = 2"  mat-raised-button>Patients</mat-button-toggle>
+        <mat-button-toggle  class="mr-auto ml-1" (click)="selectedtab = 3"  mat-raised-button>Formulaires</mat-button-toggle>
+    </mat-button-toggle-group>
+     <!--    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="bold">Bold</mat-button-toggle>
+            <mat-button-toggle value="italic">Italic</mat-button-toggle>
+            <mat-button-toggle value="underline">Underline</mat-button-toggle>
+          </mat-button-toggle-group> -->
 
 
     </div>

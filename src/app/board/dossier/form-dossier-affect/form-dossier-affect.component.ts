@@ -171,7 +171,7 @@ export class NgbdModalContent {
       {
         this._dossier.getdossierById(this.iddossier).subscribe(
              res=>{
-               console.log(res)
+              /*  console.log(res) */
                let affectation = {
                 dossier: this.iddossier,
                 form: id,
@@ -255,7 +255,7 @@ export class NgbdModalContent {
              ); 
         
             })
-        this._dossier.disaffect(this.iddossier, f).subscribe(
+        this._dossier.disaffect(this.iddossier, f,"test").subscribe(
           res=>{
             
             

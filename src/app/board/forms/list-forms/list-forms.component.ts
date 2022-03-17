@@ -177,8 +177,8 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
           /*   form.nameAff[0].cheked=true */
         
           }else{
-        console.log(resultId._id,id)
-         this._dossier.disaffect(resultId._id,id).subscribe(
+       /*  console.log(resultId._id,id) */
+         this._dossier.disaffect(resultId._id,id,"aucun").subscribe(
             res=>{
               
       

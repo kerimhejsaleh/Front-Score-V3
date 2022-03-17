@@ -345,7 +345,7 @@
 
                             <div  *ngFor="let op of section.questions[i].optioncm; let o = index;">
                             <div class="row m-2">
-                                <mat-checkbox class=" inp col-md-7 col-lg-7 col-sm-9 col-xs-9 col-9  " >
+                                <mat-checkbox class=" inp col-md-7 col-lg-7 col-sm-9 col-xs-9 col-9  " disabled>
                                     <input  class="question-short-text-response" [(ngModel)]="section.questions[i].optioncm[o].text" placeholder="option">
                                     
                                         <label (click)="in = i; j = o" for="checkPhoto" >
@@ -448,7 +448,7 @@
                         <div *ngIf="section.questions[i].type == 'Cases à cocher'" style="width: 100%;" class="col-lg-12 col-sm-12 w-100">
                             <div  *ngFor="let op of section.questions[i].options; let o = index;">
                                 <div class="row  m-2">
-                                    <mat-radio-button class=" inp col-md-7 col-lg-7 col-sm-9 col-xs-9 col-9  "  >
+                                    <mat-radio-button class=" inp col-md-7 col-lg-7 col-sm-9 col-xs-9 col-9  "  disabled>
                                         <input  class="question-short-text-response" [(ngModel)]="section.questions[i].options[o].text" placeholder="option">
                                         
                                         <label (click)="in = i; j = o" for="radioPhoto">
@@ -537,23 +537,23 @@
                                          
                                             <div class="form-check">
                                                 <div class="form-check form-check-inline" >
-                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Absent/Pas du tout')" >
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Absent/Pas du tout')" disabled>
                                                     <label class="form-check-label" [for]="o"></label>
                                                   </div>
                                                   <div class="form-check form-check-inline">
-                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Faible/Un peu')">
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Faible/Un peu')" disabled>
                                                     <label class="form-check-label" [for]="o"></label>
                                                   </div>
                                                   <div class="form-check form-check-inline">
-                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Modére/Moyennement')">
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Modére/Moyennement')" disabled>
                                                     <label class="form-check-label" [for]="o"></label>
                                                   </div>
                                                   <div class="form-check form-check-inline">
-                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Fort/Beaucoup')">
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Fort/Beaucoup')" disabled>
                                                     <label class="form-check-label" [for]="o"></label>
                                                   </div>
                                                   <div class="form-check form-check-inline">
-                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Extrémement fort/Extrément')">
+                                                    <input input class="form-check-input" type="radio" [name]="o" [id]="o" (change)="onChange($event,i,o,s,'Extrémement fort/Extrément')" disabled>
                                                     <label class="form-check-label" [for]="o"></label>
                                                   </div>
                                                 </div>
@@ -796,14 +796,47 @@
               </div>
           </div>
       </div> -->
+      <div class="col-12 col-md-12 col-lg-11 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-header">
+              <h1 class="form-title"> Bibliographie </h1>
+            </div>
+        
+            <div class="row"  *ngFor="let message of form.messages;let m = index">
+           
+              <div class="col-lg-8">
+               <!--  <input type="text" [(ngModel)]="message.message" class="form-control question-short-text-response w-100"
+                  placeholder="message"> -->
+                  <textarea autosize  rows="20" autosize    [(ngModel)]="message.message" [value]="message.message" rows="2" class="question-title"  placeholder="Description" >
+                </textarea>
+              </div>
+              <div class="col-lg-1" style="display: grid; place-content: center;">
+                <button mat-icon-button (click)="deleteMessage(m)" aria-label="Example icon-button with a heart icon">
+                  <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                </button>
+              </div>
+            </div>
+     
+            <div class="row">
+              <div class="col-lg-12">
+                <button mat-icon-button (click)="createNewMessage()" aria-label="Example icon-button with a heart icon">
+                  <mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
+
 <div  *ngIf="form" class="container">
 <div *ngFor="let formCalucl of form.formMuti; let k = index" class="col-12 col-md-12 col-lg-11 mx-auto">
     
     <div class="card">
         <div class="card-body">
             <div class="card-header row  mr-3">       
-                <h1 class="m-3">Formulaire Calcule {{k}}</h1>
+                <h1 class="m-3">Formule Calcule {{k}}</h1>
                 <div class="card-header row mr-3 ml-auto" >
                     <button (click)="deleteFormCalule(k)" *ngIf="form.formMuti.length>1" mat-button>
                         <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
@@ -870,7 +903,7 @@
                <th colspan="2">desc</th>  
              </tr>   
              <tr *ngFor="let formCalucl of form.formMuti[k].val let z=index">  
-               <td style="width: 20%;height: 10%;">  
+               <td style="width: 30%;height: 10%;">  
                   <input type="number"class="form-control" [(ngModel)]="formCalucl.value"  [value]="formCalucl.value" placeholder="0">  
                </td>  
                <td >  
@@ -879,14 +912,21 @@
           
                </td>  
            <td>  
-             <button (click)="removeQuantity(k,z)" class="btn btn-danger"  *ngIf="form.formMuti[k].val.length>1"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>  
-               </td>  
+             <!-- <button (click)="removeQuantity(k,z)" class="btn btn-danger"  *ngIf="form.formMuti[k].val.length>1"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>  
+              -->
+              <button mat-icon-button (click)="removeQuantity(k,z)" aria-label="Example icon-button with a heart icon"  *ngIf="form.formMuti[k].val.length>1">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+              </button>
+            </td>  
              </tr>  
            </table>  
             
        <!--   <button type="submit" class="btn btn-success">Submit</button>  -->
-           <button type="button" (click)="addQuantity(k)" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-            
+           <!-- <button type="button" (click)="addQuantity(k)" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+             -->
+             <button mat-icon-button (click)="addQuantity(k)"  aria-label="Example icon-button with a heart icon">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon>
+              </button>
         <br/>  
     <!--     {{this.productForm.value | json}}   -->
     </div>

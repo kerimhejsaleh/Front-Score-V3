@@ -246,7 +246,7 @@ export class NgbdModalCheckLock implements OnInit {
     }
 
     ngOnInit(): void {
- 
+
     }
 
     permit(){
@@ -1144,7 +1144,7 @@ if(this.form.sections[s].questions[q].switch==true){
        value:0,
        descValue:""
      })
-     console.log(" console.log(,this.productForm.value.quantities)",this.form.formMuti[k].val)
+    /*  console.log(" console.log(,this.productForm.value.quantities)",this.form.formMuti[k].val) */
   }  
   currentNumber = '0';
   firstOperand = null;

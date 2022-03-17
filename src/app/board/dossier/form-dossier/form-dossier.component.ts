@@ -167,7 +167,7 @@ export class NgbdModalContent {
       disaffect(f: any){
         
 
-        this._dossier.disaffect(this.iddossier, f).subscribe(
+        this._dossier.disaffect(this.iddossier, f,"test").subscribe(
           res=>{
             
             this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>

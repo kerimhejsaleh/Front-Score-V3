@@ -119,7 +119,6 @@ export class FormsDataService {
 
 
   deleteImage(image:any){
-    console.log("image",image)
     return this.http.delete(this.path.url +'deletefile/' + image);
   }
 

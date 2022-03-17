@@ -78,7 +78,6 @@ export class NgbdModalContent {
     );
 
   }
-
   deletePatient(id: any){
 
     this._doctor.deletePatient(id).subscribe(
@@ -92,7 +91,7 @@ export class NgbdModalContent {
     );
 
   }
-
+ 
   deleteDoctor(id: any){
 
     this._doctor.deleteDoctor(id).subscribe(
@@ -223,7 +222,9 @@ screenWidth: any;
 
   
   }
-
+selectColor(c){
+  console.log
+}
   ngAfterViewInit(){
     this._doctor.getDoctorFromArchive().subscribe(
       res=>{

@@ -45,7 +45,7 @@
             <mat-select class=" form-control"
             [(value)]="form.name"
             (click)="testData(form,form.nameAff2)"
-             [placeholder]="form.nameAff2[0].Aff1">
+             [placeholder]="form.nameAff2[0].Aff1=='Aucune dossier' ? 'Aucun dossier':form.nameAff2[0].Aff1">
           <mat-option
         
           *ngFor="let item of form.nameAff"

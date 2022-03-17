@@ -16,7 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   declarations: [BoardComponent, HeaderComponent, SidebarComponent, FooterComponent, ArchiveComponent, StatisticsComponent, ProfileComponent],
   imports: [
@@ -26,7 +26,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ChartsModule,
     FormsModule,
     NgxPaginationModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatButtonToggleModule
 
   ],
   providers: [

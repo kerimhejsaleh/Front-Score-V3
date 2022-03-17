@@ -3,7 +3,7 @@ import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { FormsDataService } from '../services/forms-data.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl , FormArray, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormControl , FormArray, FormBuilder, Validators, NgForm} from '@angular/forms';
 import { EndpointService } from 'src/app/services/endpoint.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { Options,LabelType,ChangeContext,PointerType   } from 'ng5-slider';
@@ -127,12 +127,12 @@ export class AddFormComponent implements OnInit, AfterViewInit {
          value:0,
          descValue:""
        })
-       console.log(" console.log(,this.productForm.value.quantities)",this.form.calculeFormule[k].val)
+  /*      console.log(" console.log(,this.productForm.value.quantities)",this.form.calculeFormule[k].val) */
     }         
     removeQuantity(k:number,z:number) {  
  /*      this.form.messages. */
       this.form.calculeFormule[k].val.splice(z, 1);
-      console.log(" console.log(,this.productForm.value.quantities)",k,z)
+    /*   console.log(" console.log(,this.productForm.value.quantities)",k,z) */
       //this.quantities().removeAt(i);  
     }        
     onSubmit() {  
@@ -188,8 +188,8 @@ export class AddFormComponent implements OnInit, AfterViewInit {
       this.formArr.removeAt(index);
     }
   openDialog(i,s) {
-    console.log(",,,,",i,s)
-         console.log("this.form.sections[s].questions[i].dataRange",this.form.sections[s].questions[i].dataRange)
+    /* console.log(",,,,",i,s) */
+        /*  console.log("this.form.sections[s].questions[i].dataRange",this.form.sections[s].questions[i].dataRange) */
     if(this.form.sections[s].questions[i].dataRange==undefined){
       this.update="new"
     }else{
@@ -279,6 +279,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
       ceil: 100,
       step: 10,
       showTicks: true,
+      showOuterSelectionBars: true,
  
  stepsArray:slider.dataRange,  
  translate: (value: number): string => {
@@ -287,6 +288,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
  
         return  value + slider.dataRange[0].nameRange;}
 },
+
 /*  getPointerColor: (value: number): string => {
    if (value == 30) {
        return 'red';
@@ -819,7 +821,13 @@ changeFormTitle() {
     this.testFormTitle = true;
   }
 }
-
+data;
+Registers(regForm:NgForm){
+if(regForm.valid){
+this.data = regForm.value
+console.log(this.data)
+}
+}
   createNewForm(){
     this.testFormule = false;
     this.testFormTitle = false;
@@ -828,6 +836,7 @@ changeFormTitle() {
     this.countError = 0;
     this.form.calculeFormule.map((res)=>{
       if(res.formulCalcul.length<11){
+        this.countError++;
         this.toastr.warning(
           `Le formule de calcule est obligatoire`
         );

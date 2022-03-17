@@ -21,7 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient, HttpClientModule , HTTP_INTERCEPTORS,} from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { InterceptorService } from './interceptor.service';
 import { ForgotComponent } from './forgot/forgot.component';
 import { ResetComponent } from './reset/reset.component';
@@ -63,6 +63,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTooltipModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatButtonToggleModule,
     MatIconModule,
     MatFormFieldModule,
     MatSidenavModule,

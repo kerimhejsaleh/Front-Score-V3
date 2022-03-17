@@ -74,9 +74,9 @@ export class DossierService {
   }
 
 
-  disaffect(dossier: any , form: any){
- /*  console.log("dossier",dossier,form)  */
-    return this.http.delete(this.urlAffectation + 'deleteinside/' +dossier + '/' + form );
+  disaffect(dossier: any , form: any,type){
+  /* console.log("dossier",dossier,type)  */
+    return this.http.delete(this.urlAffectation + 'deleteinside/' +dossier + '/' + form + '/' + type );
 
   }
 
