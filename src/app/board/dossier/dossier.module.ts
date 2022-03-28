@@ -23,6 +23,9 @@ import { FormDossierComponent } from './form-dossier/form-dossier.component';
 import { FormDossierAffectComponent } from './form-dossier-affect/form-dossier-affect.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MyDialogComponent } from 'src/app/my-dialog/my-dialog.component';
+import { DialogBodyComponent } from 'src/app/companent/dialog-body/dialog-body.component';
 @NgModule({
   declarations: [DossierComponent, AddDossierComponent, ListDossierComponent, DetailDossierComponent, FormDossierComponent, FormDossierAffectComponent],
   imports: [
@@ -39,7 +42,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     HttpClientModule,
     NgbAlertModule,
     NgxPaginationModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
    
   ],
   providers: [DossierService ,
@@ -48,6 +52,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
       useClass: InterceptorService,
       multi: true
     }
-  ]
+  ],
+  entryComponents: [DialogBodyComponent,
+    MyDialogComponent]
 })
 export class DossierModule { }

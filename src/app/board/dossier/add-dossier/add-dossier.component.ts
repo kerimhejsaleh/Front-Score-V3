@@ -29,6 +29,8 @@ export class AddDossierComponent implements OnInit {
     added_date: '',
 
     archived: false,
+    status:false,
+    idDossier:'sddddddddddddddgsth25'
 
 
   }
@@ -74,6 +76,8 @@ export class AddDossierComponent implements OnInit {
             added_date: '',
           
             archived: false,
+            status:false,
+            idDossier:''
 
 
           };

@@ -107,7 +107,10 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
         this.dossier = res;
   //  this.listeDossier.push(res) 
     res.map((res)=>{
- 
+/*  console.log(res) */
+ if(res.status)
+    return null
+    else
     return this.listeDossier.push({_id:res._id,name:res.name,cheked:false})
     })
       }
@@ -142,6 +145,7 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
   testData(test,data){
    /*  console.log(test,data) */
     this.listeDossier.map((res)=>{
+  /*     console.log(res) */
       if(res.cheked=true){
         res.cheked=false
       }

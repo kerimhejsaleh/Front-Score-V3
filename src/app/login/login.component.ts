@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
   user : any;
   alert = false;
   constructor(private _auth: AuthService,private snackBar:MatSnackBar,
-              private _router: Router) { console.log(1,"constructor")}
+              private _router: Router) { /* console.log(1,"constructor") */}
 
   ngOnInit() {
-    console.log(2,"ngOnInit")
+    /* console.log(2,"ngOnInit") */
     if(this._auth.loggedIn){
       this._router.navigate(['/admin']);
     }
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
     this._auth.loginUser(this.loginUserData)
     .subscribe(
       res => {
-        console.log(3,res);
+        /* console.log(3,res); */
         localStorage.setItem('token', res.token);
 
         this._router.navigate(['/admin']);

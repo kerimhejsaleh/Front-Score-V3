@@ -14,13 +14,21 @@ export class ListDossierComponent implements OnInit {
   page:number=1;
   totalLength:any;
   allDossier:any;
+  allDosssier=[]
   ngOnInit(): void {
     this._dossierData.getAlldossier().subscribe(
       res=>{
+        let i=0
+        res.map((result)=>{
+          if(result.status)
+          i=i+1 
+          else
+          this.allDosssier.push(result)
+        })
         this.dossiers = res;
-        this.totalLength=res.length;
+        this.totalLength=this.allDosssier.length;
         this.allDossier=  res
-      /*   console.log(this.dossiers); */
+     /*  console.log(this.allDosssier);   */
         
         
       },

@@ -44,7 +44,11 @@ export class DossierService {
     return this.http.get<any>(this.url + id);
 
   }
+  getdossierByIdAff(id: any){
+console.log(id)
+    return this.http.get<any>(this.url + 'getDossier/' + id);
 
+  }
   deletedossier(id: any){
 
     return this.http.get<any>(this.url  + id);
@@ -60,18 +64,26 @@ export class DossierService {
 
 
   archivedossier(id: any){
-    /* console.log(id) */
+     console.log(id) 
     return this.http.get<any>(this.url + 'archived/' + id);
   }
 
-
+  archivedossierSousDossier(id: any){
+    console.log(id) 
+   return this.http.get<any>(this.url + 'archivedSousDossier/' + id);
+ }
 
 
   affect(affectation: any){
- /* console.log(affectation) */
+    console.log(1,affectation)  
     return this.http.post(this.urlAffectation + 'addinside' , affectation);
 
   }
+  affectDossier(affectation: any){
+/*      console.log(affectation)  */
+      return this.http.post(this.urlAffectation + 'addinsideDossier' , affectation);
+  
+    }
 
 
   disaffect(dossier: any , form: any,type){

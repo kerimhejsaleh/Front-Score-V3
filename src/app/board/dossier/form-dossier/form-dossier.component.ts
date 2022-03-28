@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DossierService } from '../services/dossier.service';
-
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MyDialogComponent } from 'src/app/my-dialog/my-dialog.component';
 @Component({
   selector: 'app-form-dossier',
   templateUrl: './form-dossier.component.html',
@@ -15,6 +16,8 @@ export class FormDossierComponent implements OnInit {
   constructor(private _dossier : DossierService,
     private router: ActivatedRoute,
     private modalService: NgbModal, 
+    public dialog: MatDialog,
+    public dialogAff: MatDialog
   
 
 ) { }
@@ -32,15 +35,160 @@ affectedToastWithSuccess = false;
 formAffectations : any;
 
 selecteddossier = 0;
+ListeDossier=[
+]
+ListeDossier2=[
+]
+dossier1 = {
 
- ngOnInit() : void {
+  name: '',
 
+  added_date: '',
+
+  archived: false,
+  status:true,
+  idDossier:''
 
 }
+public async VerfierForm(data,id){
+ /*  console.log("dataa1",id) */
+let j=0;
+data.map((res)=>{
 
+  if(id==res.id){
+    console.log(j,j+1,j-1)
+    data.splice(j-1,1)
+    console.log("dataa1",id)
+    console.log("dataa",data)
+   /*  console.log(j=j+1)
+     */
+  }
+})
+return data
+}
+public deletedossier(id){
+/* console.log(id)
+let i=0; */
+/* console.log(this.allForms ) */
+this.allForms.map((result)=>{
+  this.VerfierForm(result.dossierAff,id._id).then((test)=>{
+  /*   console.log(test) */
+  })
+/*   result.dossierAff.map((res)=>{
+    console.log(i=i+1)
+  }) */
+})
+/* this.id = this.router.snapshot.paramMap.get('id');
+
+   this._dossier.archivedossierSousDossier(id).subscribe(
+    res=>{
+      this._dossier.getMyForm(this.id).subscribe(
+        res=>{
+
+      },
+      err=>{
+      
+      }
+      );
+    },
+    err=>{
+      
+    }
+  );  */
+
+}
+ ngOnInit() : void {
+  this._dossier.getAlldossier().subscribe(
+    res=>{
+     res.map((result)=>{
+      if(result.status&&result.idDossier==this.id){
+    this.ListeDossier2.push(result)}
+     })    
+    },
+    err=>{
+   
+      
+    }
+  );
+
+}
+getdata(data,i){
+/*   console.log(data,this.allForms ) */
+  const dialogConfig = new MatDialogConfig();
+dialogConfig.disableClose = true;
+dialogConfig.autoFocus = true;
+dialogConfig.data = {
+id: data._id,
+title: data.name,
+forms:this.allForms ,
+formId:data,
+index:i
+};
+dialogConfig.backdropClass='backdropBackground';
+dialogConfig.panelClass='dialog-container-custom' ;
+dialogConfig.hasBackdrop=false;
+dialogConfig.backdropClass="cdk-overlay-backdrop";
+dialogConfig.autoFocus = true;
+dialogConfig.width="100%";
+const dialogRef = this.dialog.open(MyDialogComponent, dialogConfig);
+dialogRef.afterClosed().subscribe(result => {
+if(result){
+  this.id = this.router.snapshot.paramMap.get('id');
+    this._dossier.getMyForm(this.id).subscribe(
+      res=>{
+       this.allForms = res;
+  },
+  err=>{
+  
+  }
+  );
+}
+});
+}
+updateInput(){
+  if(this.dossier1.name!=''){
+    this.dossier1.idDossier=this.id
+/*     this.ListeDossier2.push({name:this.dossier1.name}); */
+this.ListeDossier2=[]
+    this._dossier.createNewdossier(this.dossier1).subscribe(
+      res => {
+       /*  console.log("res",this.id) */
+        this.dossier = {
+
+          name: '',
+         
+          added_date: '',
+        
+          archived: false,
+
+
+        };
+        this._dossier.getAlldossier().subscribe(
+          res=>{
+           res.map((result)=>{
+            if(result.status&&result.idDossier==this.id){
+          this.ListeDossier2.push(result)}
+           })    
+          },
+          err=>{
+         
+            
+          }
+        );
+      },
+      err => {
+      }
+    );
+  }
+ 
+  setTimeout(() => {
+    this.dossier1.name=''
+  }, 100);
+ 
+
+}
 ngAfterViewInit(){
   this.id = this.router.snapshot.paramMap.get('id');
-
 this._dossier.getdossierById(this.id).subscribe(
 res=>{
 this.dossier = res;
@@ -87,7 +235,7 @@ open(id:any , i: any) {
 
 
 }
-
+ 
 
 
 
