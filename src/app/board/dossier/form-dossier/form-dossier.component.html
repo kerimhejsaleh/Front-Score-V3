@@ -73,7 +73,7 @@
             
                 </div>
             </div>
-            <h1 class="card-title mb-0">Formulaires affectées à {{dossier?.name}} :</h1>
+            <h1 class="card-title mb-0">Liste Dossier à {{dossier?.name}} :</h1>
         </div>
         <div class="card-body">
          <!--    <div *ngFor="let f of ListeDossier; let i = index">
@@ -85,8 +85,8 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
+                    <th scope="col">Affecter</th>
                     <th scope="col">Action</th>
-                    <th scope="col">Action2</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -108,7 +108,7 @@
                         </mat-icon>
                     </button>  --> </td>
                     <td >      <div style="float: left;" class="ml-auto">
-                        <a  style="cursor: pointer;"><i  style="margin-left: 8px;font-size: 20px;" class="align-middle fas fa-fw fa-pen " ></i></a>
+                        <a  style="cursor: pointer;" (click)="updateNameDossier(ListeDossier2[i],i)"><i  style="margin-left: 8px;font-size: 20px;" class="align-middle fas fa-fw fa-pen " ></i></a>
     
                       
                                     

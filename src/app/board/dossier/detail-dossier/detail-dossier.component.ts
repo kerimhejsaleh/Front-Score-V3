@@ -138,6 +138,7 @@ action(){
 
 
 updatedossier(){
+  console.log(this.dossier)
   this._dossier.updatedossier(this.id ,  this.dossier).subscribe(
   res=>{
   this.toastr.success('dossier mis à jour avec succès! ', 'succès!');

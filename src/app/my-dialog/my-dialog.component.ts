@@ -12,10 +12,10 @@ export class MyDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,    
               private _dossier: DossierService) {
     this.modalTitle = data.title;
-/*     console.log(data) */
     }
-
+nameDossier:any;
   ngOnInit(): void {
+    this.nameDossier=this.data.title
   }
 open(i,j,title,form,index){
  
@@ -136,4 +136,18 @@ return toReturn;
 
 }
 }
+updatedossier(){
+  this.data.formId.name=this.nameDossier;
+  this._dossier.updatedossier(this.data.formId._id ,  this.data.formId).subscribe(
+  res=>{
+  //this.toastr.success('dossier mis à jour avec succès! ', 'succès!');
+  
+  },
+  err=>{
+    console.log(err);
+    
+ // this.toastr.error('Erreur dans la modification du dossier ', 'Erreur!');
+  }
+  );
+  }
 }

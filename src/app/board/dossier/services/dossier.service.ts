@@ -56,7 +56,7 @@ console.log(id)
   }
 
   updatedossier(id: any, dossier: any){
-
+/* console.log(id,dossier) */
     return this.http.put<any>(this.url + id , dossier);
 
   }
@@ -69,8 +69,8 @@ console.log(id)
   }
 
   archivedossierSousDossier(id: any){
-    console.log(id) 
-   return this.http.get<any>(this.url + 'archivedSousDossier/' + id);
+  
+   return this.http.get<any>(this.url + 'archivedSousDossier/' + id._id );
  }
 
 

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DossierService } from '../services/dossier.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MyDialogComponent } from 'src/app/my-dialog/my-dialog.component';
+import { FormsDataService } from '../../forms/services/forms-data.service';
 @Component({
   selector: 'app-form-dossier',
   templateUrl: './form-dossier.component.html',
@@ -14,6 +15,7 @@ export class FormDossierComponent implements OnInit {
 
 
   constructor(private _dossier : DossierService,
+   private _formData: FormsDataService,
     private router: ActivatedRoute,
     private modalService: NgbModal, 
     public dialog: MatDialog,
@@ -51,51 +53,68 @@ dossier1 = {
 
 }
 public async VerfierForm(data,id){
- /*  console.log("dataa1",id) */
 let j=0;
 data.map((res)=>{
+  j=j+1;
 
   if(id==res.id){
-    console.log(j,j+1,j-1)
-    data.splice(j-1,1)
-    console.log("dataa1",id)
-    console.log("dataa",data)
-   /*  console.log(j=j+1)
-     */
+   /*  console.log(res) */
+    data.splice(j-1,1) 
   }
 })
 return data
 }
 public deletedossier(id){
-/* console.log(id)
-let i=0; */
-/* console.log(this.allForms ) */
 this.allForms.map((result)=>{
   this.VerfierForm(result.dossierAff,id._id).then((test)=>{
-  /*   console.log(test) */
-  })
-/*   result.dossierAff.map((res)=>{
-    console.log(i=i+1)
-  }) */
-})
-/* this.id = this.router.snapshot.paramMap.get('id');
+    result.dossierAff=test
+  this._formData.updateForm(result._id, result).subscribe(
+    (res) => {
+ 
+   
+    },
+    (err) => {
 
-   this._dossier.archivedossierSousDossier(id).subscribe(
+    }
+  );  
+  })
+})
+ this.id = this.router.snapshot.paramMap.get('id');
+
+    this._dossier.archivedossierSousDossier(id).subscribe(
     res=>{
+      this.id = this.router.snapshot.paramMap.get('id');
       this._dossier.getMyForm(this.id).subscribe(
         res=>{
-
-      },
-      err=>{
-      
-      }
-      );
+         this.allForms = res;
+    },
+    err=>{
+    
+    }
+    );
     },
     err=>{
       
     }
-  );  */
+  );
 
+ setTimeout(() => {
+  this.ListeDossier2=[]
+  this._dossier.getAlldossier().subscribe(
+    res=>{
+     res.map((result)=>{
+     
+      if(result.status&&result.idDossier==this.id&&!result.archived){
+        
+    this.ListeDossier2.push(result)}
+     })    
+    },
+    err=>{
+   
+      
+    }
+  );
+ }, 500);
 }
  ngOnInit() : void {
   this._dossier.getAlldossier().subscribe(
@@ -145,6 +164,40 @@ if(result){
 }
 });
 }
+updateNameDossier(data,i){
+  /*   console.log(data,this.allForms ) */
+    const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data = {
+  id: data._id,
+  title: data.name,
+  forms:this.allForms ,
+  formId:data,
+  index:i,
+  update:"name"
+  };
+  dialogConfig.backdropClass='backdropBackground';
+  dialogConfig.panelClass='dialog-container-custom' ;
+  dialogConfig.hasBackdrop=false;
+  dialogConfig.backdropClass="cdk-overlay-backdrop";
+  dialogConfig.autoFocus = true;
+  dialogConfig.width="100%";
+  const dialogRef = this.dialog.open(MyDialogComponent, dialogConfig);
+  dialogRef.afterClosed().subscribe(result => {
+  if(result){
+    this.id = this.router.snapshot.paramMap.get('id');
+      this._dossier.getMyForm(this.id).subscribe(
+        res=>{
+         this.allForms = res;
+    },
+    err=>{
+    
+    }
+    );
+  }
+  });
+  }
 updateInput(){
   if(this.dossier1.name!=''){
     this.dossier1.idDossier=this.id
@@ -225,15 +278,6 @@ open(id:any , i: any) {
   modalRef.componentInstance.i = i ;
   
   }
-
-
-
-
-
-
-
-
-
 }
  
 

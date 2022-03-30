@@ -9,7 +9,8 @@
 
         <select name="" id=""  class=" form-control" style="width: 250px;height: 50px" (change)="onChange($event.target.value)">
             <option value=""> Tout </option>
-            <option [value]="item._id" *ngFor="let item of dossier"> {{item.name}} </option>
+          
+            <option  [value]="item._id" *ngFor="let item of dossier"><h6 *ngIf="!item.status"> {{item.name}}</h6></option>
         </select>
         <div class="box">
 

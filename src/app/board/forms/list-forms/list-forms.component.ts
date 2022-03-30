@@ -79,6 +79,7 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
 
   forms: any;
   dossier: any;
+  listeDossierSelect:any;
   listeDossier = [{_id:-1,
   name:"Aucune dossier",cheked:false}];
   selectedDossier = '';
@@ -105,7 +106,14 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
     this._dossier.getAlldossier().subscribe(
       res=>{
         this.dossier = res;
+        
   //  this.listeDossier.push(res) 
+/*  res.map((result)=>{
+   console.log(result)
+   if(!result.status){
+     this.listeDossierSelect.push({_id:res._id,name:res.name,cheked:false})
+   }
+ }) */
     res.map((res)=>{
 /*  console.log(res) */
  if(res.status)
