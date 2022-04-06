@@ -75,7 +75,7 @@ console.log(id)
 
 
   affect(affectation: any){
-    console.log(1,affectation)  
+/*     console.log(1,affectation)   */
     return this.http.post(this.urlAffectation + 'addinside' , affectation);
 
   }

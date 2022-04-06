@@ -67,9 +67,9 @@ export class LoginComponent implements OnInit {
 
     this.emailAlert = false;
     this.passwordAlert = false;
-     console.log(1);
+     /* console.log(1); */
   if(this.validateEmail(this.loginUserData.email) && this.loginUserData.password.length >0){
-    console.log(2,this.loginUserData.email);
+    /* console.log(2,this.loginUserData.email); */
     this._auth.loginUser(this.loginUserData)
     .subscribe(
       res => {

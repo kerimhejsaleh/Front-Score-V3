@@ -882,6 +882,26 @@ console.log(this.data)
     }
 
     if (this.countError == 0) {
+      for(let i=0;i<this.form.sections.length;i++){
+      
+        for(let j=0;j<this.form.sections[i].questions.length;j++){
+       //   console.log("resultresultresult", this.form.sections[i].questions[j])
+          let ressss= []
+          if(this.form.sections[i].questions[j].dataRange==undefined){
+          ressss.push({grille:this.form.sections[i].questions[j].grille,hint:this.form.sections[i].questions[j].hint,image:this.form.sections[i].questions[j].image,maxRange:this.form.sections[i].questions[j].maxRange,minRange:this.form.sections[i].questions[j].minRange,numberJourCmnt:this.form.sections[i].questions[j].numberJourCmnt,obligatoire:this.form.sections[i].questions[j].obligatoire,option:this.form.sections[i].questions[j].option,optioncm:this.form.sections[i].questions[j].optioncm,options:this.form.sections[i].questions[j].options,optionsSaint:this.form.sections[i].questions[j].optionsSaint,rangeBoolean:this.form.sections[i].questions[j].rangeBoolean,score:this.form.sections[i].questions[j].score,switch:this.form.sections[i].questions[j].switch,title:this.form.sections[i].questions[j].title,typRange:this.form.sections[i].questions[j].typRange,type:this.form.sections[i].questions[j].type,dataRange:[{value:0,legend:"",nameRange:""}]})
+           }
+          // console.log("ressss", ressss)
+          if(this.form.sections[i].questions[j].dataRange==undefined){
+            this.form.sections[i].questions[j]=ressss[0]
+          }else{
+            this.form.sections[i].questions[j].dataRange.push({value:0,legend:"",nameRange:""})
+          }
+        
+          // console.log("resultresultresult3333333333", this.form.sections[i].questions[j])
+        }
+       
+
+      }
       this.formService.createNewForm(this.form).subscribe(
         (res) => {
      
