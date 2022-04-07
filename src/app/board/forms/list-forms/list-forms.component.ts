@@ -79,7 +79,7 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
 
   forms: any;
   dossier: any;
-  listeDossierSelect: [];;
+  listeDossierSelect:any;
   listeDossier = [{_id:-1,
   name:"Aucune dossier",cheked:false}];
   selectedDossier = '';
@@ -93,7 +93,6 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
   nameDossier: string;
   allFrormsNumber;
   ngOnInit(): void {
-  
   }
   public options2 = [
     {"id": 1, "name": "a"},
@@ -107,7 +106,7 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
       res=>{
        
         this.dossier = res;
-
+   
     res.map((res)=>{
 
  if(res.status)
@@ -115,9 +114,19 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
     else
     return this.listeDossier.push({_id:res._id,name:res.name,cheked:false})
     })
+    this.listeDossierSelect = this.listeDossier
+/*   this.listeDossierSelect = this.listeDossier
+  console.log(this.listeDossierSelect) */
+ /*  setTimeout(() => {
+    this.listeDossierSelect.splice(0,1) 
+  }, 1000); */
+/*   this.listeDossierSelect.splice(0,1)  */
+  /*   this.listeDossier.splice(0,1) */
+  /*   console.log(this.listeDossier)  */
+  
       }
+      
     );
-/*     console.log(this.listeDossier) */
     this._formData.getAllForm().subscribe(
       res=>{
         this.forms = res;

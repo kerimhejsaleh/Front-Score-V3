@@ -9,8 +9,7 @@
 
         <select name="" id=""  class=" form-control" style="width: 250px;height: 50px" (change)="onChange($event.target.value)">
             <option value=""> Tout </option>
-          
-            <option  [value]="item._id" *ngFor="let item of dossier"><h6 *ngIf="!item.status"> {{item.name}}</h6></option>
+            <option  [value]="item._id" *ngFor="let item of listeDossierSelect"><h6 *ngIf="item.name!='Aucune dossier'"> {{item.name}}</h6></option>
         </select>
         <div class="box">
 
@@ -86,12 +85,12 @@
 </div>
 <div  *ngIf="mesgEmpty" class="text-center mt-5" style="width: 100%;height: 100%;padding-bottom: 15%;">   
     <h1 class="header-title" style="color: transparent;padding-bottom: 15%;font-size: 0px;">A</h1>
-    <h1 class="header-title" style="color: red;padding-bottom: 15%;">AUCUNE FORMULAIRE AFFECTEER DANS DOSSSIER {{nameDossier}} </h1>
+    <h1 class="header-title" style="color: red;padding-bottom: 15%;">AUCUN FORMULAIRE AFFECTEER DANS DOSSSIER {{nameDossier}} </h1>
 
 </div>
 <div  *ngIf="allFrormsNumber==0" class="text-center mt-5" style="width: 100%;height: 100%;padding-bottom: 15%;">   
     <h1 class="header-title" style="color: transparent;padding-bottom: 15%;font-size: 0px;">A</h1>
-    <h1 class="header-title" style="color: red;padding-bottom: 15%;">AUCUNE FORMULAIRE  </h1>
+    <h1 class="header-title" style="color: red;padding-bottom: 15%;">AUCUN FORMULAIRE  </h1>
 
 </div>
 <div *ngIf="!mesgEmpty" class="text-center mt-5"> 
