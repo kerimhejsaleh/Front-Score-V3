@@ -43,3 +43,6 @@
     background-color: #747171;
     color: #ffffff !important;
 }
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #ffffff !important;
+}

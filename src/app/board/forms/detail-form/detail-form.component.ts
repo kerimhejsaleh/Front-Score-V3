@@ -933,6 +933,13 @@ if(this.form.sections[s].questions[q].switch==true){
           //this.deleteForm();
         });
       } else {
+    /*     console.log( this.form.messages.length) */
+       if(this.form.messages.length==0){
+  
+         this.form.messages.push(
+          {score: '', message: ''})
+         
+       }
 /*    this.form.sections.map((res)=>{
           console.log("ress",res)
           res.questions.map((result)=>{
@@ -995,6 +1002,7 @@ if(this.form.sections[s].questions[q].switch==true){
          
 
         } */
+/*         console.log( ".messages.length",this.form.messages) */
      this._formData.updateForm(this.id, this.form).subscribe(
           (res) => {
 
@@ -1200,7 +1208,7 @@ if(this.form.sections[s].questions[q].switch==true){
     this.form.formMuti.splice(m, 1);
   }
   addQuantity(k) {  
-    console.log("kkkk",k)
+  /*   console.log("kkkk",k) */
 /*       this.quantities().push(this.newQuantity());  
     this.form.calculeFormule[k].val=this.productForm.value.quantities
      console.log(" console.log(,this.productForm.value.quantities)",this.productForm.value.quantities) */

@@ -56,7 +56,7 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let patient of allPatients  | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <tr *ngFor="let patient of allPatients   |  paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLength }">
                         <td><img [src]="patient.photo" width="32" height="32"
                                 class="rounded-circle my-n1" alt="Avatar"></td>
                         <td>{{patient.name + ' ' + patient.lastname}} </td>
@@ -83,9 +83,13 @@
 
                 </tbody>
             </table>
-            <div class="text-center mt-5"> 
+       <!--      <div class="text-center mt-5"> 
                 <pagination-controls previousLabel="Précédent"
                 nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
+            </div> -->
+            <div *ngIf="totalLength>8" class="text-center mt-5"> 
+                <pagination-controls class="my-pagination" previousLabel="Précédent"
+                nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
             </div>
         </div>
     </div>

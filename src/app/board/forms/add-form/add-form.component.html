@@ -748,7 +748,7 @@
             </textarea>
           </div>
           <div class="col-lg-1" style="display: grid; place-content: center;">
-            <button mat-icon-button (click)="deleteMessage(m)" aria-label="Example icon-button with a heart icon">
+            <button *ngIf="form.messages.length>1" mat-icon-button (click)="deleteMessage(m)" aria-label="Example icon-button with a heart icon">
               <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
             </button>
           </div>

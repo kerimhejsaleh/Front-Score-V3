@@ -986,3 +986,11 @@ transition: 1s;
     input.ng-untouched{
       border-color: #ced4da
     }
+    form input {
+      width: 100%;
+  }
+  form span {
+      display: block;
+      overflow: hidden;
+      padding: 0 5px 0 0;
+  }

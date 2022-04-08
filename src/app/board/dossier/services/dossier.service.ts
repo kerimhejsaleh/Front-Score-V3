@@ -64,7 +64,7 @@ console.log(id)
 
 
   archivedossier(id: any){
-     console.log(id) 
+/*      console.log(id)  */
     return this.http.get<any>(this.url + 'archived/' + id);
   }
 

@@ -75,7 +75,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let doctor of doctors | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <tr *ngFor="let doctor of doctors |  paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLengthdoctor }">
                             <td><img [src]=" path.url + 'getfile/' + doctor.photo" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
                             <td>{{doctor.name + ' ' + doctor.lastname}} </td>
                             <td *ngIf="screenWidth > 450">{{doctor.adresse}}</td>
@@ -94,9 +94,13 @@
                     </tbody>
                 </table>
 
-                <div class="text-center mt-5" *ngIf="doctors?.length > 0"> 
+            <!--     <div class="text-center mt-5" *ngIf="doctors?.length > 0"> 
                     <pagination-controls previousLabel="Précédent"
                     nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
+                </div> -->
+                <div  *ngIf="doctors?.length > 0" class="text-center mt-5"> 
+                    <pagination-controls class="my-pagination" previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
                 </div>
             </div>
         </div>
@@ -132,7 +136,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let patient of patients | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <tr *ngFor="let patient of patients |  paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLengthpatient }">
                             <td><img [src]=" path.url + 'getfile/' + patient.photo" width="32" height="32" class="rounded-circle my-n1" alt="Avatar"></td>
                             <td>{{patient.name + ' ' + patient.lastname}} </td>
                             <td *ngIf="screenWidth > 450">{{patient.adresse}}</td>
@@ -150,9 +154,13 @@
              
                     </tbody>
                 </table>
-                <div class="text-center mt-5" *ngIf="patients?.length > 0"> 
+            <!--     <div class="text-center mt-5" *ngIf="patients?.length > 0"> 
                     <pagination-controls previousLabel="Précédent"
                     nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
+                </div> -->
+                <div *ngIf="patients?.length > 0" class="text-center mt-5"> 
+                    <pagination-controls class="my-pagination" previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
                 </div>
             </div>
         </div>
@@ -189,7 +197,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let f of forms | paginate: { itemsPerPage: 10, currentPage: p };">
+                        <tr *ngFor="let f of forms |  paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLengthformulaire }">
                             
                             <td>{{f.title}} </td>
                            
@@ -210,9 +218,13 @@
              
                     </tbody>
                 </table>
-                <div class="text-center mt-5" *ngIf="forms?.length > 0"> 
+             <!--    <div class="text-center mt-5" *ngIf="forms?.length > 0"> 
                     <pagination-controls previousLabel="Précédent"
                     nextLabel="Suivant" (pageChange)="p = $event"></pagination-controls>
+                </div> -->
+                <div  *ngIf="forms?.length > 0" class="text-center mt-5"> 
+                    <pagination-controls class="my-pagination" previousLabel="Précédent"
+                    nextLabel="Suivant" (pageChange)="page = $event"></pagination-controls>
                 </div>
             </div>
         </div>

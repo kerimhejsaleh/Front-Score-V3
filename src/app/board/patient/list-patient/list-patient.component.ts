@@ -21,6 +21,8 @@ export class ListPatientComponent implements OnInit {
   allPatients: any;
   allPatientsToFilter: any;
   p: number = 1;
+  page:number=1;
+  totalLength:any;
   constructor(
     private _patient: DataPatientService,
     private router: Router,
@@ -47,7 +49,7 @@ ngAfterViewInit(){
       res => {
         this.allPatients = res;
         this.allPatientsToFilter = res;
-    
+        this.totalLength=res.length;
       },
       err => { }
     );

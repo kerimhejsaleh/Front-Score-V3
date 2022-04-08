@@ -100,7 +100,8 @@ export class ListDoctorComponent implements OnInit , AfterViewInit {
   screenWidth: any;
   allDoctors: any;
   allDoctorsToFilter: any;
-
+  page:number=1;
+  totalLength:any;
   open(id: any, state: any, i: any) {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.id = id;
@@ -119,7 +120,8 @@ export class ListDoctorComponent implements OnInit , AfterViewInit {
       res => {
         this.allDoctors = res;
         this.allDoctorsToFilter = res;
-      /*   console.log(res); */
+        this.totalLength=res.length;
+       /*  console.log("this.totalLength",this.totalLength);  */
         
       },
       err => { }

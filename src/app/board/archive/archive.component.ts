@@ -199,8 +199,10 @@ screenWidth: any;
     p: number = 1;
 
     selectedtab = 1;
-
-
+    page:number=1;
+    totalLengthdoctor:any;
+    totalLengthpatient:any;
+    totalLengthformulaire:any;
 
 
     open(id: any, i:any) {
@@ -229,7 +231,7 @@ selectColor(c){
     this._doctor.getDoctorFromArchive().subscribe(
       res=>{
         this.doctors = res;
-      
+        this.totalLengthdoctor=res.length;
         
       },
       err=>{
@@ -242,6 +244,7 @@ selectColor(c){
     this._patient.getPatientFromArchive().subscribe(
       res=>{
         this.patients =  res;
+        this.totalLengthpatient=res.length;
       },
       err=>{
        
@@ -253,6 +256,7 @@ selectColor(c){
     this._forms.getFormFromArchive().subscribe(
       res=>{
         this.forms = res;
+    /*     this.totalLength=res.length; */
       },
       err=>{
    

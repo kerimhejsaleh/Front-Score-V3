@@ -119,7 +119,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
       })  
     }         
     addQuantity(k) {  
-      console.log("kkkk",k)
+    /*   console.log("kkkk",k) */
 /*       this.quantities().push(this.newQuantity());  
       this.form.calculeFormule[k].val=this.productForm.value.quantities
        console.log(" console.log(,this.productForm.value.quantities)",this.productForm.value.quantities) */
@@ -901,6 +901,12 @@ console.log(this.data)
         }
        
 
+      }
+      if(this.form.messages.length==0){
+  
+        this.form.messages.push(
+         {score: '', message: ''})
+        
       }
       this.formService.createNewForm(this.form).subscribe(
         (res) => {
