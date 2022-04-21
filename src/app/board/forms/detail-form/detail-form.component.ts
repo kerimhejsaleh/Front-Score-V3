@@ -678,7 +678,7 @@ createNewSection(){
           numberJourCmnt:'',
           score: 0,
           minRange:0,
-          maxRange:100,
+          maxRange:0,
           option:{
             value: 1,
             floor: 0,
@@ -737,7 +737,7 @@ createNewQuestion(section: any){
       numberJourCmnt:'',
       score: 0,
       minRange:0,
-      maxRange:100,
+      maxRange:0,
       option:{
         value: 1,
         floor: 0,
@@ -788,7 +788,7 @@ duplicateNewQuestion(section: any,index:any){
        numberJourCmnt:this.form.sections[section].questions[index].numberJourCmnt,
        score: 0,
        minRange:0,
-       maxRange:100,
+       maxRange:0,
        option:{
          value: 1,
          floor: 0,
@@ -940,21 +940,42 @@ if(this.form.sections[s].questions[q].switch==true){
           {score: '', message: ''})
          
        }
-/*    this.form.sections.map((res)=>{
-          console.log("ress",res)
+       if(this.form.dossierAff.length==0){
+
+              this.form.dossierAff.push(
+                {nameDossier: 'Aucune dossier', id: ''}) 
+               
+             }
+ 
+    
+            /*   this.form.sections.map(( resultmax2)=>{
+                  resultmax2.questions.map((resultmax3)=>{
+              
+                    resultmax3.maxRange=0
+             
+        
+                  })
+                }) */
+
+         
+/*     this.form.sections.map((res)=>{
+      let i=0;
+
+
           res.questions.map((result)=>{
-          
+
             if(result.dataRange==undefined){
               let ressss= []
               ressss.push({grille:result.grille,hint:result.hint,image:result.image,maxRange:result.maxRange,minRange:result.minRange,numberJourCmnt:result.numberJourCmnt,obligatoire:result.obligatoire,option:result.option,optioncm:result.optioncm,options:result.options,optionsSaint:result.optionsSaint,rangeBoolean:result.rangeBoolean,score:result.score,switch:result.switch,title:result.title,typRange:result.typRange,type:result.type,dataRange:[{value:0,legend:"",nameRange:""}]})
+              i=i+1
              
-              console.log("result", ressss[0])
               result=ressss[0]
-              console.log("resultresultresult", result)
+       
             }
           })
-        })
-        console.log(this.form.sections.length) */
+        }) */
+      
+    /*     console.log(this.form.sections.length)  */
    /*      for(let i=0;i<this.form.sections.length;i++){
       
           for(let j=0;j<this.form.sections[i].questions.length;j++){
@@ -1003,18 +1024,20 @@ if(this.form.sections[s].questions[q].switch==true){
 
         } */
 /*         console.log( ".messages.length",this.form.messages) */
-     this._formData.updateForm(this.id, this.form).subscribe(
-          (res) => {
+    setTimeout(() => {
+      this._formData.updateForm(this.id, this.form).subscribe(
+        (res) => {
 
-            this.toastr.success(
-              'Formulaire mis à jour avec succès! ',
-              'succès!'
-            );
-          },
-          (err) => {
-            this.toastr.error('Erreur ! ', 'Erreur!');
-          }
-        ); 
+          this.toastr.success(
+            'Formulaire mis à jour avec succès! ',
+            'succès!'
+          );
+        },
+        (err) => {
+          this.toastr.error('Erreur ! ', 'Erreur!');
+        }
+      ); 
+    }, 2000);
       }
     }
   }

@@ -437,7 +437,7 @@ setNewCeil(newCeil: number,i:any,s:any): void {
             numberJourCmnt:'',
             score: 0,
             minRange:0,
-            maxRange:100,
+            maxRange:0,
             option:{
               value: 1,
               floor: 0,
@@ -503,7 +503,7 @@ onAddForm(){
         numberJourCmnt:'',
         score: 0,
         minRange:0,
-        maxRange:100,
+        maxRange:0,
         option:{
           value: 1,
           floor: 0,
@@ -557,7 +557,7 @@ onAddForm(){
       numberJourCmnt:this.form.sections[section].questions[index].numberJourCmnt,
       score: 0,
       minRange:0,
-      maxRange:100,
+      maxRange:0,
       option:{
         value: 1,
         floor: 0,

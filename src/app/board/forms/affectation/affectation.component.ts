@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { EndpointService } from 'src/app/services/endpoint.service';
 import { DoctorDataService } from '../../doctor/services/doctor-data.service';
 import { FormsDataService } from '../services/forms-data.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -136,7 +136,7 @@ export class AffectationComponent implements OnInit, AfterViewInit {
               public path: EndpointService,
               private _auth: AuthService,
               private modalService: NgbModal, 
-
+              private snackBar:MatSnackBar,
 
         ) { }
 
@@ -157,11 +157,18 @@ export class AffectationComponent implements OnInit, AfterViewInit {
   formAffectations : any;
 
   open(id:any , i: any) {
+    if(this.form.formMuti[0].formulCalcul=='0'){
+      this.snackBar.open(" Veuillez ajouter la formule calculée dans le formulaire "+this.form.title ,"×", {
+        duration: 5000,
+        // here specify the position
+        verticalPosition: 'top'
+      });
+    }else{
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.idUser = id ;
     modalRef.componentInstance.idForm = this.id ;
   
-    modalRef.componentInstance.i = i ;
+    modalRef.componentInstance.i = i ;}
     
     }
 

@@ -24,6 +24,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   doctors: any;
   patients: any;
   forms: any;
+  formUpdate:any;
   formsAff:any;
   formAll:any;
   responses: any;
@@ -135,6 +136,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
     this.makeFormulaireStatDatatAll(date.toString());
 
 
+  
     this._form.getAllForm().subscribe(
       res=>{
      
