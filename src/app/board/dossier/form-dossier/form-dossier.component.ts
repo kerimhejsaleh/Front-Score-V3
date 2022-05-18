@@ -4,8 +4,9 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DossierService } from '../services/dossier.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MyDialogComponent } from 'src/app/my-dialog/my-dialog.component';
+import { MyDialogComponent } from 'src/app/companent/my-dialog/my-dialog.component';
 import { FormsDataService } from '../../forms/services/forms-data.service';
+
 @Component({
   selector: 'app-form-dossier',
   templateUrl: './form-dossier.component.html',

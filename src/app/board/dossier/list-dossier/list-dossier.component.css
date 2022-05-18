@@ -1,6 +1,6 @@
 .card1{
     position: relative;
-    cursor: pointer;
+ 
     margin-left: 28%;
 }
 .box{
@@ -65,3 +65,7 @@ h3{
 .my-pagination /deep/ .ngx-pagination .current {
     background: #153d77;
 }
+/* .spinner-border {
+    width: 10px; 
+    height: 10px;
+} */

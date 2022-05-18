@@ -4,7 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { EndpointService } from 'src/app/services/endpoint.service';
 import { DossierService } from '../services/dossier.service';
-
+import { DoctorDataService } from '../../doctor/services/doctor-data.service';
 @Component({
   selector: 'app-detail-dossier',
   templateUrl: './detail-dossier.component.html',
@@ -109,6 +109,7 @@ export class NgbdModalContent {
   constructor(public activeModal: NgbActiveModal,private _dossier: DossierService,
     private toastr: ToastrService,
     private router : Router, 
+    private _doctor :DoctorDataService
 
     ) {}
 
@@ -122,17 +123,87 @@ action(){
 }
 
 
-
+newAllDossier =[]
   public deletedossier(){
-
+  //let newAllDossier
     this._dossier.archivedossier(this.id).subscribe(
       res=>{
           this.router.navigate(['/admin/dossier']);
+          this._doctor.getAllDoctor().subscribe(
+            ress=>{
+           ress.map((result)=>{
+             console.log(result.liste_dossier)
+             this.newAllDossier =[]
+             result.liste_dossier.filter((resultthree)=>{
+               console.log(resultthree.id ,this.id)
+               if(resultthree.id != this.id){
+                   return this.newAllDossier.push(resultthree)
+               }else{
+                 console.log(2)
+               }
+              return resultthree.id != this.id;
+             })
+         /*     result.liste_dossier.push({
+              checkedone: false,
+              dataForms: [],
+              id: res._id,
+              lengthTab: 0,
+              status: false,
+              valLenght: false,
+        }) */
+        console.log(this.newAllDossier)
+        result.liste_dossier=this.newAllDossier
+        this._doctor.updateDoctor(result._id ,  result,result.liste_dossier,"autre").subscribe(
+          res=>{
+          
+          },
+          err=>{
+          }
+          ); 
+           })
+            },
+            err=>{
+              
+            }
+          );
+ /*          this._doctor.getAllDoctor().subscribe(
+            ress=>{
+              console.log(ress)
+              let m = 0;
+              let y = 0;
+              for( let i = 0 ; i <ress.length;i++){
+                 m = m + 1;
+                for( let j = 0 ; j <ress[i].liste_dossier.length;j++){
+                  y = y +1;
+                  console.log(ress[i].liste_dossier[j])
+                  console.log(ress[i]._id)
+                  console.log("m",m ,"y",y)
+                }
+              }
+              this.newAllDossier=[]
+           ress.filter((result)=>{
+           
+             result.liste_dossier.filter((resulttow)=>{
+              if(this.id!=resulttow.id){
+                console.log(this.newAllDossier)
+              return this.newAllDossier.push(resulttow)}
+             })
+           })
+           console.log("ddddddddddd",this.newAllDossier) 
+            },
+            err=>{
+              
+            }
+          ); */ 
+          
       },
       err=>{
         
       }
     );
+    setTimeout(() => {
+
+    }, 500);
 
 }
 

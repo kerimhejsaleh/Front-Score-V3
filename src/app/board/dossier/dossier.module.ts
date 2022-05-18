@@ -24,7 +24,7 @@ import { FormDossierAffectComponent } from './form-dossier-affect/form-dossier-a
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MyDialogComponent } from 'src/app/my-dialog/my-dialog.component';
+import { MyDialogComponent } from 'src/app/companent/my-dialog/my-dialog.component';
 import { DialogBodyComponent } from 'src/app/companent/dialog-body/dialog-body.component';
 @NgModule({
   declarations: [DossierComponent, AddDossierComponent, ListDossierComponent, DetailDossierComponent, FormDossierComponent, FormDossierAffectComponent],

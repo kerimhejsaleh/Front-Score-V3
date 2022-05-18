@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
           // here specify the position
           verticalPosition: 'top'
         });
-        console.log(55555);
+      /*   console.log(55555); */
         setTimeout(
           ()=>{
             this.alert = false
@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
         // here specify the position
         verticalPosition: 'top'
       });
-      console.log(55555);
+  /*     console.log(55555); */
       setTimeout(
         ()=>{
           this.alert = false

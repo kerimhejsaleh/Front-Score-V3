@@ -326,6 +326,7 @@ export class DetailFormComponent implements OnInit , AfterViewInit{
   
   
   ];
+  indexScoreForm:[]
   dataRange : []
   GenerForm:[
     {
@@ -934,12 +935,12 @@ if(this.form.sections[s].questions[q].switch==true){
         });
       } else {
     /*     console.log( this.form.messages.length) */
-       if(this.form.messages.length==0){
+      /*  if(this.form.messages.length==0){
   
          this.form.messages.push(
           {score: '', message: ''})
          
-       }
+       } */
        if(this.form.dossierAff.length==0){
 
               this.form.dossierAff.push(
@@ -948,17 +949,30 @@ if(this.form.sections[s].questions[q].switch==true){
              }
  
     
-            /*   this.form.sections.map(( resultmax2)=>{
+         /*    this.form.sections.map(( resultmax2)=>{
                   resultmax2.questions.map((resultmax3)=>{
               
                     resultmax3.maxRange=0
              
         
                   })
-                }) */
+                })  */
 
+          /*       console.log(this.form.formMuti)  */
+      
          
-/*     this.form.sections.map((res)=>{
+         
+       /*      for(let i=0;i<this.form.formMuti.length;i++){
+          
+              if(this.form.formMuti[i].indexScoreForm==undefined){
+
+            let ressss={
+              formulCalcul:this.form.formMuti[i].formulCalcul,val:this.form.formMuti[i].val,indexScoreForm:[{i:0,j:0,k:0,desc:"",type:""}]
+            }
+
+                this.form.formMuti[i]=ressss
+             } } */
+ /*     this.form.sections.map((res)=>{
       let i=0;
 
 
@@ -967,16 +981,17 @@ if(this.form.sections[s].questions[q].switch==true){
             if(result.dataRange==undefined){
               let ressss= []
               ressss.push({grille:result.grille,hint:result.hint,image:result.image,maxRange:result.maxRange,minRange:result.minRange,numberJourCmnt:result.numberJourCmnt,obligatoire:result.obligatoire,option:result.option,optioncm:result.optioncm,options:result.options,optionsSaint:result.optionsSaint,rangeBoolean:result.rangeBoolean,score:result.score,switch:result.switch,title:result.title,typRange:result.typRange,type:result.type,dataRange:[{value:0,legend:"",nameRange:""}]})
+          
               i=i+1
              
               result=ressss[0]
        
             }
           })
-        }) */
+        })  */
       
     /*     console.log(this.form.sections.length)  */
-   /*      for(let i=0;i<this.form.sections.length;i++){
+ /*     for(let i=0;i<this.form.sections.length;i++){
       
           for(let j=0;j<this.form.sections[i].questions.length;j++){
 
@@ -1004,8 +1019,8 @@ if(this.form.sections[s].questions[q].switch==true){
           }
          
 
-        }
-        for(let i=0;i<this.form.sections.length;i++){
+        } */
+    /*     for(let i=0;i<this.form.sections.length;i++){
       
           for(let j=0;j<this.form.sections[i].questions.length;j++){
             let ressss= []
@@ -1022,7 +1037,7 @@ if(this.form.sections[s].questions[q].switch==true){
           }
          
 
-        } */
+        }  */
 /*         console.log( ".messages.length",this.form.messages) */
     setTimeout(() => {
       this._formData.updateForm(this.id, this.form).subscribe(
@@ -1245,7 +1260,8 @@ if(this.form.sections[s].questions[q].switch==true){
   firstOperand = null;
   operator = null;
   waitForSecondNumber = false;
-  public getNumber(v: string,k){
+  public getNumber(v: string,val1,val2,k,val){
+/*     console.log(v,k) */
     if(this.waitForSecondNumber)
     {
       this.currentNumber = v;
@@ -1255,10 +1271,57 @@ if(this.form.sections[s].questions[q].switch==true){
       this.currentNumber === '0'? this.currentNumber = v: this.currentNumber += v;
       this.form.formMuti[k].formulCalcul === '0'? this.form.formMuti[k].formulCalcul = v: this.form.formMuti[k].formulCalcul += v;
     }
+
+    if(val==1){
+
+      if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
+    /*     console.log("val1",val1)
+        console.log("val2",val2)
+        console.log("      this.form.formMuti[k].indexScoreForm[0].i",      this.form.formMuti[k].indexScoreForm[0].i)
+        console.log("      this.form.formMuti[k].indexScoreForm[0].j",      this.form.formMuti[k].indexScoreForm[0].j) */
+        this.form.formMuti[k].indexScoreForm[0].i=val1
+        this.form.formMuti[k].indexScoreForm[0].j=val2
+        this.form.formMuti[k].indexScoreForm[0].type="index"
+     /*    console.log("      this.form.formMuti[k].indexScoreForm[0].i",      this.form.formMuti[k].indexScoreForm[0].i)
+        console.log("      this.form.formMuti[k].indexScoreForm[0].j",      this.form.formMuti[k].indexScoreForm[0].j)
+        console.log("      this.form.formMuti[k].indexScoreForm[0].type",      this.form.formMuti[k].indexScoreForm[0].type) */
+      
+      }else{
+        this.form.formMuti[k].indexScoreForm.push({i:val1,j:val2,k:0,desc:"",type:"index"})
+      }
+    }else{
+/*       console.log("77777",this.form.formMuti[k].indexScoreForm.length) */
+      if(v=="+"||v=="-"||v=="×"||v=="/"){
+        if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
+              this.form.formMuti[k].indexScoreForm[0].desc=v
+              this.form.formMuti[k].indexScoreForm[0].type="operation"            
+            }else{
+              this.form.formMuti[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"operation"})
+            }   
+      }
+      if(v=="0"||v=="1"||v=="2"||v=="3"||v=="4"||v=="5"||v=="6"||v=="7"||v=="8"||v=="9"){
+        console.log( this.form.formMuti[k].indexScoreForm[0].k)
+        if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
+          this.form.formMuti[k].indexScoreForm[0].k=v
+          this.form.formMuti[k].indexScoreForm[0].type="number"            
+        }else{
+          this.form.formMuti[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"number"})
+        }   
+      }
+      if(v=="("||v==")"||v==","){
+        if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
+              this.form.formMuti[k].indexScoreForm[0].desc=v
+              this.form.formMuti[k].indexScoreForm[0].type="autre"            
+            }else{
+              this.form.formMuti[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"autre"})
+            }   
+      }
+    }
   }
   public clear(k){
     this.currentNumber = '0';
     this.form.formMuti[k].formulCalcul='0'
+    this.form.formMuti[k].indexScoreForm=[{i: 0, j: 0, k: 0, desc: '', type: ''}]
     this.firstOperand = null;
     this.operator = null;
     this.waitForSecondNumber = false;

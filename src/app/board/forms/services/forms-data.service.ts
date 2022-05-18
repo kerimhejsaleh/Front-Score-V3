@@ -95,7 +95,7 @@ export class FormsDataService {
 
 
   affect(affectation: any){
-
+       console.log("affectation",affectation)
     return this.http.post(this.urlAffectation + 'addaffectation' , affectation);
 
   }
@@ -103,12 +103,13 @@ export class FormsDataService {
 
 
   getFormAffectaion(user: any){
+    /* console.log("hhhhhio",user) */
     return this.http.get(this.urlAffectation + 'getformaffectation/' + user);
   }
 
 
   disaffect(user: any , form: any){
-
+    console.log("user,form",user,form)
     return this.http.delete(this.urlAffectation + 'deleteaffectation/' +user + '/' + form );
 
   }

@@ -95,9 +95,46 @@ export class DoctorDataService {
 
   }
 
-  updateDoctor(id: any , doctor: any){
+  updateDoctor(id: any , doctor: any,dataDosier,type){
+/*     console.log(id,doctor,dataDosier,type) */
+/*      */
+ /*    console.log(id)
+    console.log(doctor) */
+/*     console.log(type)
 
-    return this.http.put<any>(this.urlDoctor  + id , doctor);
+    console.log(id) */
+/*     console.log(dataDosier) */
+  let dossierData=[]
+  dataDosier.map((res)=>{
+    dossierData.push({id:res._id,status:false,lengthTab:0,dataForms:[],valLenght:false,checkedone:false})
+  })
+/*   console.log(dossierData) */
+    let affectation = {
+      account_state: doctor.account_state,
+      added_date:  doctor.added_date,
+      adeli:doctor.adeli,
+      adresse:doctor.adresse,
+      archived:doctor.archived,
+      birthday: doctor.birthday,
+      email: doctor.email,
+      fax: doctor.fax,
+      gender: doctor.gender,
+      job: doctor.job,
+      lastname: doctor.lastname,
+      name: doctor.name,
+      password: doctor.password,
+      photo: doctor.photo,
+      rpps: doctor.rpps,
+      tel: doctor.tel,
+      _id: doctor._id,
+      account_state_dossier_affectation:false,
+      liste_dossier:dossierData
+      }
+/*       console.log("affectation",affectation) */
+if(type=="update")
+  return this.http.put<any>(this.urlDoctor  + id , affectation);
+  else
+return this.http.put<any>(this.urlDoctor  + id , doctor);
 
   }
 
@@ -118,18 +155,36 @@ export class DoctorDataService {
 
   
   affect(affectation: any){
-
-    return this.http.post(this.urlAffectation + 'addaffectation' , affectation);
+       console.log("affectatioddddddddn",affectation) 
+  return this.http.post(this.urlAffectation + 'addaffectation' , affectation);
 
   }
+  multAffect(affectation: any){
+    
+    console.log("affectation.length",affectation.length) 
 
+    for (let i=0;i<affectation.length;i++){
+    /*   console.log("iiiiiiii",i) 
+      console.log("affectation[i]",affectation[i])  */
+      return this.http.post(this.urlAffectation + 'addaffectation' , affectation[i]);
+    }
+}
+  affectAllForms(affectation: any){
+ /*     console.log("affectation",affectation)   */
 
+  return this.http.post(this.urlAffectation + 'addaffectationallforms' , affectation);
+
+}
   disaffect(user: any , form: any){
-
+   /*   console.log("user",user,form) */
     return this.http.delete(this.urlAffectation + 'deleteaffectation/' +user + '/' + form );
 
   }
+  disaffectallForms(user: any , form: any){
+/*     console.log("user",user,form) */
+    return this.http.delete(this.urlAffectation + 'deleteaffectationallForm/' +user + '/' + form );
 
+  }
 
   getAllDoctorAffectationForm(id: any){
 

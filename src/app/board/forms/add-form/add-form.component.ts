@@ -92,8 +92,9 @@ export class AddFormComponent implements OnInit, AfterViewInit {
       calculeFormule:[
         {
           formulCalcul:"",
-       val:[{   value:null,
-          descValue:""}]
+          val:[{   value:null,
+          descValue:""}],
+          indexScoreForm:[{i:0,j:0,k:0,desc:"",type:""}]
         }
       ]
     }
@@ -412,7 +413,8 @@ setNewCeil(newCeil: number,i:any,s:any): void {
     this.form.calculeFormule.push({
       formulCalcul:"",
       val: [{value:null,
-      descValue:""}]
+      descValue:""}],
+      indexScoreForm:[{i:0,j:0,k:0,desc:"",type:""}]
     })
    /*  console.log(' this.form.calculeFormule', this.form.calculeFormule) */
   }
@@ -732,7 +734,7 @@ console.log(this.form.sections[section].questions)
       }
     )
   }
-  public getNumber(v: string,k){
+  public getNumber(v: string,val1,val2,k,val){
     if(this.waitForSecondNumber)
     {
       this.currentNumber = v;
@@ -741,9 +743,44 @@ console.log(this.form.sections[section].questions)
     }else{
       this.currentNumber === '0'? this.currentNumber = v: this.currentNumber += v;
       this.form.calculeFormule[k].formulCalcul === '0'? this.form.calculeFormule[k].formulCalcul = v: this.form.calculeFormule[k].formulCalcul += v;
-     /*  this.form.calculeFormule[k].formulCalcul=v */
-     /*  console.log("this.this.form.calculeFormule[k]",this.form.calculeFormule[k]); */
 
+    }
+    if(val==1){
+
+      if(this.form.calculeFormule[k].indexScoreForm.length==1&&this.form.calculeFormule[k].indexScoreForm[0].type==""){
+        this.form.calculeFormule[k].indexScoreForm[0].i=val1
+        this.form.calculeFormule[k].indexScoreForm[0].j=val2
+        this.form.calculeFormule[k].indexScoreForm[0].type="index"
+      
+      }else{
+        this.form.calculeFormule[k].indexScoreForm.push({i:val1,j:val2,k:0,desc:"",type:"index"})
+      }
+    }else{
+      if(v=="+"||v=="-"||v=="×"||v=="/"){
+        if(this.form.calculeFormule[k].indexScoreForm.length==1&&this.form.calculeFormule[k].indexScoreForm[0].type==""){
+              this.form.calculeFormule[k].indexScoreForm[0].desc=v
+              this.form.calculeFormule[k].indexScoreForm[0].type="operation"            
+            }else{
+              this.form.calculeFormule[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"operation"})
+            }   
+      }
+      if(v=="0"||v=="1"||v=="2"||v=="3"||v=="4"||v=="5"||v=="6"||v=="7"||v=="8"||v=="9"){
+        console.log( this.form.calculeFormule[k].indexScoreForm[0].k)
+        if(this.form.calculeFormule[k].indexScoreForm.length==1&&this.form.calculeFormule[k].indexScoreForm[0].type==""){
+          this.form.calculeFormule[k].indexScoreForm[0].k=+v
+          this.form.calculeFormule[k].indexScoreForm[0].type="number"            
+        }else{
+          this.form.calculeFormule[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"number"})
+        }   
+      }
+      if(v=="("||v==")"||v==","){
+        if(this.form.calculeFormule[k].indexScoreForm.length==1&&this.form.calculeFormule[k].indexScoreForm[0].type==""){
+              this.form.calculeFormule[k].indexScoreForm[0].desc=v
+              this.form.calculeFormule[k].indexScoreForm[0].type="autre"            
+            }else{
+              this.form.calculeFormule[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"autre"})
+            }   
+      }
     }
   }
 
@@ -786,8 +823,10 @@ console.log(this.form.sections[section].questions)
   }
 
   public clear(k){
+   
     this.currentNumber = '0';
     this.form.calculeFormule[k].formulCalcul='0'
+    this.form.calculeFormule[k].indexScoreForm=[{i: 0, j: 0, k: 0, desc: '', type: ''}]
     this.firstOperand = null;
     this.operator = null;
     this.waitForSecondNumber = false;

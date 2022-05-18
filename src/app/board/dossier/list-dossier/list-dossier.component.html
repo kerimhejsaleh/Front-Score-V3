@@ -46,18 +46,40 @@
     </div>
 
         
-    <div  [routerLink]="['/admin/dossier/detail' , dossier._id]" *ngFor="let dossier of allDosssier | paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLength }" class="row" style="padding-bottom: 5%;"
+    <div   *ngFor="let dossier of allDosssier | paginate: { itemsPerPage: 8, currentPage: page,totalItem:totalLength }" class="row" style="padding-bottom: 5%;"
     matTooltip="{{dossier.name}}"
     matTooltipPosition="above">
-        <div  class="card1" style="height: 150px;">
+        <div *ngIf="!dossier.status"  class="card1" style="height: 150px;">
             <img src="assets/dossier.svg" alt="" srcset="">
             <div class="card-header">
+              
                 <div class="row mt-1 info" style="margin-left: 1px;display: flex;">
                     <mat-icon style="font-size: 20px;color: grey;">access_time</mat-icon>
                    <span> {{dossier.added_date | date}} </span>
                 </div>
-
-                <h3 class="card-title mb-0">{{dossier.name.slice(0,50)}}</h3>
+              <!--   <div [routerLink]="['/admin/dossier/detail' , dossier._id]" class="row" style="   cursor: pointer;">
+                       <h3 class="card-title mb-0">{{dossier.name.slice(0,50)}}</h3>
+                       <h3 class="card-title mb-0">{{dossier.name.slice(0,50)}}</h3>
+                    </div> -->
+                    <div class="row">
+                        <button class="col-sm" [routerLink]="['/admin/dossier/detail' , dossier._id]"  style="   cursor: pointer;background: transparent;border-color: transparent;">
+                            <h3 class="card-title mb-0">{{dossier.name.slice(0,50)}}</h3>  
+                        </button>
+                        <div class="col-sm">
+                   
+                        </div>
+                     <!--    <div *ngIf="spinerLoading" class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div> -->
+                          <div  class="col-sm">
+                          <div *ngIf="spinerLoading"  class="spinner-border spinner-border-sm" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                        </div>
+                        <div *ngIf="!spinerLoading" class="col-sm">
+                            <mat-icon (click)="openModal(dossier._id);getIdDossier(dossier._id)"  style="padding-top: 25%; cursor: pointer;">playlist_play</mat-icon>
+                        </div>
+                      </div>
             
             </div>
    

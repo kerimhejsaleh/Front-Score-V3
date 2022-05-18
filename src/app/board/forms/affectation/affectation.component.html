@@ -62,14 +62,14 @@
 
                         
                             <td class="table-action">
-                                <button *ngIf="!checkIfFormAffectedToDoctor(doctor)" (click)="open(doctor._id , 1);" mat-raised-button >
+                                <button *ngIf="!checkIfFormAffectedToDoctor(doctor)" (click)="open(doctor._id , 1)" mat-raised-button >
 
                                     <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">
                                         send
                                     </mat-icon>
                                 </button>       
                                 <div style="width:4px"></div>
-                                <button *ngIf="checkIfFormAffectedToDoctor(doctor)" (click)="open(doctor._id , 2);" mat-raised-button >
+                                <button *ngIf="checkIfFormAffectedToDoctor(doctor)" (click)="open(doctor._id , 2)" mat-raised-button >
 
 
                                     <mat-icon style="font-size: 30px; margin: 4px;margin-bottom: 8px;">

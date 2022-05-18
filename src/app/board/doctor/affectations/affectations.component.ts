@@ -80,7 +80,7 @@ export class NgbdModalContent {
       
       }
 
-
+   
       disaffect(f: any){
 
         this._doctor.disaffect(this.idUser, f).subscribe(
@@ -139,7 +139,7 @@ allForms : any;
 id: any;
 
 doctor:any;
-
+allFormsFil=[];
 affectedToast = false;
 affectedToastWithSuccess = false;
 formAffectations : any;
@@ -163,10 +163,10 @@ this._docor.getAllForm().subscribe(
 this.getDoctorAffectation();
 
 this.allForms = res;
-
+ this.allFormsFil =res;
 
 },
-err=>{
+err=>{ 
 
 
 }
@@ -184,7 +184,15 @@ err=>{
 }
 
 response : any;
-
+filterItem(value) {
+ this.allFormsFil= this.allForms.filter(p => {
+    return (
+      p.title.toLowerCase().includes(value.toLowerCase()) ||
+      p.title.toLowerCase().includes(value.toLowerCase()) ||
+      p.title.toLowerCase().includes(value)
+    )
+  }) 
+}
 open(id:any , i: any) {
   const modalRef = this.modalService.open(NgbdModalContent);
   modalRef.componentInstance.idUser = this.id ;

@@ -784,28 +784,27 @@
           <div style="width: 60%;">
 
         <div class="card-header">
-       <button class="button button5" (click) = "getNumber('+',k)" value="+">+</button>
-       <button class="button button5" (click) = "getNumber('-',k)" value="-">-</button>
-       <button class="button button5" (click) = "getNumber('×',k)" value="×">×</button>
-       <button class="button button5" (click) = "getNumber('/',k)" value="/">/</button>
-       <button class="button button5" (click) = "getNumber('(',k)" value="(">(</button>
-       <button class="button button5" (click) = "getNumber(')',k)" value=")">)</button>
-       <button class="button button5" (click) = "getNumber(',',k)" value=")">,</button>
-       <button class="button button5" (click) = "clear(k)"  value="all-clear">AC</button>
+            <button class="button button5" (click) = "getNumber('+',7,7,k,0)" value="+">+</button>
+            <button class="button button5" (click) = "getNumber('-',7,7,k,0)" value="-">-</button>
+            <button class="button button5" (click) = "getNumber('×',7,7,k,0)" value="×">×</button>
+            <button class="button button5" (click) = "getNumber('/',7,7,k,0)" value="/">/</button>
+            <button class="button button5" (click) = "getNumber('(',7,7,k,0)" value="(">(</button>
+            <button class="button button5" (click) = "getNumber(')',7,7,k,0)" value=")">)</button>
+            <button class="button button5" (click) = "getNumber(',',7,7,k,0)" value=")">,</button>
+            <button class="button button5" (click) = "clear(k)"  value="all-clear">AC</button><br>
        <section>
        
         <div class="example-button-row">
-            <button mat-button (click) = "getNumber('0',k)" color="primary">0</button>
-          <button mat-button (click) = "getNumber('1',k)" color="primary">1</button>
-          <button mat-button (click) = "getNumber('2',k)" color="primary">2</button>
-          <button mat-button (click) = "getNumber('3',k)" color="primary">3</button>
-          <button mat-button (click) = "getNumber('4',k)" color="primary">4</button>
-          <br>
-          <button mat-button (click) = "getNumber('5',k)" color="primary">5</button>
-          <button mat-button (click) = "getNumber('6',k)" color="primary">6</button>
-          <button mat-button (click) = "getNumber('7',k)" color="primary">7</button>
-          <button mat-button (click) = "getNumber('8',k)" color="primary">8</button>
-          <button mat-button (click) = "getNumber('9',k)" color="primary">9</button>
+            <button mat-button (click) = "getNumber('0',7,7,k,0)" color="primary">0</button>
+          <button mat-button (click) = "getNumber('1',7,7,k,0)" color="primary">1</button>
+          <button mat-button (click) = "getNumber('2',7,7,k,0)" color="primary">2</button>
+          <button mat-button (click) = "getNumber('3',7,7,k,0)" color="primary">3</button>
+          <button mat-button (click) = "getNumber('4',7,7,k,0)" color="primary">4</button><br>
+          <button mat-button (click) = "getNumber('5',7,7,k,0)" color="primary">5</button>
+          <button mat-button (click) = "getNumber('6',7,7,k,0)" color="primary">6</button>
+          <button mat-button (click) = "getNumber('7',7,7,k,0)" color="primary">7</button>
+          <button mat-button (click) = "getNumber('8',7,7,k,0)" color="primary">8</button>
+          <button mat-button (click) = "getNumber('9',7,7,k,0)" color="primary">9</button>
  
         </div>
       </section>
@@ -813,7 +812,7 @@
           <div *ngFor="let section of form.sections ;let s = index">
               <div class="row">   <h2 style="padding: 2%;" >Section {{s}}:</h2>     
                 <div *ngFor="let question of section.questions ;let i = index" class="row" style="padding-left: 1%;">
-                   <button mat-button color="primary"  (click)="getNumber('Q '+'('+ s +',' + i+')',k)">Q({{ s}} ,{{ i}})</button>
+                    <button mat-button color="primary" style="padding: 1%;" (click)="getNumber('Q '+'('+ s +',' + i+')',s,i,k,1)">Q({{ s}} ,{{ i}})</button>
                 </div>
            
 

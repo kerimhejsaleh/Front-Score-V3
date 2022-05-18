@@ -115,7 +115,7 @@ export class ListDoctorComponent implements OnInit , AfterViewInit {
   }
 
   ngAfterViewInit(){
-    
+/*     console.log("dd") */
     this._docor.getAllDoctor().subscribe(
       res => {
         this.allDoctors = res;

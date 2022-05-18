@@ -31,7 +31,8 @@ export class ResetComponent implements OnInit {
 
     this.id = this.router.snapshot.paramMap.get('id');
     this.token = this.router.snapshot.paramMap.get('token');
-   
+    console.log("ddddddddddddddddddddddddddddddddd",this.token)
+    localStorage.setItem('token',this.token)
     
     let toreturn : any;
     this.auth.checkLink(this.id, this.token).subscribe(

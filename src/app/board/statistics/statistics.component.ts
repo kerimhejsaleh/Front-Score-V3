@@ -5,6 +5,7 @@ import { DataPatientService } from '../patient/services/data-patient.service';
 import { ChartDataSets, ChartType } from 'chart.js';
 import { MultiDataSet, Label, Color } from 'ng2-charts';
 import { DossierService } from '../dossier/services/dossier.service';
+import { Router } from '@angular/router';
 import { from } from 'rxjs';
 
 @Component({
@@ -18,6 +19,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
               private _patient: DataPatientService,
               private _form: FormsDataService,
               private _dossier: DossierService,
+              private router: Router,
             ) { }
 
 
@@ -164,7 +166,11 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
 
 
   }
-
+  getFormsbyId(id:any){
+    console.log(id)
+    this.router.navigate(['/admin/doctors/affect' , id]);
+    console.log(id,'gg')
+  }
   makePatientStatData(y){
     
     this._patient.getAllPatient().subscribe(

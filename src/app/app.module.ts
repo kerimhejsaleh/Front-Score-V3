@@ -37,7 +37,8 @@ import { QuillModule } from 'ngx-quill';
 import { Ng5SliderModule } from 'ng5-slider';
 import { DialogBodyComponent } from './companent/dialog-body/dialog-body.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { MyDialogComponent } from './my-dialog/my-dialog.component';
+import { MyDialogComponent } from './companent/my-dialog/my-dialog.component';
+import { MyDialogAffectListComponent } from './companent/my-dialog-affect-list/my-dialog-affect-list.component';
  @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { MyDialogComponent } from './my-dialog/my-dialog.component';
     ForgotdoctorComponent,
     ForgotpatientComponent,
     DialogBodyComponent,
-    MyDialogComponent
+    MyDialogComponent,
+    MyDialogAffectListComponent
   
 
   ],

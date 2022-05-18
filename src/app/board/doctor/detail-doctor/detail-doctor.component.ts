@@ -4,7 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { EndpointService } from 'src/app/services/endpoint.service';
 import { DoctorDataService } from '../services/doctor-data.service';
-
+import { DossierService } from '../../dossier/services/dossier.service';
 
 
 
@@ -41,7 +41,7 @@ export class NgbdModalContent {
   constructor(public activeModal: NgbActiveModal,private _doctor: DoctorDataService,
     private toastr: ToastrService,
     private router : Router, 
-
+    private _dossierData: DossierService,
     ) {}
 
 
@@ -68,11 +68,25 @@ action(){
 
 }
 
-
+allDosssier=[];
 updatepatient(){
 
-  
-  this._doctor.updateDoctor(this.id ,  this.doctor).subscribe(
+
+  this._dossierData.getAlldossier().subscribe(
+    res=>{
+      let i=0
+      res.map((result)=>{
+/*         console.log(result) */
+        if(result.status)
+        i=i+1 
+        else
+        this.allDosssier.push(result)
+      })
+  /*     this.dossiers = res;
+      this.totalLength=this.allDosssier.length;
+      this.allDossier=  res */
+/*   console.log(this.allDosssier);   */ 
+this._doctor.updateDoctor(this.id ,  this.doctor,this.allDosssier,"update").subscribe(
   res=>{
   this.toastr.success('Modification avec succès! ', 'succès!');
   
@@ -81,6 +95,15 @@ updatepatient(){
   this.toastr.error('Erreur ! ', 'erreur dans la modification du docteur!');
   }
   );
+      
+      
+    },
+    err=>{
+   
+      
+    }
+  );
+
   }
 }
 

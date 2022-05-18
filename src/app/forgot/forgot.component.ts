@@ -31,7 +31,9 @@ export class ForgotComponent implements OnInit {
       res=>{
   
         this.response = res;
-
+ console.log(res)
+ localStorage.setItem('token',this.response.etat);
+ console.log(localStorage.getItem('token'))
        if(this.response.etat === 'invalid'){
         this.emailAlert = true;
         setTimeout(() => {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DossierService } from '../services/dossier.service';
-
+import { DoctorDataService } from '../../doctor/services/doctor-data.service';
 @Component({
   selector: 'app-add-dossier',
   templateUrl: './add-dossier.component.html',
@@ -14,7 +14,8 @@ export class AddDossierComponent implements OnInit {
   constructor(
     private _dossier: DossierService,
     private toastr: ToastrService,
-    private router: Router) { }
+    private router: Router,
+    private _docor: DoctorDataService) { }
 
   showSpinner = false;
 
@@ -34,9 +35,25 @@ export class AddDossierComponent implements OnInit {
 
 
   }
-
+  allDosssier=[];
 
   ngOnInit(): void {
+    this._dossier.getAlldossier().subscribe(
+      res=>{
+       let i=0
+     res.map((result)=>{
+      if(result.status)
+      i=i+1 
+      else
+      this.allDosssier.push(result)
+    })
+    console.log(this.allDosssier) 
+      },
+      err=>{
+     
+        
+      }
+    );
   }
 
 
@@ -68,7 +85,7 @@ export class AddDossierComponent implements OnInit {
 
       this._dossier.createNewdossier(this.dossier).subscribe(
         res => {
-
+     /*      console.log(res._id) */
           this.dossier = {
 
             name: '',
@@ -84,7 +101,50 @@ export class AddDossierComponent implements OnInit {
           this.showSpinner = false;
           this.toastr.success('dossier créé avec succès! ', 'succès!');
           this.router.navigateByUrl('/admin/dossier')
-
+      /*     this._docor.getAllDoctor().subscribe(
+            ress=>{
+       
+        ress.map((result)=>{
+          result.liste_dossier.push({
+                checkedone: false,
+                dataForms: [],
+                id: res._id,
+                lengthTab: 0,
+                status: false,
+                valLenght: false,
+          })
+        })
+            },
+            err=>{
+              
+            }
+          ); */
+          this._docor.getAllDoctor().subscribe(
+            ress=>{
+           ress.map((result)=>{
+             console.log(result)
+             result.liste_dossier.push({
+              checkedone: false,
+              dataForms: [],
+              id: res._id,
+              lengthTab: 0,
+              status: false,
+              valLenght: false,
+        })
+        console.log(result)
+        this._docor.updateDoctor(result._id ,  result,result.liste_dossier,"autre").subscribe(
+          res=>{
+          
+          },
+          err=>{
+          }
+          );
+           })
+            },
+            err=>{
+              
+            }
+          );
         },
         err => {
           this.showSpinner = false;
