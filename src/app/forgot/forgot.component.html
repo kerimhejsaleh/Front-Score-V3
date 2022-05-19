@@ -2,7 +2,12 @@
 
 <main class="main h-100 w-100">
     <div class="limiter">
-        <div class="container-login100">
+        <div *ngIf="!showForm" class="container-login100">
+            <div class="wrap-login100">
+            <h1>Lien de verification a été envoyer dans votre boite mail </h1>
+        </div> 
+        </div> 
+        <div *ngIf="showForm" class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
                     <img src="assets/doc.png" alt="IMG">
@@ -10,7 +15,7 @@
     
                 <form class="login100-form validate-form">
                     <span class="login100-form-title">
-                        Connexion
+                        Modifier mot de passe
                     </span>
     
                     <div class="form-group">

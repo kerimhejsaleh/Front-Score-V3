@@ -165,13 +165,13 @@ export class AddFormComponent implements OnInit, AfterViewInit {
     }
     addRom(){
    /*    console.log("addRom",this.addmore) */
-      console.log(this.addmore)
+   /*    console.log(this.addmore) */
     }
     onChange(event,i,o,s,type){
       this.form.sections[s].questions[i].optionsSaint[o].hint=type;
-     console.log("event", this.form.sections[s].questions[i].optionsSaint[o])
+   /*   console.log("event", this.form.sections[s].questions[i].optionsSaint[o])
      console.log("evensssst",event.target.name,i,o,s)
-     console.log("type",type)
+     console.log("type",type) */
     }
     initItemRows() {
    /*    console.log("initItemRows",this._fb) */
@@ -309,7 +309,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
   }
 
   newRange(i:any,s:any){
-    console.log("ddd",i,s)
+  /*   console.log("ddd",i,s) */
  /*    this.sliders.push({
       value: 0,
       floor: 0,
@@ -334,12 +334,12 @@ setNewCeil(newCeil: number,i:any,s:any): void {
   if(newCeil >100){
  console.log('ggg',i,s)
   }else{
-    console.log('ggg',i,s)
+ /*    console.log('ggg',i,s) */
   // Due to change detection rules in Angular, we need to re-create the options object to apply the change
   const newOptions: Options = Object.assign({}, this.form.sections[s].questions[i].option);
   
   newOptions.ceil = newCeil;
-  console.log('newOptions',i,s,newOptions)
+/*   console.log('newOptions',i,s,newOptions) */
  this.scoreRange=newCeil;
   this.form.sections[s].questions[i].maxRange=newCeil
   this.form.sections[s].questions[i].option.step=20;
@@ -491,10 +491,10 @@ setNewCeil(newCeil: number,i:any,s:any): void {
   }
 onAddForm(){
 
-    console.log("test form",this.form)
+/*     console.log("test form",this.form) */
       }
   createNewQuestion(section: any){
-    console.log(this.form)
+/*     console.log(this.form) */
     this.form.sections[section].questions.push(
       {
 
@@ -577,7 +577,7 @@ onAddForm(){
       optionsSaint:this.form.sections[section].questions[index].optionsSaint,
       grille:this.form.sections[section].questions[index].grille,
     });
-console.log(this.form.sections[section].questions)
+/* console.log(this.form.sections[section].questions) */
 /* console.log(suits);
      console.log("this.form.sections[section].questions",this.form.sections[section].questions) 
     console.log(section,index)
@@ -692,7 +692,7 @@ console.log(this.form.sections[section].questions)
   }
   viewForm(q){
     this.ValueInputForm+=this.ValueInputForm+" "+q
-    console.log(this.ValueInputForm)
+/*     console.log(this.ValueInputForm) */
   }
   deleteImageOption(image:any, i:any, o:any, s: any,type){
 /*     console.log(type) */
@@ -765,7 +765,7 @@ console.log(this.form.sections[section].questions)
             }   
       }
       if(v=="0"||v=="1"||v=="2"||v=="3"||v=="4"||v=="5"||v=="6"||v=="7"||v=="8"||v=="9"){
-        console.log( this.form.calculeFormule[k].indexScoreForm[0].k)
+       /*  console.log( this.form.calculeFormule[k].indexScoreForm[0].k) */
         if(this.form.calculeFormule[k].indexScoreForm.length==1&&this.form.calculeFormule[k].indexScoreForm[0].type==""){
           this.form.calculeFormule[k].indexScoreForm[0].k=+v
           this.form.calculeFormule[k].indexScoreForm[0].type="number"            
@@ -805,7 +805,7 @@ console.log(this.form.sections[section].questions)
     }
   }
   public getOperation(op: string){
-    console.log(op);
+/*     console.log(op); */
 
     if(this.firstOperand === null){
       this.firstOperand = Number(this.currentNumber);
@@ -818,7 +818,7 @@ console.log(this.form.sections[section].questions)
     this.operator = op;
     this.waitForSecondNumber = true;
 
-    console.log(this.firstOperand);
+/*     console.log(this.firstOperand); */
  
   }
 
@@ -833,7 +833,7 @@ console.log(this.form.sections[section].questions)
   }
 removeCau(){
   this.currentNumber.substring(0, this.currentNumber.length - 1);
-  console.log( this.currentNumber.slice(0,-4))
+/*   console.log( this.currentNumber.slice(0,-4)) */
 }
   removeOption(i: any, o: any, s: any){
 
@@ -864,7 +864,7 @@ data;
 Registers(regForm:NgForm){
 if(regForm.valid){
 this.data = regForm.value
-console.log(this.data)
+/* console.log(this.data) */
 }
 }
   createNewForm(){

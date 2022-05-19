@@ -106,7 +106,10 @@ export class FormsDataService {
     /* console.log("hhhhhio",user) */
     return this.http.get(this.urlAffectation + 'getformaffectation/' + user);
   }
-
+  getFormAffectaionAll(){
+    /* console.log("hhhhhio",user) */
+    return this.http.get(this.urlAffectation + 'getaffectationall/' );
+  }
 
   disaffect(user: any , form: any){
     console.log("user,form",user,form)

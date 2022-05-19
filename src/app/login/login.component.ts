@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   changetab() {
-    console.log("kdkdk",this.passwordType)
+   /*  console.log("kdkdk",this.passwordType) */
   }
   public togglePassword(){
      if(this.passwordShow){
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
     this._auth.loginUser(this.loginUserData)
     .subscribe(
       res => {
-        /* console.log(3,res); */
+  /*     console.log(3,res);  */
         localStorage.setItem('token', res.token);
 
         this._router.navigate(['/admin']);

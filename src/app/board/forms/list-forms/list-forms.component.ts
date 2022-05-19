@@ -30,6 +30,7 @@ export class NgbdModalContent {
     private route : Router,
     ) {
    /*    console.log("id",this.id) */
+
     }
     
  /*    public barChartLables :Label[] = ['2006','2007','2008','2009','2010','2011','2012'];
@@ -75,7 +76,8 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
     private _dossier: DossierService,
     private modalService: NgbModal,
     private router : Router, 
-    ) { }
+    
+    ) {   }
 
   forms: any;
   dossier: any;
@@ -154,7 +156,6 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
     return true
   }
   testData(test,data){
-   /*  console.log(test,data) */
     this.listeDossier.map((res)=>{
   /*     console.log(res) */
       if(res.cheked=true){

@@ -49,7 +49,7 @@ export class MyDialogAffectListComponent implements OnInit, AfterViewInit  {
   }
    removeItem(array, item) {
     for(let i = 0; i<array.length; i++){
-      console.log(array)
+  /*     console.log(array) */
   /*     if(array[i] == item) {
         array.splice(array.indexOf(item), 1);
       } */
@@ -74,7 +74,7 @@ getData(data,type){
  let tableDataForms2 = [];
  let tableDataForms23 = [];
  data.liste_dossier.map((result)=>{
-  console.log("result.id!=this.idDossier 1",result.id) ;
+/*   console.log("result.id!=this.idDossier 1",result.id) ; */
 
    if(this.idDossier._id==result.id){
 /*  console.log("tableau 0 ",this.idDossier.name,result.lengthTab) */
@@ -90,7 +90,7 @@ getData(data,type){
    setTimeout(() => {
     this._dossier.getMyForm(result.id).subscribe(
       res=>{
-        console.log("result.id!=this.idDossier 1xxxxxxxxxx",result.id,res) 
+      /*   console.log("result.id!=this.idDossier 1xxxxxxxxxx",result.id,res)  */
         tableDataForms23.push(res)
      
     
@@ -117,7 +117,7 @@ err=>{
 
  })
  setTimeout(() => {
-  console.log(tableDataForms2) 
+/*   console.log(tableDataForms2)  */
   this._dossier.getMyForm(this.idDossier._id).subscribe(
     res=>{
  res[0].key3=this.idDossier._id
@@ -137,7 +137,7 @@ setTimeout(() => {
   console.log("newDataDossier",newDataDossier) */
   tableDataForms23.map((result)=>{
     pp=pp+1
-    console.log("result",result)
+/*     console.log("result",result) */
     result.map((resulttow)=>{
 /*       console.log("resulttow",resulttow) */
       tableDataForms2[0].map((resutthree)=>{
@@ -234,7 +234,7 @@ setTimeout(() => {
    /*     console.log("tableau 1",m,this.idDossier.name,) */
    newDataDossierd.push({id:result.id,dataForms:newDataAllFormFalse,status:true,cheked:result.cheked,lengthTab:result.lengthTab,checkedone:false})
      }
-     console.log(result.id)
+  /*    console.log(result.id) */
   /*    console.log("result.id!=this.idDossier 1",result.id!=this.idDossier,result.id,this.idDossier) */
   this._dossier.getMyForm(result.id).subscribe(
     res=>{
@@ -282,15 +282,15 @@ err=>{
   
         tableDataForms2[0].map((resutthree)=>{
           if(newDataDossierd[pp-1].id==this.idDossier._id){
-            console.log("hhh", newDataDossierd[pp-1])
+       /*      console.log("hhh", newDataDossierd[pp-1]) */
             newDataDossierd[pp-1].lengthTab=0
           }
           if(resulttow._id==resutthree._id){
-            console.log("hhvvvvh", newDataDossierd[pp-1])
+          /*   console.log("hhvvvvh", newDataDossierd[pp-1]) */
            if( newDataDossierd[pp-1].lengthTab==0){
             newDataDossierd[pp-1].lengthTab=0
            }else{
-            console.log("hdddddddddhh", newDataDossierd[pp-1])
+        /*     console.log("hdddddddddhh", newDataDossierd[pp-1]) */
             newDataDossierd[pp-1].lengthTab=newDataDossierd[pp-1].lengthTab-1
            }
           }
@@ -320,7 +320,7 @@ setTimeout(() => {
         user: data._id,
         form:   this.allForm[i]._id
         }
-        console.log(affectation)
+    /*     console.log(affectation) */
         this._doctor.disaffect(affectation.user, affectation.form).subscribe(
          res=>{
            

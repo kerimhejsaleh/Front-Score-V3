@@ -47,7 +47,7 @@ export class AddDossierComponent implements OnInit {
       else
       this.allDosssier.push(result)
     })
-    console.log(this.allDosssier) 
+ /*    console.log(this.allDosssier)  */
       },
       err=>{
      
@@ -122,7 +122,7 @@ export class AddDossierComponent implements OnInit {
           this._docor.getAllDoctor().subscribe(
             ress=>{
            ress.map((result)=>{
-             console.log(result)
+          /*    console.log(result) */
              result.liste_dossier.push({
               checkedone: false,
               dataForms: [],
@@ -131,7 +131,7 @@ export class AddDossierComponent implements OnInit {
               status: false,
               valLenght: false,
         })
-        console.log(result)
+      /*   console.log(result) */
         this._docor.updateDoctor(result._id ,  result,result.liste_dossier,"autre").subscribe(
           res=>{
           

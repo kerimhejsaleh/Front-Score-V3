@@ -35,7 +35,7 @@ rangeType:string="";
   ngAfterViewInit(): void {
  
       if(this.data.dataRange!=undefined){
-        console.log("this.data.dataRange",this.data.dataRange[0].nameRange) 
+      /*   console.log("this.data.dataRange",this.data.dataRange[0].nameRange)  */
         this.rangeType=this.data.dataRange[0].nameRange;
         this.addmore = this._fb.group({
           itemRows: this._fb.array(       
@@ -59,7 +59,7 @@ rangeType:string="";
   }
   addRom(){
  /*    console.log("addRom",this.addmore) */
-    console.log(this.addmore)
+  /*   console.log(this.addmore) */
   }
   closeDialog() {
 /*     console.log("length",this.addmore.value.itemRows.length) */
@@ -104,12 +104,12 @@ rangeType:string="";
   typeRange(){
     this.rangeType="%";
     this.addmore.value.itemRows[0].nameRange="%";
-    console.log("%", this.addmore.value.itemRows)
+  /*   console.log("%", this.addmore.value.itemRows) */
   }
   typeRangeclose(){
     this.rangeType="";
     this.addmore.value.itemRows[0].nameRange="";
-    console.log("%", this.addmore.value.itemRows)
+/*     console.log("%", this.addmore.value.itemRows) */
   }
   deleteRow(index: number) {
     this.formArr.removeAt(index);

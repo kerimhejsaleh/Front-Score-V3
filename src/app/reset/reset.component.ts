@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.component.html',
@@ -11,8 +11,10 @@ export class ResetComponent implements OnInit {
 
   id: any;
  token: any;
- 
-  constructor(private route: Router ,private router: ActivatedRoute , private auth: AuthService){
+ passwordType:string ="password";
+ iconType:string = "visibility";
+ passwordShow:boolean = false;
+  constructor(private route: Router ,private router: ActivatedRoute , private auth: AuthService,private snackBar:MatSnackBar,){
    
   }
  
@@ -31,8 +33,7 @@ export class ResetComponent implements OnInit {
 
     this.id = this.router.snapshot.paramMap.get('id');
     this.token = this.router.snapshot.paramMap.get('token');
-    console.log("ddddddddddddddddddddddddddddddddd",this.token)
-    localStorage.setItem('token',this.token)
+   
     
     let toreturn : any;
     this.auth.checkLink(this.id, this.token).subscribe(
@@ -47,7 +48,17 @@ export class ResetComponent implements OnInit {
   }
 
   success = false;
-
+  public togglePassword(){
+    if(this.passwordShow){
+      this.passwordShow = false;
+      this.passwordType = "password";
+      this.iconType="visibility";
+    }else{
+     this.passwordShow = true  ;
+     this.passwordType = "text";
+     this.iconType="visibility_off";
+    }
+ }
   reset(){
     if(this.loginUserData.password !== this.loginUserData.confirm){
 
@@ -58,7 +69,13 @@ export class ResetComponent implements OnInit {
       this.auth.resetPassword(this.id, this.token , this.loginUserData).subscribe(
         res=>{
           this.success = true;
+          this.snackBar.open(" Mot de passe est Modifier" ,"×", {
+            duration: 2000,
+            // here specify the position
+            verticalPosition: 'top'
+          });
           setTimeout(()=>{
+           
             this.route.navigate(['/login']);
           } , 2000);
         },

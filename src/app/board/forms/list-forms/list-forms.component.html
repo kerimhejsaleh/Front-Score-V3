@@ -49,11 +49,13 @@
           <mat-option
         
           *ngFor="let item of form.nameAff"
-          [value]="form.nameAff2[0].Aff1"
+          [value]="form.nameAff2[0].Aff1=='Aucune dossier' ? 'Aucun dossier':form.nameAff2[0].Aff1"
           (click)="item.name=='Aucune dossier'? disaffect(form._id,item._id,form) :affect(form._id,item._id,item)">
           <mat-icon *ngIf="item.cheked" aria-hidden="false" aria-label="Example home icon">check_box</mat-icon>
           <mat-icon *ngIf="!item.cheked" aria-hidden="false" aria-label="Example home icon">check_box_outline_blank</mat-icon>
-          {{item.name}}
+         
+          <label *ngIf="item.name=='Aucune dossier'">Aucun dossier</label>
+          <label *ngIf="item.name!='Aucune dossier'"> {{item.name}}</label>
           </mat-option>
           
         </mat-select>

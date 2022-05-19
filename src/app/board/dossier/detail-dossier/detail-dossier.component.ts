@@ -132,10 +132,10 @@ newAllDossier =[]
           this._doctor.getAllDoctor().subscribe(
             ress=>{
            ress.map((result)=>{
-             console.log(result.liste_dossier)
+           /*   console.log(result.liste_dossier) */
              this.newAllDossier =[]
              result.liste_dossier.filter((resultthree)=>{
-               console.log(resultthree.id ,this.id)
+             /*   console.log(resultthree.id ,this.id) */
                if(resultthree.id != this.id){
                    return this.newAllDossier.push(resultthree)
                }else{
@@ -151,7 +151,7 @@ newAllDossier =[]
               status: false,
               valLenght: false,
         }) */
-        console.log(this.newAllDossier)
+     /*    console.log(this.newAllDossier) */
         result.liste_dossier=this.newAllDossier
         this._doctor.updateDoctor(result._id ,  result,result.liste_dossier,"autre").subscribe(
           res=>{
@@ -209,7 +209,7 @@ newAllDossier =[]
 
 
 updatedossier(){
-  console.log(this.dossier)
+/*   console.log(this.dossier) */
   this._dossier.updatedossier(this.id ,  this.dossier).subscribe(
   res=>{
   this.toastr.success('dossier mis à jour avec succès! ', 'succès!');

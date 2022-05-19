@@ -38,7 +38,7 @@ this._router.navigate(['/login']);
 }
 
 getToken() {
-/*   console.log(localStorage.getItem('token')) */
+/*   console.log(localStorage.getItem('token'))  */
 return localStorage.getItem('token');
 }
 
@@ -140,11 +140,16 @@ updateAdminPhoto(id:any, photo:any){
 
 
 
-tokenVerification(){
-console.log("authhgard")
+/* tokenVerification(){
+console.log("authhgard",this.getToken())
   return this.http.post(environment.apiUrl + 'admin/tokenverification',{token: this.getToken()});
 
 
+} */
+tokenVerification() {
+  return this.http.post(environment.apiUrl + 'admin/tokenverification', {
+    token: this.getToken(),
+  });
 }
 
 

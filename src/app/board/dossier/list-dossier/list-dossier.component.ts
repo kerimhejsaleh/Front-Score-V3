@@ -68,8 +68,8 @@ setTimeout(() => {
       };
       const dialogRef = this.dialog.open(MyDialogAffectListComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
-     console.log( 'Dialog was closed' ) 
-    console.log(result) 
+  /*    console.log( 'Dialog was closed' ) 
+    console.log(result)  */
     if(result){
       this.spinerLoading=true
       setTimeout(() => {

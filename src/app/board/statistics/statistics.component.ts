@@ -117,6 +117,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   lineChartTypeF = 'bar';
   lineChartTypeFT = 'bar';
   numberFormulAff;
+  allForms =[];
   spinerFormulaire = false;
   spinerFormulaireAff = false;
   dataFormAFF;
@@ -138,7 +139,17 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
     this.makeFormulaireStatDatatAll(date.toString());
 
 
-  
+    this._form.getFormAffectaionAll().subscribe(
+      res=>{
+         console.log(res)
+        
+         this.numberFormulAff=res.taile
+      },
+      err=>{
+        console.log(err)
+        
+      }
+    );
     this._form.getAllForm().subscribe(
       res=>{
      
@@ -148,7 +159,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
         }
         this._form.getAllFormAff().subscribe(
           resq=>{
-            this.numberFormulAff=resq.length
+           
             this.dataFormAFF=resq
             if(resq.length>0){
             this.spinerFormulaireAff=true
@@ -167,9 +178,9 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
 
   }
   getFormsbyId(id:any){
-    console.log(id)
+  /*   console.log(id) */
     this.router.navigate(['/admin/doctors/affect' , id]);
-    console.log(id,'gg')
+/*     console.log(id,'gg') */
   }
   makePatientStatData(y){
     
