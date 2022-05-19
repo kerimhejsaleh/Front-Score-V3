@@ -121,7 +121,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   spinerFormulaire = false;
   spinerFormulaireAff = false;
   dataFormAFF;
-  
+  taille=0;
 
   ngOnInit(): void {
 
@@ -143,7 +143,8 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
       res=>{
          console.log(res)
         
-         this.numberFormulAff=res.taile
+         this.numberFormulAff=res
+         this.taille = this.numberFormulAff.taile
       },
       err=>{
         console.log(err)
