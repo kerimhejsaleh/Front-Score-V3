@@ -949,9 +949,15 @@ this.data = regForm.value
       }
       this.formService.createNewForm(this.form).subscribe(
         (res) => {
-     
+  
+        if(!res){
+          this.toastr.warning(
+            'Formulaire c déja exit',
+      
+          );
+        }else{
           this.toastr.success('Formulaire créé avec succès! ', 'succès!');
-          this.router.navigate(['/admin/forms']);
+          this.router.navigate(['/admin/forms']);}
         },
         (err) => {
           this.toastr.error(
