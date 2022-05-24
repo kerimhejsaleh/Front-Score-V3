@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class ForgotComponent implements OnInit {
 
-  constructor(private _auth: AuthService) { }
+  constructor(private _auth: AuthService,private toastr: ToastrService,) { }
 
   forgot = {
 
@@ -31,7 +31,6 @@ export class ForgotComponent implements OnInit {
       res=>{
   
         this.response = res;
-
        if(this.response.etat === 'invalid'){
         this.emailAlert = true;
         setTimeout(() => {
@@ -42,8 +41,10 @@ export class ForgotComponent implements OnInit {
        }
       },
       err=>{
-
-        
+        this.toastr.warning(
+          'Email incorrect !',
+    
+        );
         
       }
 
