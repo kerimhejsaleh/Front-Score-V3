@@ -140,9 +140,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
 
 
     this._form.getFormAffectaionAll().subscribe(
-      res=>{
-         console.log(res)
-        
+      res=>{        
          this.numberFormulAff=res
          this.taille = this.numberFormulAff.taile
       },
@@ -233,9 +231,10 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   }
   makeFormulaireStatData(y){
     // AJOUTT DATE AFFEC
-    this._form.getAllFormAff().subscribe(
+    this._form.getFormAffectaionAll().subscribe(
       res=>{
-        this.formsAff = res;
+        this.numberFormulAff=res
+        this.formsAff = this.numberFormulAff.allForms;
        
         let j=0;
         let f=0;
@@ -251,10 +250,11 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
         let d=0;
  
        
-       // console.log("this.formsAff[i].created_date",this.formsAff[i].created_date)
+       console.log("this.formsAff[i].created_date",this.formsAff
+       )
         for(let i = 0; i<this.formsAff.length; i++ ){
-        //  console.log("this.formsAff[i].created_date",this.formsAff[i].created_date)
-          let d = this.formsAff[i].created_date;
+       console.log("this.formsAff[i].created_date",this.formsAff[i].created_date)
+          let d = this.formsAff[i].date;
            let date = d.substr(5, 2);
            let year = d.substr(0,4);
            date === '01' && year == y ? j++ :

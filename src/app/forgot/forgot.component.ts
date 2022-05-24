@@ -42,7 +42,7 @@ export class ForgotComponent implements OnInit {
       },
       err=>{
         this.toastr.warning(
-          'Email incorrect !',
+          'Email !',
     
         );
         
