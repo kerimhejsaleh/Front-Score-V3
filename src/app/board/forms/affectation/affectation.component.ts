@@ -122,6 +122,7 @@ export class NgbdModalContent {
 
                 }
               }
+              console.log(result)
           /*     console.log(newDaataForms,newDaataForms2,this.dataTab.liste_dossier)  */
               this._doctor.updateDoctor(this.idUser ,  result,this.dataTab.liste_dossier,"autre").subscribe(
                 res=>{

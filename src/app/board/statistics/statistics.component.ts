@@ -123,9 +123,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   dataFormAFF;
   taille=0;
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {  }
 
 
   ngAfterViewInit(){
@@ -233,6 +231,7 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
     // AJOUTT DATE AFFEC
     this._form.getFormAffectaionAll().subscribe(
       res=>{
+        this.spinerFormulaireAff=true
         this.numberFormulAff=res
         this.formsAff = this.numberFormulAff.allForms;
        
@@ -250,10 +249,10 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
         let d=0;
  
        
-       console.log("this.formsAff[i].created_date",this.formsAff
-       )
+     /*   console.log("this.formsAff[i].created_date",this.formsAff
+       ) */
         for(let i = 0; i<this.formsAff.length; i++ ){
-       console.log("this.formsAff[i].created_date",this.formsAff[i].created_date)
+/*        console.log("this.formsAff[i].created_date",this.formsAff[i].created_date) */
           let d = this.formsAff[i].date;
            let date = d.substr(5, 2);
            let year = d.substr(0,4);

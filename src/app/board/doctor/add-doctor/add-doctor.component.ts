@@ -35,7 +35,7 @@ export class AddDoctorComponent implements OnInit {
     gender: '',
     job: '',
     fax: '',
-
+    account_state_dossier_affectation:false,
     rpps: 0,
     adeli: 0,
     role: 2
@@ -174,17 +174,16 @@ export class AddDoctorComponent implements OnInit {
       file.set('added_date', this.doctor.added_date);
       file.set('job', this.doctor.job);
       file.set('fax', this.doctor.fax);
-
       file.set('gender', this.doctor.gender);
       file.set('adeli', this.doctor.adeli.toString());
       file.set('rpps', this.doctor.rpps.toString());
 
-      file.set('role', this.doctor.role.toString());
-
+      file.set('role', this.doctor.role.toString())
       this.showSpinner = true;
 
       this._doctor.createNewDoctor(file).subscribe(
         res => {
+          console.log(res)
           this.doctor = {
 
             name: '',
@@ -201,7 +200,7 @@ export class AddDoctorComponent implements OnInit {
             gender: '',
             job: '',
             fax: '',
-
+            account_state_dossier_affectation:false,
             rpps: 0,
             adeli: 0,
             role: 3
@@ -214,6 +213,7 @@ export class AddDoctorComponent implements OnInit {
           this.router.navigateByUrl('/admin/doctors')
         },
         err => {
+          console.log(err)
           this.showSpinner = false;
           this.toastr.error('Erreur dans la creation du docteur! ', 'Erreur!');
         }

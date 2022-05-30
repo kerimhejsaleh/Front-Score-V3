@@ -82,10 +82,14 @@ export class AddDossierComponent implements OnInit {
 
 
       this.showSpinner = true;
-
+      console.log(this.dossier) 
       this._dossier.createNewdossier(this.dossier).subscribe(
         res => {
-     /*      console.log(res._id) */
+          console.log(res) 
+          if(!res){
+            this.showSpinner = false;
+            this.toastr.warning('Erreur dans la création du dossier ', 'Erreur!');
+          }else{
           this.dossier = {
 
             name: '',
@@ -131,7 +135,7 @@ export class AddDossierComponent implements OnInit {
               status: false,
               valLenght: false,
         })
-      /*   console.log(result) */
+        console.log(result) 
         this._docor.updateDoctor(result._id ,  result,result.liste_dossier,"autre").subscribe(
           res=>{
           
@@ -144,11 +148,10 @@ export class AddDossierComponent implements OnInit {
             err=>{
               
             }
-          );
+          );}
         },
         err => {
           this.showSpinner = false;
-
 
           this.toastr.error('Erreur dans la création du dossier ', 'Erreur!');
         }

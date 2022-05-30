@@ -96,6 +96,7 @@ export class DoctorDataService {
   }
 
   updateDoctor(id: any , doctor: any,dataDosier,type){
+    console.log(doctor)
 /*     console.log(id,doctor,dataDosier,type) */
 /*      */
  /*    console.log(id)
@@ -131,11 +132,15 @@ export class DoctorDataService {
       liste_dossier:dossierData
       }
 /*       console.log("affectation",affectation) */
-if(type=="update")
-  return this.http.put<any>(this.urlDoctor  + id , affectation);
-  else
+if(type=="update"){
+  console.log(1)
+  return this.http.put<any>(this.urlDoctor  + id , affectation);}
+  else{
+  
+    doctor.password=undefined
+    console.log(12,doctor)
 return this.http.put<any>(this.urlDoctor  + id , doctor);
-
+}
   }
 
 
@@ -185,7 +190,11 @@ return this.http.put<any>(this.urlDoctor  + id , doctor);
     return this.http.delete(this.urlAffectation + 'deleteaffectationallForm/' +user + '/' + form );
 
   }
-
+  testGetText(){
+    /*     console.log("user",user,form) */
+        return this.http.get(this.urlAffectation + 'testget/');
+    
+      }
   getAllDoctorAffectationForm(id: any){
 
     return this.http.get(this.urlAffect + 'getallformbydoctor/' + id);

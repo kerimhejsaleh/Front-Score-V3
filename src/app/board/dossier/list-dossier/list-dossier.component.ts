@@ -51,7 +51,7 @@ setTimeout(() => {
         this._dossierData.getMyForm(id).subscribe(
           res=>{
     if(res){
-  /*     console.log("this.listIdAffection0",this.listIdAffection) */
+ /*      console.log("this.listIdAffection0",this.allDossier,id)  */
       const dialogConfig = new MatDialogConfig();
       dialogConfig.backdropClass='backdropBackground';
       dialogConfig.panelClass='dialog-container-custom' ;
@@ -64,17 +64,19 @@ setTimeout(() => {
       id: 1,
       title: result.name,
       idAffection:res,
-      dossier:result
+      dossier:result,
+      idDossierById:id
       };
       const dialogRef = this.dialog.open(MyDialogAffectListComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(result => {
   /*    console.log( 'Dialog was closed' ) 
     console.log(result)  */
     if(result){
+      console.log("result",result)
       this.spinerLoading=true
       setTimeout(() => {
         this.spinerLoading=false
-      }, 5500);
+      }, 15000);
     }
       });
     }

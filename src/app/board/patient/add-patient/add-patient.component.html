@@ -27,13 +27,13 @@
             <div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEmail4">Nom</label>
-                        <input [(ngModel)]="patient.name" type="text" [ngClass]="{'form-control': true, 'error' : testName}"  placeholder="Nom">
+                        <label for="inputName">Nom</label>
+                        <input [(ngModel)]="patient.name" type="text" [ngClass]="{'form-control': true, 'error' : testName}" id="inputName"  placeholder="Nom">
                         <p class="text-danger" *ngIf="testName"> Nom invalide </p>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPassword4">Prénom</label>
-                        <input [(ngModel)]="patient.lastname" type="text"  [ngClass]="{'form-control': true, 'error' : testLastName}"  placeholder="Prénom">
+                        <label for="inputPrenom">Prénom</label>
+                        <input [(ngModel)]="patient.lastname" type="text"  [ngClass]="{'form-control': true, 'error' : testLastName}" id="inputPrenom"  placeholder="Prénom">
                         <p class="text-danger" *ngIf="testLastName"> Prénom invalide </p>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ export class DossierService {
 
 
   createNewdossier(dossier: any){
-
+       console.log("djkslm",dossier)
     return this.http.post<any>(this.url  , dossier);
 
 
