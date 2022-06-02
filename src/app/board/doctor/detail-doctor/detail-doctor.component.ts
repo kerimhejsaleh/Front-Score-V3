@@ -85,7 +85,8 @@ updatepatient(){
   /*     this.dossiers = res;
       this.totalLength=this.allDosssier.length;
       this.allDossier=  res */
-/*   console.log(this.allDosssier);   */ 
+      this.doctor.password=undefined
+   console.log("this.doctor",this.doctor);   
 this._doctor.updateDoctor(this.id ,  this.doctor,this.allDosssier,"update").subscribe(
   res=>{
   this.toastr.success('Modification avec succès! ', 'succès!');

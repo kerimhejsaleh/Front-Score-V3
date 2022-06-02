@@ -186,12 +186,12 @@ setTimeout(() => {
          })  
  
     })
-    this._doctor.testGetText().subscribe( res=>{
+/*     this._doctor.testGetText().subscribe( res=>{
       console.log("res",res)
 },
 err=>{
 console.log("err",err)
-})
+}) */
     console.log("kssk",affectation2)
     this._doctor.affectAllForms(affectation2).subscribe(
      res=>{
@@ -322,12 +322,12 @@ setTimeout(() => {
   this.spinerLoading=false
   console.log("hi spiner")
 }, 15000);
-this._doctor.testGetText().subscribe( res=>{
+/* this._doctor.testGetText().subscribe( res=>{
            console.log("rssses",res)
 },
 err=>{
   console.log("esssrr",err)
-})
+}) */
     for( let i=0;i<this.allForm.length ; i++){
       let affectation = {
         user: data._id,
