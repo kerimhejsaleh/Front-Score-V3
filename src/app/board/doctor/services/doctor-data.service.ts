@@ -20,7 +20,7 @@ export class DoctorDataService {
   private urlAffect = this.path.url + 'affect/'
 
   createNewDoctor(user: any){
-
+console.log(this.urlDoctor,user)
     return this.http.post<any>(this.urlDoctor  , user);
   }
 
