@@ -12,20 +12,36 @@ export class DoctorDataService {
 
   private urlDoctor = this.path.url + 'doctor/';
   private urlPatient = this.path.url + 'patient/';
+  private urlV = this.path.url + 'urlVideo/';
 
-
-
+  private urlUploadvide = this.path.url + 'uploadApi/';
   private urlForms = this.path.url + 'forms/';
   private urlAffectation = this.path.url + 'affectation/';
   private urlAffect = this.path.url + 'affect/'
 
   createNewDoctor(user: any){
-console.log(this.urlDoctor,user)
+
+    console.log(this.urlDoctor,user)
     return this.http.post<any>(this.urlDoctor  , user);
   }
+  createNewVideo(file: any){
+    console.log("this.urlDoctor,user")
+    return this.http.post<any>("http://localhost:3000/uploadApi/"  , file);
+      }
 
-
-
+      createNewVideourl(){
+        console.log("this.urlV",this.urlV)
+            return this.http.post<any>(this.urlV    ,  {
+              "url" :"https://www.youtube.com/watch?v=KgyqERkp0-Y",
+              "etat":false,
+              "title":"karimmmm",
+              "desc":"hajjjjjj",
+              "role": false,
+               "created_date":"Mon Jul 11 2022 09:56:11 GMT+0100"
+           
+           });
+        
+          }
   getAllDoctor(){
 
     return this.http.get<any>(this.urlDoctor );

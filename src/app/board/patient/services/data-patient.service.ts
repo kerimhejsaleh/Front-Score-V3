@@ -71,7 +71,7 @@ export class DataPatientService {
 
 
   updatePatient(id: any , doctor: any){
-
+console.log(this.urlPatient,id , doctor)
     return this.http.put<any>(this.urlPatient  + id , doctor);
 
   }

@@ -39,6 +39,8 @@ import { DialogBodyComponent } from './companent/dialog-body/dialog-body.compone
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MyDialogComponent } from './companent/my-dialog/my-dialog.component';
 import { MyDialogAffectListComponent } from './companent/my-dialog-affect-list/my-dialog-affect-list.component';
+import { VideoComponent } from './board/video/video.component';
+import { YouTubePlayerModule } from "@angular/youtube-player";
  @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,8 @@ import { MyDialogAffectListComponent } from './companent/my-dialog-affect-list/m
     ForgotpatientComponent,
     DialogBodyComponent,
     MyDialogComponent,
-    MyDialogAffectListComponent
+    MyDialogAffectListComponent,
+    VideoComponent
   
 
   ],
@@ -62,6 +65,7 @@ import { MyDialogAffectListComponent } from './companent/my-dialog-affect-list/m
     MatDialogModule,
     FormsModule,
     AutosizeModule,
+    YouTubePlayerModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatTooltipModule,

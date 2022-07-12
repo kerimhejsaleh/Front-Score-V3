@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit,ChangeDetectorRef,ElementRef,ViewChild, } from '@angular/core';
 import { DoctorDataService } from '../doctor/services/doctor-data.service';
 import { FormsDataService } from '../forms/services/forms-data.service';
 import { DataPatientService } from '../patient/services/data-patient.service';
@@ -7,22 +7,25 @@ import { MultiDataSet, Label, Color } from 'ng2-charts';
 import { DossierService } from '../dossier/services/dossier.service';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
-
+import { FormBuilder, FormArray, Validators } from "@angular/forms";
+/*  import { UploadClient } from '@uploadcare/upload-client'; */ 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements  AfterViewInit, OnInit {
-
+ /*  client = new UploadClient({ publicKey: '8984836541096889c993' }) */
   constructor(private _doctor: DoctorDataService,
               private _patient: DataPatientService,
               private _form: FormsDataService,
               private _dossier: DossierService,
               private router: Router,
+              public fb: FormBuilder,
+              private cd: ChangeDetectorRef,
             ) { }
 
-
+            @ViewChild('fileInput') el: ElementRef;
   doctors: any;
   patients: any;
   forms: any;
@@ -31,13 +34,74 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
   formAll:any;
   responses: any;
 
+  imageUrl: any = 'https://i.pinimg.com/236x/d6/27/d9/d627d9cda385317de4812a4f7bd922e9--man--iron-man.jpg';
+  registrationForm = this.fb.group({
+    file: [null]
+  })  
+  editFile: boolean = true;
+removeUpload: boolean = false;
+  url;
+  format;
+  onSelectFile(event) {
+    let readere = new FileReader(); // HTML5 FileReader API
+    let filee = event.target.files[0];
+    console.log(1,readere,filee)
+    const file = event.target.files && event.target.files[0];
+    
+    this._doctor.createNewVideo(event.target.files[0])
+    console.log(12)
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      if(file.type.indexOf('image')> -1){
+        this.format = 'image';
+      } else if(file.type.indexOf('video')> -1){
+        this.format = 'video';
+      }
+      reader.onload = (event) => {
+        this.url = (<FileReader>event.target).result;
+       /*  console.log("thhhh",this.url) */
+      
+      }
+     /*  this.client.uploadFile(event.target.files[0]).then((res)=>{
+     
+       console.log("res.cdnUrl",res.cdnUrl)
+    
+      }) */
+    }
+  }
+
+  uploadFile(event) {
+    let reader = new FileReader(); // HTML5 FileReader API
+    let file = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      reader.readAsDataURL(file);
+  
+      // When file uploads set it to file formcontrol
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+        this.registrationForm.patchValue({
+          file: reader.result
+        });
+        this.editFile = false;
+        this.removeUpload = true;
+      }
+      // ChangeDetectorRef since file is loading outside the zone
+      this.cd.markForCheck();        
+    }
+
+  }
 
 
-
-
-
-
-
+  removeUploadedFile() {
+    let newFileList = Array.from(this.el.nativeElement.files);
+    this.imageUrl = 'https://i.pinimg.com/236x/d6/27/d9/d627d9cda385317de4812a4f7bd922e9--man--iron-man.jpg';
+    this.editFile = true;
+    this.removeUpload = false;
+    this.registrationForm.patchValue({
+      file: [null]
+    });
+  }
 
 
   
