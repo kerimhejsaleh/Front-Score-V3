@@ -48,10 +48,13 @@ roleP ={
     console.log("https://www.youtube.com/watch?v".length,this.video.url.slice(0,31),"https://www.youtube.com/watch?v"==this.video.url.slice(0,31))
     if("https://www.youtube.com/watch?v"==this.video.url.slice(0,31)&&this.video.title.length>3&&this.video.desc.length >5)
 {   this._urlVideo.createNewVideo(this.video).subscribe((result)=>{
-      console.log("resdddddddddddddddss",result)
+     /*  console.log("resdddddddddddddddss",result) */
+      if(result){
+        this.ngOnInit()
+      }
     }) 
 
-  this.reloadPage() }
+ /*  this.reloadPage()  */}
   }
   roleVideo(role:any){
     console.log(role)
@@ -80,7 +83,7 @@ roleP ={
   affectVideo(id,role){
     this.roleP.role=role
     this._urlVideo.affectVideo(id,this.roleP).subscribe((result)=>{
-      console.log("affectVideo",result)
+     /*  console.log("affectVideo",result) */
       if(result){
         this.ngOnInit()
       }
@@ -88,7 +91,7 @@ roleP ={
   }
   deleteAffectVideo(id,role){
     this._urlVideo.deleteAffect(id,this.roleP).subscribe((result)=>{
-      console.log("affectVideo",result)
+     /*  console.log("affectVideo",result) */
       if(result){
         this.ngOnInit()
       }
@@ -96,7 +99,7 @@ roleP ={
   }
   deleteVideo(id){
     this._urlVideo.deleteVideo(id,this.roleP).subscribe((result)=>{
-      console.log("affectVideo",result)
+     /*  console.log("affectVideo",result) */
       if(result){
         this.ngOnInit()
       }
