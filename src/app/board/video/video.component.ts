@@ -74,7 +74,7 @@ roleP ={
        } 
        console.log(this._domsantitizer.bypassSecurityTrustHtml("https://www.youtube.com/watch?v=GYAB4Td62zI"))
     this._urlVideo.getAllVideo().subscribe((result)=>{
-      console.log("resdddddddddddddddss",result)
+    /*   console.log("resdddddddddddddddss",result) */
      this.tableVideo=result.dataUrlP 
      this.tableVideod=result.dataUrlD
 

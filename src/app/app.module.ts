@@ -41,6 +41,7 @@ import { MyDialogComponent } from './companent/my-dialog/my-dialog.component';
 import { MyDialogAffectListComponent } from './companent/my-dialog-affect-list/my-dialog-affect-list.component';
 import { VideoComponent } from './board/video/video.component';
 import { YouTubePlayerModule } from "@angular/youtube-player";
+import { PrixComponent } from './companent/prix/prix.component';
  @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,8 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
     DialogBodyComponent,
     MyDialogComponent,
     MyDialogAffectListComponent,
-    VideoComponent
+    VideoComponent,
+    PrixComponent
   
 
   ],
@@ -99,6 +101,7 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent,
-    MyDialogComponent]
+    MyDialogComponent,
+    PrixComponent]
 })
 export class AppModule { }

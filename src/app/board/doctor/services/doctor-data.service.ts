@@ -28,7 +28,46 @@ export class DoctorDataService {
     console.log("this.urlDoctor,user")
     return this.http.post<any>("http://localhost:3000/uploadApi/"  , file);
       }
-
+      payement(price2:any){
+        console.log("this.urlDoctor,user")
+        const price ={
+          price :[{
+            "name": "item",
+            "sku": "item",
+            "price": "100",
+            "currency": "USD",
+            "quantity": 1
+        }]
+        }
+        let url = `http://localhost:3000/paypal/success/62988cc89705e81dbc08e45b/${price2}/'USD'`
+        console.log("ureeeee",url)
+        return this.http.post<any>("http://localhost:3000/paypal/pay",{
+          "intent": "sale",
+          "payer": {
+              "payment_method": "paypal"
+          },
+          "redirect_urls": {
+              "return_url": url, 
+              "cancel_url": "http://localhost:3000/paypal/cancel"
+          },
+          "transactions": [{
+              "item_list": {
+                  "items": [{
+                      "name": "item",
+                      "sku": "item",
+                      "price": price2,
+                      "currency": "USD",
+                      "quantity": 1
+                  }]
+              },
+              "amount": {
+                  "currency": "USD",
+                  "total": price2
+              },
+              "description": "This is the payment description."
+          }]
+      });
+          }
       createNewVideourl(){
         console.log("this.urlV",this.urlV)
             return this.http.post<any>(this.urlV    ,  {
@@ -42,8 +81,11 @@ export class DoctorDataService {
            });
         
           }
+          history(){
+            return this.http.get<any>("http://localhost:3000/paypal/history"  ); 
+          }
   getAllDoctor(){
-
+console.log(this.urlDoctor)
     return this.http.get<any>(this.urlDoctor );
     
   }

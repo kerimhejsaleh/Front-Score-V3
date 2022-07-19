@@ -42,6 +42,12 @@ export class StatisticsComponent implements  AfterViewInit, OnInit {
 removeUpload: boolean = false;
   url;
   format;
+  payment(price2){
+    console.log("paaa",)
+    this._doctor.payement(price2).subscribe((result)=>{
+      console.log("result",result)
+    })
+  }
   onSelectFile(event) {
     let readere = new FileReader(); // HTML5 FileReader API
     let filee = event.target.files[0];
@@ -186,8 +192,15 @@ removeUpload: boolean = false;
   spinerFormulaireAff = false;
   dataFormAFF;
   taille=0;
+  listPayment:any
+  ngOnInit(): void {  
 
-  ngOnInit(): void {  }
+    this._doctor.history().subscribe((result)=>{
+      console.log("huiiiii",result)
+      this.listPayment=result.history
+      console.log("listPayment",this.listPayment)
+    })
+  }
 
 
   ngAfterViewInit(){

@@ -40,6 +40,7 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
       multi: true
     }
   ],
+  
   bootstrap: [BoardComponent]
 })
 export class BoardModule { }
