@@ -16,6 +16,7 @@ export class PrixComponent implements OnInit {
   prix:string;
   currency:string;
   fileToUpload:any;
+  validData:boolean=false;
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<PrixComponent>,
@@ -49,8 +50,18 @@ export class PrixComponent implements OnInit {
   })
   }
   save() {
-  /*   console.log(this.form) */
+    if(this.form.value.desc.length>0&&this.form.value.title.length>0&&this.form.value.prix.length>0&&this.form.value.currency.length>0){
+      this.validData=false
     this.dialogRef.close(this.form.value);
-}
+  }else{
+    this.validData=true
+    setTimeout(() => {
+      this.validData=false
+    }, 3000);
 
+  }
+}
+close(){
+  this.dialogRef.close(false);
+}
 }

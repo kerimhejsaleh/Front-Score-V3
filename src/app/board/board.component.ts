@@ -45,7 +45,8 @@ ngOnInit(){
 openDialog() {
 
   const dialogConfig = new MatDialogConfig();
-
+  dialogConfig.width+ '250px',
+  dialogConfig.panelClass+ 'my-dialog',
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
 
@@ -56,12 +57,15 @@ openDialog() {
   const dialogRef = this.dialog.open(PrixComponent, dialogConfig);
 
   dialogRef.afterClosed().subscribe(
-      data => {console.log("Dialog output:", data)
-    
-    
+      data => {/* console.log("Dialog output:", data) */
+    if(data!=false){
+      if(data.desc.length>0&&data.title.length>0&&data.prix.length>0&&data.currency.length>0)
      this._prix.addPrixForm(data).subscribe((res)=>{
-      console.log("resss",res)
+
      })
+    }
+      
+
     }
   );    
 }

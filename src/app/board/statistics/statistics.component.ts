@@ -195,11 +195,11 @@ removeUpload: boolean = false;
   listPayment:any
   ngOnInit(): void {  
 
-    this._doctor.history().subscribe((result)=>{
+   /*  this._doctor.history().subscribe((result)=>{
       console.log("huiiiii",result)
       this.listPayment=result.history
       console.log("listPayment",this.listPayment)
-    })
+    }) */
   }
 
 
