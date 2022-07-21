@@ -1,7 +1,6 @@
 
 <div>
-<h2 mat-dialog-title>Ajouter les prix total des Formulaires</h2>
-
+<h2 mat-dialog-title>Ajouter les prix total des Formulaires par mois</h2>
 <mat-dialog-content [formGroup]="form" > 
   
     <mat-form-field style="padding-right: 5px;">
@@ -23,25 +22,55 @@
                formControlName="currency"
                [value]="currency">
     </mat-form-field>
-    <mat-form-field style="padding-right: 5px;">
+    <mat-form-field style="padding-right: 5px;padding-left: 55px;">
         <input matInput
                 placeholder="Desc"
                formControlName="desc"
                [value]="desc">
-    </mat-form-field>
-   <!--  <mat-form-field appearance="fill">
-        <mat-label>Choose a technology</mat-label>
-        <mat-select>
-          <mat-option value="html"> HTML </mat-option>
-          <mat-option value="css" >CSS (disabled)</mat-option>
-          <mat-option value="js">JAVASCRIPT</mat-option>
-        </mat-select>
-      </mat-form-field> -->
+    </mat-form-field> 
+    <mat-icon style="padding-right: 25px;cursor: pointer;" (click)="save()">done</mat-icon>
 </mat-dialog-content>
 <h1 *ngIf="validData" style="color: red;">Veuillez remplir toutes les sections du formulaire</h1>
+<mat-dialog-content [formGroup]="form2" > 
+      <br>
+      <br>
+      <h2 mat-dialog-title>Ajouter les prix total des Formulaires par an</h2>
+      <br>
+      <br>
+      <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Title"
+               formControlName="title2"
+               [value]="title2">
+    </mat-form-field>
+     
+    <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Prix"
+                formControlName="prix2"
+                [value]="prix2">
+    </mat-form-field>
+    <mat-form-field style="padding-right: 5px;">
+        <input matInput
+                placeholder="Currency"
+               formControlName="currency2"
+               [value]="currency2">
+    </mat-form-field>
+    <mat-form-field style="padding-right: 5px;padding-left: 55px;">
+        <input matInput
+                placeholder="Desc"
+               formControlName="desc2"
+               [value]="desc2">
+    </mat-form-field>
+
+    <mat-icon style="padding-right: 25px;cursor: pointer;" (click)="saveAn()">done</mat-icon>
+   
+
+</mat-dialog-content>
+<h1 *ngIf="validData2" style="color: red;">Veuillez remplir toutes les sections du formulaire</h1>
 <mat-dialog-actions style="align-items: center;">
    
-    <button mat-button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+    <!-- <button mat-button class="mat-raised-button mat-primary" >Save</button> -->
 
     <button mat-raised-button color="warn"  (click)="close()">Exit</button>
 </mat-dialog-actions>
