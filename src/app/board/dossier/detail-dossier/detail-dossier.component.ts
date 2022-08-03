@@ -139,7 +139,8 @@ newAllDossier =[]
                if(resultthree.id != this.id){
                    return this.newAllDossier.push(resultthree)
                }else{
-                 console.log(2)
+               /*   console.log(2) */
+               return null
                }
               return resultthree.id != this.id;
              })
@@ -216,7 +217,7 @@ updatedossier(){
   
   },
   err=>{
-    console.log(err);
+ /*    console.log(err); */
     
   this.toastr.error('Erreur dans la modification du dossier ', 'Erreur!');
   }

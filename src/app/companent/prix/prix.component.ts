@@ -3,12 +3,22 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import { FormGroup, FormControl , FormArray, FormBuilder, Validators, NgForm} from '@angular/forms';
 import { PrixService } from '../../../app/services/prix.service';
 import {HttpClientModule, HttpClient, HttpRequest, HttpResponse, HttpEventType} from '@angular/common/http';
+interface cPaypal {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-prix',
   templateUrl: './prix.component.html',
   styleUrls: ['./prix.component.css']
 })
+
 export class PrixComponent implements OnInit {
+  currencyPaypal: cPaypal[] = [
+    {value: 'USD', viewValue: 'USD'},
+    {value: 'EUR', viewValue: 'EUR'},
+  ];
   form: FormGroup;
   form2: FormGroup;
   description:string;
@@ -23,6 +33,8 @@ export class PrixComponent implements OnInit {
   fileToUpload:any;
   validData:boolean=false;
   validData2:boolean=false;
+  selectCurrency:string="USD";
+  selectCurrency2:string="USD";
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<PrixComponent>,
@@ -75,7 +87,18 @@ export class PrixComponent implements OnInit {
    
     })
   }
+  change(value:any){
+ 
+    this.selectCurrency=value
+ 
+  }
+  change2(value:any){
+ 
+    this.selectCurrency2=value
+ 
+  }
   save() {
+    this.form.value.currency=this.selectCurrency2
     if(this.form.value.desc.length>0&&this.form.value.title.length>0&&this.form.value.prix.length>0&&this.form.value.currency.length>0){
       this.validData=false
     this.dialogRef.close(this.form.value);
@@ -88,6 +111,9 @@ export class PrixComponent implements OnInit {
   }
 }
 saveAn() {
+
+  this.form2.value.currency2=this.selectCurrency
+
   if(this.form2.value.desc2.length>0&&this.form2.value.title2.length>0&&this.form2.value.prix2.length>0&&this.form2.value.currency2.length>0){
     this.validData2=false
   this.dialogRef.close(this.form2.value);

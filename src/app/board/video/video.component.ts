@@ -35,9 +35,9 @@ roleP ={
       document.body.appendChild(tag);
          this.apiLoaded = true;
        } 
-       console.log(this._domsantitizer.bypassSecurityTrustHtml("https://www.youtube.com/watch?v=GYAB4Td62zI"))
+       /* console.log(this._domsantitizer.bypassSecurityTrustHtml("https://www.youtube.com/watch?v=GYAB4Td62zI")) */
     this._urlVideo.getAllVideo().subscribe((result)=>{
-      console.log("resdddddddddddddddss",result)
+/*       console.log("resdddddddddddddddss",result) */
      this.tableVideo=result.dataUrlP 
      this.tableVideod=result.dataUrlD
 
@@ -45,7 +45,7 @@ roleP ={
    
   }
   addVideo(){
-    console.log("https://www.youtube.com/watch?v".length,this.video.url.slice(0,31),"https://www.youtube.com/watch?v"==this.video.url.slice(0,31))
+    /* console.log("https://www.youtube.com/watch?v".length,this.video.url.slice(0,31),"https://www.youtube.com/watch?v"==this.video.url.slice(0,31)) */
     if("https://www.youtube.com/watch?v"==this.video.url.slice(0,31)&&this.video.title.length>3&&this.video.desc.length >5)
 {   this._urlVideo.createNewVideo(this.video).subscribe((result)=>{
      /*  console.log("resdddddddddddddddss",result) */
@@ -57,13 +57,13 @@ roleP ={
  /*  this.reloadPage()  */}
   }
   roleVideo(role:any){
-    console.log(role)
+/*     console.log(role) */
     if(role==1){
       this.video.role=true
     }else{
       this.video.role=false
     }
-    console.log(" this.video", this.video)
+ /*    console.log(" this.video", this.video) */
   }
   reloadPage(){
     if(!this.apiLoaded) {
@@ -72,7 +72,7 @@ roleP ={
       document.body.appendChild(tag);
          this.apiLoaded = true;
        } 
-       console.log(this._domsantitizer.bypassSecurityTrustHtml("https://www.youtube.com/watch?v=GYAB4Td62zI"))
+/*        console.log(this._domsantitizer.bypassSecurityTrustHtml("https://www.youtube.com/watch?v=GYAB4Td62zI")) */
     this._urlVideo.getAllVideo().subscribe((result)=>{
     /*   console.log("resdddddddddddddddss",result) */
      this.tableVideo=result.dataUrlP 

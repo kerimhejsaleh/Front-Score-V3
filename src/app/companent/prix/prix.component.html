@@ -16,18 +16,27 @@
                 formControlName="prix"
                 [value]="prix">
     </mat-form-field>
-    <mat-form-field style="padding-right: 5px;">
+<!--     <mat-form-field style="padding-right: 5px;">
         <input matInput
                 placeholder="Currency"
                formControlName="currency"
                [value]="currency">
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field style="padding-right: 5px;padding-left: 55px;">
         <input matInput
                 placeholder="Desc"
                formControlName="desc"
                [value]="desc">
     </mat-form-field> 
+    <mat-form-field style="padding-right: 5px;">
+        <mat-label>Currency</mat-label>
+        
+        <select matNativeControl required (change)="change2($event.target.value)" [value]="currency">
+          <option *ngFor="let c of currencyPaypal" [value]="c.value" >
+            {{c.viewValue}}
+          </option>
+        </select>
+      </mat-form-field>
     <mat-icon style="padding-right: 25px;cursor: pointer;" (click)="save()">done</mat-icon>
 </mat-dialog-content>
 <h1 *ngIf="validData" style="color: red;">Veuillez remplir toutes les sections du formulaire</h1>
@@ -50,21 +59,29 @@
                 formControlName="prix2"
                 [value]="prix2">
     </mat-form-field>
-    <mat-form-field style="padding-right: 5px;">
+<!--     <mat-form-field style="padding-right: 5px;">
         <input matInput
                 placeholder="Currency"
                formControlName="currency2"
                [value]="currency2">
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field style="padding-right: 5px;padding-left: 55px;">
         <input matInput
                 placeholder="Desc"
                formControlName="desc2"
                [value]="desc2">
     </mat-form-field>
-
+    <mat-form-field style="padding-right: 5px;">
+      <mat-label>Currency</mat-label>
+      
+      <select matNativeControl required (change)="change($event.target.value)" [value]="currency2">
+        <option *ngFor="let c of currencyPaypal" [value]="c.value" >
+          {{c.viewValue}}
+        </option>
+      </select>
+    </mat-form-field>
     <mat-icon style="padding-right: 25px;cursor: pointer;" (click)="saveAn()">done</mat-icon>
-   
+ 
 
 </mat-dialog-content>
 <h1 *ngIf="validData2" style="color: red;">Veuillez remplir toutes les sections du formulaire</h1>

@@ -28,7 +28,7 @@ private _loginUrl = this._path +"login";
 
 
 loginUser(user) {
-  console.log(this._loginUrl) 
+/*   console.log(this._loginUrl)  */
 return this.http.post<any>(this._loginUrl, user);
 }
 

@@ -61,7 +61,7 @@ ngAfterViewInit(){
   }
 
   open(id: any, l: any, i: Number) {
-    console.log(id,l,i)
+/*     console.log(id,l,i) */
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.id = id;
     modalRef.componentInstance.i = i;

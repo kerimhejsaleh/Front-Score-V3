@@ -43,19 +43,19 @@ removeUpload: boolean = false;
   url;
   format;
   payment(price2){
-    console.log("paaa",)
+    console.log("paaa",) 
     this._doctor.payement(price2).subscribe((result)=>{
-      console.log("result",result)
+   console.log("result",result) 
     })
   }
   onSelectFile(event) {
     let readere = new FileReader(); // HTML5 FileReader API
     let filee = event.target.files[0];
-    console.log(1,readere,filee)
+ /*    console.log(1,readere,filee) */
     const file = event.target.files && event.target.files[0];
     
     this._doctor.createNewVideo(event.target.files[0])
-    console.log(12)
+ /*    console.log(12) */
     if (file) {
       var reader = new FileReader();
       reader.readAsDataURL(file);

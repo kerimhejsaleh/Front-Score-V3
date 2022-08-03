@@ -52,7 +52,7 @@ modalRef.componentInstance.admin = this.admin ;
 
     this.auth.getAdminById(this.id).subscribe(
       res=>{
-        console.log("adddd",res)
+       /*  console.log("adddd",res) */
         this.admin = res;
         if(res){
           this.user=true

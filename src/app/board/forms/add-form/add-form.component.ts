@@ -659,7 +659,7 @@ onAddForm(){
       }
       reader.readAsDataURL(event.target.files[0]);
     }}else{
-      console.log(12)
+  /*     console.log(12) */
       var reader = new FileReader();
       let file = new FormData();
       file.append('image' , event.target.files[0]);

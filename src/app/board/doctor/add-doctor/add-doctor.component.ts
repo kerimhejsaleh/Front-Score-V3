@@ -183,7 +183,7 @@ export class AddDoctorComponent implements OnInit {
 
       this._doctor.createNewDoctor(file).subscribe(
         res => {
-          console.log(res)
+        /*   console.log(res) */
           this.doctor = {
 
             name: '',
@@ -213,7 +213,7 @@ export class AddDoctorComponent implements OnInit {
           this.router.navigateByUrl('/admin/doctors')
         },
         err => {
-          console.log(err)
+       /*    console.log(err) */
           this.showSpinner = false;
           this.toastr.error('Erreur dans la creation du docteur! ', 'Erreur!');
         }

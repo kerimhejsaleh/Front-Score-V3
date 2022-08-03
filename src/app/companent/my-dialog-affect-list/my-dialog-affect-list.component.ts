@@ -75,8 +75,8 @@ getData(data,type){
  let m =0;
  let tableDataForms2 = [];
  let tableDataForms23 = [];
- console.log('liste_dossierl', data)
- console.log('liste_dossierliste_dossierliste_dossier', data.liste_dossier)
+/*  console.log('liste_dossierl', data)
+ console.log('liste_dossierliste_dossierliste_dossier', data.liste_dossier) */
  data.liste_dossier.map((result)=>{
  /*   console.log("result.id!=this.idDossier 1",this.idDossier) ; */
 

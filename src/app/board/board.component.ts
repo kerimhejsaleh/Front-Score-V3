@@ -57,16 +57,16 @@ openDialog() {
   const dialogRef = this.dialog.open(PrixComponent, dialogConfig);
 
   dialogRef.afterClosed().subscribe(
-      data => { console.log("Dialog output:", data) 
+      data => { /* console.log("Dialog output:", data)  */
     if(data!=false&&data.desc){
-      console.log(1)
+    /*   console.log(1) */
       if(data.desc.length>0&&data.title.length>0&&data.prix.length>0&&data.currency.length>0)
      this._prix.addPrixForm(data).subscribe((res)=>{
 
      })
     }
     if(data!=false&&data.desc2){
-      console.log(2)
+    /*   console.log(2) */
       if(data.desc2.length>0&&data.title2.length>0&&data.prix2.length>0&&data.currency2.length>0)
      this._prix.addPrixFormAn(data).subscribe((res)=>{
 

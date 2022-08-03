@@ -72,7 +72,7 @@ setTimeout(() => {
   /*    console.log( 'Dialog was closed' ) 
     console.log(result)  */
     if(result){
-      console.log("result",result)
+   /*    console.log("result",result) */
       this.spinerLoading=true
       setTimeout(() => {
         this.spinerLoading=false

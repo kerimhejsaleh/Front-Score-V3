@@ -5,6 +5,7 @@ import { BoardComponent } from './board.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { VideoComponent } from './video/video.component';
+import { HistoryComponent } from './history/history.component';
 const routes: Routes = [
   {path:'' , component: BoardComponent , children:[ 
     {path: '' , component: StatisticsComponent},
@@ -23,8 +24,8 @@ const routes: Routes = [
     
   {path:'video' , component: VideoComponent},
   {path:'archive' , component: ArchiveComponent},
-  {path: 'profile' , component: ProfileComponent}
-
+  {path: 'profile' , component: ProfileComponent},
+  {path:'history' , component: HistoryComponent},
 
 
 

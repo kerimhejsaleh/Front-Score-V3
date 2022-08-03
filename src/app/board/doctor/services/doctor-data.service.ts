@@ -21,15 +21,15 @@ export class DoctorDataService {
 
   createNewDoctor(user: any){
 
-    console.log(this.urlDoctor,user)
+    /* console.log(this.urlDoctor,user) */
     return this.http.post<any>(this.urlDoctor  , user);
   }
   createNewVideo(file: any){
-    console.log("this.urlDoctor,user")
+ /*    console.log("this.urlDoctor,user") */
     return this.http.post<any>("http://localhost:3000/uploadApi/"  , file);
       }
       payement(price2:any){
-        console.log("this.urlDoctor,user")
+    /*     console.log("this.urlDoctor,user") */
         const price ={
           price :[{
             "name": "item",
@@ -39,16 +39,16 @@ export class DoctorDataService {
             "quantity": 1
         }]
         }
-        let url = `http://localhost:3000/paypal/success/62988cc89705e81dbc08e45b/${price2}/'USD'`
-        console.log("ureeeee",url)
-        return this.http.post<any>("http://localhost:3000/paypal/pay",{
+        let url = `http://185.104.172.119:3000/paypal/success/62988cc89705e81dbc08e45b/${price2}/'USD'`
+     /*    console.log("ureeeee",url) */
+        return this.http.post<any>("http://185.104.172.119:3000/paypal/pay",{
           "intent": "sale",
           "payer": {
               "payment_method": "paypal"
           },
           "redirect_urls": {
-              "return_url": url, 
-              "cancel_url": "http://localhost:3000/paypal/cancel"
+              "return_url": `http://localhost:3000/paypal/success/62988cc89705e81dbc08e45b/${price2}/'USD'/${true}`, 
+              "cancel_url": "http://185.104.172.119:3000/paypal/cancel"
           },
           "transactions": [{
               "item_list": {
@@ -69,7 +69,7 @@ export class DoctorDataService {
       });
           }
       createNewVideourl(){
-        console.log("this.urlV",this.urlV)
+       /*  console.log("this.urlV",this.urlV) */
             return this.http.post<any>(this.urlV    ,  {
               "url" :"https://www.youtube.com/watch?v=KgyqERkp0-Y",
               "etat":false,
@@ -85,7 +85,7 @@ export class DoctorDataService {
             return this.http.get<any>("http://localhost:3000/paypal/history"  ); 
           }
   getAllDoctor(){
-console.log(this.urlDoctor)
+/* console.log(this.urlDoctor) */
     return this.http.get<any>(this.urlDoctor );
     
   }
@@ -154,7 +154,7 @@ console.log(this.urlDoctor)
   }
 
   updateDoctor(id: any , doctor: any,dataDosier,type){
-    console.log(doctor)
+/*     console.log(doctor) */
 /*     console.log(id,doctor,dataDosier,type) */
 /*      */
  /*    console.log(id)
@@ -191,12 +191,12 @@ console.log(this.urlDoctor)
       }
 /*       console.log("affectation",affectation) */
 if(type=="update"){
-  console.log(1)
+ /*  console.log(1) */
   return this.http.put<any>(this.urlDoctor  + id , affectation);}
   else{
   
     doctor.password=undefined
-    console.log(12,doctor)
+/*     console.log(12,doctor) */
 return this.http.put<any>(this.urlDoctor  + id , doctor);
 }
   }
@@ -218,7 +218,7 @@ return this.http.put<any>(this.urlDoctor  + id , doctor);
 
   
   affect(affectation: any){
-       console.log("affectatioddddddddn",affectation) 
+     /*   console.log("affectatioddddddddn",affectation)  */
   return this.http.post(this.urlAffectation + 'addaffectation' , affectation);
 
   }

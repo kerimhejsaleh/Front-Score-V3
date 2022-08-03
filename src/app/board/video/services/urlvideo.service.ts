@@ -22,7 +22,7 @@ export class UrlvideoService {
     return this.http.get<any>(this.urlV ); 
   }
   affectVideo(id:any,role:any){
-    console.log(id,role)
+/*     console.log(id,role) */
     return this.http.put<any>(this.urlV +id  , role );
   }
   deleteAffect(id:any,role:any){

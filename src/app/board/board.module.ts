@@ -18,8 +18,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { YouTubePlayerModule } from "@angular/youtube-player";
+import { HistoryComponent } from './history/history.component';
 @NgModule({
-  declarations: [BoardComponent, HeaderComponent, SidebarComponent, FooterComponent, ArchiveComponent, StatisticsComponent, ProfileComponent],
+  declarations: [BoardComponent, HeaderComponent, SidebarComponent, FooterComponent, ArchiveComponent, StatisticsComponent, ProfileComponent, HistoryComponent],
   imports: [
     CommonModule,
     BoardRoutingModule,

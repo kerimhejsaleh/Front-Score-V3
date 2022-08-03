@@ -95,7 +95,7 @@ export class FormsDataService {
 
 
   affect(affectation: any){
-       console.log("affectation",affectation)
+      /*  console.log("affectation",affectation) */
     return this.http.post(this.urlAffectation + 'addaffectation' , affectation);
 
   }
@@ -112,7 +112,7 @@ export class FormsDataService {
   }
 
   disaffect(user: any , form: any){
-    console.log("user,form",user,form)
+   /*  console.log("user,form",user,form) */
     return this.http.delete(this.urlAffectation + 'deleteaffectation/' +user + '/' + form );
 
   }

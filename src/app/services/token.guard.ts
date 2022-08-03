@@ -16,7 +16,7 @@ export class TokenGuard implements CanActivate {
 
     
 const res = await this._authService.tokenVerification().toPromise().then(res=>{this.response = res}, err=>{this.error = err});
-console.log('hiiii',this.response)
+/* console.log('hiiii',this.response) */
 
 
 if(this.response){
@@ -25,12 +25,12 @@ if(this.response){
     this.toReturn = true;
     
   }else{  
-    console.log(1)
+ /*    console.log(1) */
     this._router.navigate(['/login']);
     this.toReturn = false
   }
 }else{  
-  console.log(2)
+/*   console.log(2) */
   this._router.navigate(['/login']);
   this.toReturn = false
 }
