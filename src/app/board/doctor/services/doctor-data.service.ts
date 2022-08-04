@@ -41,7 +41,7 @@ export class DoctorDataService {
         }
         let url = `http://185.104.172.119:3000/paypal/success/62988cc89705e81dbc08e45b/${price2}/'USD'`
      /*    console.log("ureeeee",url) */
-        return this.http.post<any>("http://185.104.172.119:3000/paypal/pay",{
+        return this.http.post<any>("http://localhost:3000/paypal/pay",{
           "intent": "sale",
           "payer": {
               "payment_method": "paypal"

@@ -1,8 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DoctorDataService } from '../services/doctor-data.service';
-
+import { UploadimageService} from 'src/app/services/uploadimage.service';
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 @Component({
   selector: 'app-add-doctor',
   templateUrl: './add-doctor.component.html',
@@ -15,6 +19,7 @@ export class AddDoctorComponent implements OnInit {
   constructor(
     private _doctor: DoctorDataService,
     private toastr: ToastrService,
+    private _iploadImg: UploadimageService,
     private router: Router) { }
 
   url = '';
@@ -225,9 +230,18 @@ export class AddDoctorComponent implements OnInit {
 
 
 
-
   onAdd(event: any) {
 
+const formData = new FormData();
+const file:File = event.target.files[0];
+            formData.append("thumbnail", file);
+            setTimeout(() => {
+              console.log("formData",formData)
+            }, 2000);
+          
+this._iploadImg.uploadImage(file).subscribe((result)=>{
+  console.log("reee",result)
+})
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.onload = (event: any) => {
@@ -243,9 +257,49 @@ export class AddDoctorComponent implements OnInit {
 
 
 
+  title = 'fileUpload';
+  images;
+  multipleImages = [];
 
+  selectImage(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.images = file;
+    }
+  }
 
+  selectMultipleImage(event){
+    if (event.target.files.length > 0) {
+      this.multipleImages = event.target.files;
+    }
+  }
 
+  onSubmit(){
+ 
+    const formData = new FormData();
+    console.log("this.formData 1",formData)
+    formData.append('file', this.images);
+    console.log("this.formData 2",formData)
+    this._iploadImg.uploadImage(this.images).subscribe((result)=>{
+      console.log("reee",result)
+    })
+/*     this.http.post<any>('http://localhost:3000/file', formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    ); */
+  }
+
+  onMultipleSubmit(){
+    const formData = new FormData();
+    for(let img of this.multipleImages){
+      formData.append('files', img);
+    }
+
+ /*    this.http.post<any>('http://localhost:3000/multipleFiles', formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    ); */
+  }
 
 
   

@@ -15,6 +15,7 @@ export class UrlvideoService {
   private urlAffectation = this.path.url + 'affectation/'; */
 
   createNewVideo(video :any){
+    console.log("video",video,"this.vvv",this.urlV)
     return this.http.post<any>(this.urlV   , video );
 
   }

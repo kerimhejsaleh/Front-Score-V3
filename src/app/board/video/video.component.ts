@@ -45,6 +45,7 @@ roleP ={
    
   }
   addVideo(){
+  /*   console.log("jjj") */
     /* console.log("https://www.youtube.com/watch?v".length,this.video.url.slice(0,31),"https://www.youtube.com/watch?v"==this.video.url.slice(0,31)) */
     if("https://www.youtube.com/watch?v"==this.video.url.slice(0,31)&&this.video.title.length>3&&this.video.desc.length >5)
 {   this._urlVideo.createNewVideo(this.video).subscribe((result)=>{

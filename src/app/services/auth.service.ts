@@ -22,7 +22,6 @@ private _pathPatient =  this.path.url +  "patient/";
 
 
 
-
 private _loginUrl = this._path +"login";
 
 
