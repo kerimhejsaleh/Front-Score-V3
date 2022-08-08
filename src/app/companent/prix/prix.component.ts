@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import { FormGroup, FormControl , FormArray, FormBuilder, Validators, NgForm} from '@angular/forms';
 import { PrixService } from '../../../app/services/prix.service';
 import {HttpClientModule, HttpClient, HttpRequest, HttpResponse, HttpEventType} from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 interface cPaypal {
   value: string;
   viewValue: string;
@@ -39,6 +40,7 @@ export class PrixComponent implements OnInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<PrixComponent>,
     private http :HttpClient,
+    private snackBar:MatSnackBar,
     private _prix: PrixService,
     @Inject(MAT_DIALOG_DATA) data) {
 
@@ -102,6 +104,11 @@ export class PrixComponent implements OnInit {
     if(this.form.value.desc.length>0&&this.form.value.title.length>0&&this.form.value.prix.length>0&&this.form.value.currency.length>0){
       this.validData=false
     this.dialogRef.close(this.form.value);
+    this.snackBar.open(" Les nouveaux prix est ajoutée." ,"×", {
+      duration: 2000,
+      // here specify the position
+      verticalPosition: 'top'
+    });
   }else{
     this.validData=true
     setTimeout(() => {
@@ -117,6 +124,11 @@ saveAn() {
   if(this.form2.value.desc2.length>0&&this.form2.value.title2.length>0&&this.form2.value.prix2.length>0&&this.form2.value.currency2.length>0){
     this.validData2=false
   this.dialogRef.close(this.form2.value);
+  this.snackBar.open(" Les nouveaux prix est ajoutée." ,"×", {
+    duration: 2000,
+    // here specify the position
+    verticalPosition: 'top'
+  });
 }else{
   this.validData2=true
   setTimeout(() => {
@@ -124,6 +136,42 @@ saveAn() {
   }, 3000);
 
 }
+}
+saveAll(){
+  if(this.form2.value.desc2.length>0&&this.form2.value.title2.length>0&&this.form2.value.prix2.length>0&&this.form2.value.currency2.length>0&&this.form.value.desc.length>0&&this.form.value.title.length>0&&this.form.value.prix.length>0&&this.form.value.currency.length>0){
+
+  this._prix.addPrixFormAn(this.form2.value).subscribe((res)=>{
+  this.close()
+  })
+  this._prix.addPrixForm(this.form.value).subscribe((res)=>{
+    this.close()
+
+  })
+  this.snackBar.open(" Les nouveaux prix est ajoutée." ,"×", {
+    duration: 2000,
+    // here specify the position
+    verticalPosition: 'top'
+  });
+}else{
+  if(this.form2.value.desc2.length>0&&this.form2.value.title2.length>0&&this.form2.value.prix2.length>0&&this.form2.value.currency2.length>0){
+
+  }else{
+    this.validData2=true
+    setTimeout(() => {
+      this.validData2=false
+    }, 3000);
+  }
+  if(this.form.value.desc.length>0&&this.form.value.title.length>0&&this.form.value.prix.length>0&&this.form.value.currency.length>0){
+
+  }else{
+    this.validData=true
+    setTimeout(() => {
+      this.validData=false
+    }, 3000);
+  }
+  }
+
+  
 }
 close(){
   this.dialogRef.close(false);

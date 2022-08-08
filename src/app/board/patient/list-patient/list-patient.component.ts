@@ -47,6 +47,7 @@ ngAfterViewInit(){
 
     this._patient.getAllPatient().subscribe(
       res => {
+  /*       console.log("reee",res) */
         this.allPatients = res;
         this.allPatientsToFilter = res;
         this.totalLength=res.length;

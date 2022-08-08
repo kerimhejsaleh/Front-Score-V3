@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EndpointService } from 'src/app/services/endpoint.service';
 import { DoctorDataService } from '../services/doctor-data.service';
 import { DossierService } from '../../dossier/services/dossier.service';
-
+import { UploadimageService} from 'src/app/services/uploadimage.service';
 
 
 
@@ -124,8 +124,9 @@ export class DetailDoctorComponent implements AfterViewInit, OnInit {
               private _doctor: DoctorDataService,
               private modalService: NgbModal,
               private toastr: ToastrService,
-              private router : Router
-              , public path: EndpointService
+              private router : Router,
+              private _iploadImg: UploadimageService,
+               public path: EndpointService
               ) { }
 
   id: any;
@@ -161,6 +162,7 @@ export class DetailDoctorComponent implements AfterViewInit, OnInit {
 
     this._doctor.getDoctorById(this.id).subscribe(
       res=>{
+      /*   console.log("ttte",res) */
         this.doctor = res;
       },
       err=>{
@@ -177,7 +179,25 @@ export class DetailDoctorComponent implements AfterViewInit, OnInit {
   
 
 url : any;
+fileToUpload: any;
+imageUrl: any;
+handleFileInput(file: FileList) {
+  this.fileToUpload = file.item(0);
 
+  //Show image preview
+  let reader = new FileReader();
+  reader.onload = (event: any) => {
+    this.imageUrl = event.target.result;
+  /*   console.log('hhh', this.imageUrl); */
+    this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+      
+      this.url =result
+      this.doctor.photo= result
+     /*  console.log("reee", result) */
+    })
+  };
+  reader.readAsDataURL(this.fileToUpload);
+}
 
 onAdd(event: any) {
 
@@ -194,7 +214,7 @@ showSpinnerUpdatePhoto= false;
 updatePhoto(){
 
   this.showSpinnerUpdatePhoto = true;
-  const imageBlob = this.fileInput.nativeElement.files[0];
+  const imageBlob = this.url;
   const file = new FormData();
   file.set('image', imageBlob);
   

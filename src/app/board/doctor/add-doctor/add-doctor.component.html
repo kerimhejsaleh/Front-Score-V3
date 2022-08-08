@@ -125,7 +125,7 @@
                             <i  style=" text-align: center; font-size: 60px;padding: 24px;" class="far fa-images  mx-auto"></i>
                         </div>
                     </label>
-                        <input (change)="onAdd($event)" #fileInput type="file"  accept='image/*'  [ngClass]="{'form-control': true}" id="inputphoto" style="display: none;">
+                        <input (change)="handleFileInput($event.target.files)" #fileInput type="file"  accept='image/*'  [ngClass]="{'form-control': true}" id="inputphoto" style="display: none;">
                 </div>
        <!--          <label class="image-upload-container btn btn-bwm">
                     <span>Select Image</span>
@@ -135,7 +135,7 @@
                            (change)="processFile(imageInput)">
                   </label> -->
 
-                <div *ngIf="url.length > 1" class="form-groupe  m-3">
+                <div *ngIf="url" class="form-groupe  m-3">
                     <img style="width:100px" [src]="url" alt="">
                 </div>
                 <button  (click)="createNewDoctor()" class="btn btn-primary">Enregistrer
@@ -148,7 +148,7 @@
         </div>
     </div>
 </div>
-<h1 style="text-align: center">Fun Of Heuristic File Uploader</h1>
+<!-- <h1 style="text-align: center">Fun Of Heuristic File Uploader</h1>
 
 <div style="text-align: center">
   <form>      
@@ -170,8 +170,7 @@
       <input type="file" name="images" multiple (change)="selectMultipleImage($event)" />
     </div>
     <br>
-    <div>
-      <button type="submit" (click)="onMultipleSubmit()">Multiple Upload</button>
-    </div>
   </form>
-</div>
+</div> -->
+<!-- <input #Image type="file" (change)="handleFileInput($event.target.files)"/>
+<img width="100%" *ngIf="imageUrl" [src]="imageUrl" class="image"> -->

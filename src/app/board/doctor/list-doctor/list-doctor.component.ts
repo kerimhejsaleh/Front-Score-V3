@@ -118,6 +118,7 @@ export class ListDoctorComponent implements OnInit , AfterViewInit {
 /*     console.log("dd") */
     this._docor.getAllDoctor().subscribe(
       res => {
+      /*   console.log("dd",res) */
         this.allDoctors = res;
         this.allDoctorsToFilter = res;
         this.totalLength=res.length;

@@ -97,10 +97,10 @@
                             <i  style=" text-align: center; font-size: 60px;padding: 24px;" class="far fa-images  mx-auto"></i>
                         </div>
                     </label>
-                        <input (change)="onAdd($event)" #fileInput type="file"  [ngClass]="{'form-control': true}" id="inputphoto" style="display: none;">
+                        <input (change)="handleFileInput($event.target.files)" #fileInput type="file"  [ngClass]="{'form-control': true}" id="inputphoto" style="display: none;">
                 </div>
 
-                <div *ngIf="url.length > 1" class="form-groupe  m-3">
+                <div *ngIf="url" class="form-groupe  m-3">
                     <img style="width:100px" [src]="url" alt="">
                 </div>
                 <button  (click)="createNewPatient()" class="btn btn-primary">Enregistrer

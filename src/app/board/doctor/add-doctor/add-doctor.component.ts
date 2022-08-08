@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DoctorDataService } from '../services/doctor-data.service';
 import { UploadimageService} from 'src/app/services/uploadimage.service';
+/* import uploadcare from 'uploadcare-widget' */
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -13,16 +14,15 @@ class ImageSnippet {
   styleUrls: ['./add-doctor.component.css']
 })
 export class AddDoctorComponent implements OnInit {
-
+   /* widget = uploadcare("#uploader", { publicKey: '78438663440617fc29f2' }); */
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
-
   constructor(
     private _doctor: DoctorDataService,
     private toastr: ToastrService,
     private _iploadImg: UploadimageService,
     private router: Router) { }
 
-  url = '';
+  url : any;
   doctor = {
 
     name: '',
@@ -30,7 +30,7 @@ export class AddDoctorComponent implements OnInit {
     email: '',
 
     birthday: '',
-
+    photo:'',
     adresse: '',
     tel: '',
     password: '',
@@ -165,10 +165,10 @@ export class AddDoctorComponent implements OnInit {
     }
 
     if (countError === 0) {
-
+      this.doctor.photo=this.url
       const imageBlob = this.fileInput.nativeElement.files[0];
       const file = new FormData();
-      file.set('photo', imageBlob);
+      file.set('photo', this.doctor.photo);
       file.set('name', this.doctor.name);
       file.set('lastname', this.doctor.lastname);
       file.set('email', this.doctor.email);
@@ -194,7 +194,7 @@ export class AddDoctorComponent implements OnInit {
             name: '',
             lastname: '',
             email: '',
-
+            photo:'',
             birthday: '',
             adresse: '',
             tel: '',
@@ -239,9 +239,9 @@ const file:File = event.target.files[0];
               console.log("formData",formData)
             }, 2000);
           
-this._iploadImg.uploadImage(file).subscribe((result)=>{
+/* this._iploadImg.uploadImage(file).subscribe((result)=>{
   console.log("reee",result)
-})
+}) */
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.onload = (event: any) => {
@@ -279,28 +279,38 @@ this._iploadImg.uploadImage(file).subscribe((result)=>{
     const formData = new FormData();
     console.log("this.formData 1",formData)
     formData.append('file', this.images);
+/*     this.widget.uploadFile(this.images).subscribe((res)=>{
+ 
+     console.log(res)
+  
+    }) */
     console.log("this.formData 2",formData)
-    this._iploadImg.uploadImage(this.images).subscribe((result)=>{
-      console.log("reee",result)
-    })
+ 
 /*     this.http.post<any>('http://localhost:3000/file', formData).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     ); */
   }
 
-  onMultipleSubmit(){
-    const formData = new FormData();
-    for(let img of this.multipleImages){
-      formData.append('files', img);
-    }
 
- /*    this.http.post<any>('http://localhost:3000/multipleFiles', formData).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
-    ); */
+
+  fileToUpload: any;
+  imageUrl: any;
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+
+    //Show image preview
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+      /* console.log('hhh', this.imageUrl); */
+      this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+        
+        this.url =result
+        console.log("reee", result)
+      })
+    };
+    reader.readAsDataURL(this.fileToUpload);
   }
-
-
   
 }

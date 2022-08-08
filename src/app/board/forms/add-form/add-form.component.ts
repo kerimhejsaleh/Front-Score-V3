@@ -9,6 +9,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { Options,LabelType,ChangeContext,PointerType   } from 'ng5-slider';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatDialogConfig} from '@angular/material/dialog';
 import { DialogBodyComponent } from '../../../companent/dialog-body/dialog-body.component';
+import { UploadimageService } from 'src/app/services/uploadimage.service';
 interface SliderDetails {
   value: number;
   floor: number; 
@@ -44,6 +45,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
     private router: Router,
     public endpoint : EndpointService,
     public matDialog: MatDialog,
+    private _iploadImg: UploadimageService,
     public element:ElementRef,
     private _fb: FormBuilder) { 
       this.productForm = this._fb.group({  
@@ -625,6 +627,59 @@ onAddForm(){
     
     this.form.sections[s].questions[ind].type = type;
   }
+
+
+
+  fileToUpload: any;
+imageUrl: any;
+handleFileInput(file: FileList, s:any,type) {
+  this.fileToUpload = file.item(0);
+  if(type=="CM"){
+  //Show image preview
+  let reader = new FileReader();
+  reader.onload = (event: any) => {
+    this.imageUrl = event.target.result;
+  /*   console.log('hhh', this.imageUrl); */
+    this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+    /*   
+      this.url =result
+      this.doctor.photo= result */
+      console.log("reee", result)
+      this.result = result;
+      this.form.sections[s].questions[this.in].optioncm[this.j].image = this.result;
+      this.result = null;
+   
+
+      
+      this.staticUrl = '';
+    })
+  };
+  reader.readAsDataURL(this.fileToUpload);
+}else{
+  let reader = new FileReader();
+  reader.onload = (event: any) => {
+    this.imageUrl = event.target.result;
+  /*   console.log('hhh', this.imageUrl); */
+    this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+    /*   
+      this.url =result
+      this.doctor.photo= result */
+      console.log("reee", result)
+      this.result = result;
+     /*  this.form.sections[s].questions[this.in].optioncm[this.j].image = this.result; */
+     this.form.sections[s].questions[this.in].options[this.j].image = this.result;
+      this.result = null;
+   
+
+      
+      this.staticUrl = '';
+    })
+  };
+  reader.readAsDataURL(this.fileToUpload);
+}
+}
+
+
   onAdd(event: any, s:any,type) {
   /*   console.log(type) */
     if(type=="CM"){
@@ -948,6 +1003,7 @@ this.data = regForm.value
          {score: '', message: ''})
         
       }
+      console.log("yeyyeyeye",this.form)
       this.formService.createNewForm(this.form).subscribe(
         (res) => {
   
@@ -988,7 +1044,7 @@ this.data = regForm.value
 
   
   onAddQuestion(event: any, s: any) {
-    
+    console.log("gggg",event)
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       let file = new FormData();

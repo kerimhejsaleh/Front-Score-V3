@@ -194,12 +194,12 @@
                             <textarea autosize    [(ngModel)]="section.questions[i].title" rows="2" class="question-title" value="Question title here" placeholder="Titre du Question">
                             </textarea>
 
-                            <label (click)="in = i;" for="quesPhoto" >
+                     <!--        <label (click)="in = i;" for="quesPhoto" >
                                             
                                     <mat-icon class="ico mt-4" color="primary" >photo</mat-icon>
                             
                             </label>
-                            <input  (change)="onAddQuestion($event,s,'TT')"  type="file" name="" style="display: none;" accept='image/*'  id="quesPhoto">
+                            <input  (change)="onAddQuestion($event,s,'TT')"  type="file" name="" style="display: none;" accept='image/*'  id="quesPhoto"> -->
                             
                             
                         
@@ -316,7 +316,7 @@
                                                 <mat-icon class="ico" color="primary" >photo</mat-icon>
                                         
                                         </label>
-                                        <input  (change)="onAdd($event,s,'CM')"  type="file" name="" style="display: none;" accept='image/*'  id="checkPhoto">
+                                        <input  (change)="handleFileInput($event.target.files,s,'CM')"  type="file" name="" style="display: none;" accept='image/*'  id="checkPhoto">
                                         
                                         
                                         <mat-icon class="ico" style="margin-left: 16px;cursor: pointer;" (click)="deleteImageOption(section.questions[i].optioncm[o].image , i , o,s,'CM');removeOptionCm(i, o,s)" *ngIf="section.questions[i].optioncm.length > 1"  color="primary" >close</mat-icon>
@@ -358,7 +358,7 @@
                             </div>
         
                             <div  *ngIf="section.questions[i].optioncm[o].image.length > 1 " style="width: 100%; margin-left: 44px;position: relative;">
-                                <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].optioncm[o].image " alt="">
+                                <img style="width: 250px;" class="img-thumbnail" [src]="section.questions[i].optioncm[o].image " alt="">
                                 <button (click)="deleteImageOption(section.questions[i].optioncm[o].image , i , o,s,'CM')" mat-mini-fab  color="primary" aria-label="Example icon button with a home icon" style="position: absolute;left: -16px;top: -16px;">
                                     <mat-icon>close</mat-icon>
                                 </button>
@@ -517,7 +517,7 @@
                                                 <mat-icon class="ico"  color="primary">photo</mat-icon>
                                             
                                         </label>
-                                        <input  (change)="onAdd($event,s,'CC')"  type="file" name="" style="display: none;" accept='image/*' id="radioPhoto">
+                                        <input  (change)="handleFileInput($event.target.files,s,'CC')"  type="file" name="" style="display: none;" accept='image/*' id="radioPhoto">
                                         
                                         <mat-icon class="ico"  style="margin-left: 16px;cursor: pointer;" (click)=" deleteImageOption(section.questions[i].options[o].image , i , o,s,'CC') ; removeOption(i, o,s)" *ngIf="section.questions[i].options.length > 1"  color="primary" >close</mat-icon>
                                     
@@ -559,7 +559,8 @@
                                 </div>
 
                                 <div  *ngIf="section.questions[i].options[o].image.length > 1 " style="width: 100%; margin-left: 44px;position: relative;">
-                                    <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].options[o].image " alt="">
+                                    <img style="width: 250px;" class="img-thumbnail" [src]="section.questions[i].options[o].image" alt="">
+                                <!--     <img style="width: 250px;" class="img-thumbnail" [src]="section.questions[i].options[o].image" alt=""> -->
                                     <button (click)="deleteImageOption(section.questions[i].options[o].image , i , o,s,'CC')" mat-mini-fab  color="primary" aria-label="Example icon button with a home icon" style="position: absolute;left: -16px;top: -16px;">
                                         <mat-icon>close</mat-icon>
                                     </button>

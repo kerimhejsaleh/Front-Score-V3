@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DataPatientService } from '../services/data-patient.service';
+import { UploadimageService } from 'src/app/services/uploadimage.service';
 
 @Component({
   selector: 'app-add-patient',
@@ -15,6 +16,7 @@ export class AddPatientComponent implements OnInit {
   constructor(
     private _patient: DataPatientService,
     private toastr: ToastrService,
+    private _iploadImg: UploadimageService,
     private router: Router) { }
 
   showSpinner = false;
@@ -36,7 +38,7 @@ export class AddPatientComponent implements OnInit {
 
 
 
-  url = '';
+  url :any;
   patient = {
 
     name: '',
@@ -51,10 +53,28 @@ export class AddPatientComponent implements OnInit {
     gender: '',
     account_state: false,
     archived: false,
+    photo:''
 
 
   }
+  fileToUpload: any;
+  imageUrl: any;
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
 
+    //Show image preview
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+     /*  console.log('hhh', this.imageUrl); */
+      this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+        
+        this.url =result
+        console.log("reee", result)
+      })
+    };
+    reader.readAsDataURL(this.fileToUpload);
+  }
 
   ngOnInit(): void {
   }
@@ -150,9 +170,11 @@ export class AddPatientComponent implements OnInit {
 
 
     if (countError === 0) {
-      const imageBlob = this.fileInput.nativeElement.files[0];
+   
+      const imageBlob = this.url;
+      this.patient.photo=this.url
       const file = new FormData();
-      file.set('photo', imageBlob);
+      file.set('photo', this.patient.photo);
       file.set('name', this.patient.name);
       
       file.set('lastname', this.patient.lastname);
@@ -167,7 +189,7 @@ export class AddPatientComponent implements OnInit {
 
 
       this.showSpinner = true;
-
+      console.log("imageBlob",file)
       this._patient.createNewUser(file).subscribe(
         res => {
 
@@ -176,7 +198,7 @@ export class AddPatientComponent implements OnInit {
             name: '',
             lastname: '',
             email: '',
-
+            photo:'',
             birthday: '',
             ssn: '',
             adresse: '',
@@ -215,7 +237,7 @@ export class AddPatientComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.onload = (event: any) => {
-        this.url = event.target.result;
+     /*    this.url = event.target.result; */
 
 
       }

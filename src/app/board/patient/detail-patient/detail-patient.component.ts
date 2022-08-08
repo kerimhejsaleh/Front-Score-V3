@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { EndpointService } from 'src/app/services/endpoint.service';
+import { UploadimageService } from 'src/app/services/uploadimage.service';
 import { DataPatientService } from '../services/data-patient.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class DetailPatientComponent implements AfterViewInit, OnInit  {
   constructor(private route: ActivatedRoute, 
     private _patient: DataPatientService,
     private modalService: NgbModal,
+    private _iploadImg: UploadimageService,
     public path: EndpointService) { }
 
 id: any;
@@ -67,6 +69,25 @@ ngAfterViewInit(){
 
 
 url : any;
+fileToUpload: any;
+imageUrl: any;
+handleFileInput(file: FileList) {
+  this.fileToUpload = file.item(0);
+
+  //Show image preview
+  let reader = new FileReader();
+  reader.onload = (event: any) => {
+    this.imageUrl = event.target.result;
+/*     console.log('hhh', this.imageUrl); */
+    this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+      
+      this.url =result
+      this.patient.photo= result
+    /*   console.log("reee", result) */
+    })
+  };
+  reader.readAsDataURL(this.fileToUpload);
+}
 
 
 onAdd(event: any) {
@@ -74,7 +95,7 @@ onAdd(event: any) {
   if (event.target.files && event.target.files[0]) {
     var reader = new FileReader();
     reader.onload = (event: any) => {
-        this.url = event.target.result;
+      //  this.url = event.target.result;
     }
     reader.readAsDataURL(event.target.files[0]);
 }
@@ -84,7 +105,7 @@ showSpinnerUpdatePhoto= false;
 updatePhoto(){
 
   this.showSpinnerUpdatePhoto = true;
-  const imageBlob = this.fileInput.nativeElement.files[0];
+  const imageBlob = this.url;
   const file = new FormData();
   file.set('image', imageBlob);
   

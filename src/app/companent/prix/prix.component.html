@@ -52,7 +52,7 @@
                formControlName="title2"
                [value]="title2">
     </mat-form-field>
-     
+  
     <mat-form-field style="padding-right: 5px;">
         <input matInput
                 placeholder="Prix"
@@ -87,8 +87,8 @@
 <h1 *ngIf="validData2" style="color: red;">Veuillez remplir toutes les sections du formulaire</h1>
 <mat-dialog-actions style="align-items: center;">
    
-    <!-- <button mat-button class="mat-raised-button mat-primary" >Save</button> -->
+    <button mat-button class="mat-raised-button mat-primary" (click)="saveAll()" >Enregistrer</button> 
 
-    <button mat-raised-button color="warn"  (click)="close()">Exit</button>
+    <button mat-raised-button color="warn"  (click)="close()">Quitter</button>
 </mat-dialog-actions>
 </div>

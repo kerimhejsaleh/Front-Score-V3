@@ -105,7 +105,7 @@
                         <p class="hint"> {{section.questions[i].optioncm[o]?.hint}} </p>
 
                         <div  *ngIf="section.questions[i].optioncm[o].image.length > 1 " style="width: 100%; margin-left: 44px;margin-top: -16px;">
-                            <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].optioncm[o].image " alt="">
+                            <img style="width: 250px;" class="img-thumbnail" [src]="section.questions[i].optioncm[o].image " alt="">
                     
                         </div>
                         </div>
@@ -328,7 +328,7 @@
                             <p class="hint"> {{section.questions[i].options[o]?.hint}} </p>
     
                             <div  *ngIf="section.questions[i].options[o].image.length > 1 " style="width: 100%; margin-left: 44px;margin-top: -16px;">
-                                <img style="width: 250px;" class="img-thumbnail" [src]="endpoint.url + 'getfile/' + section.questions[i].options[o].image " alt="">
+                                <img style="width: 250px;" class="img-thumbnail" [src]="section.questions[i].options[o].image " alt="">
                         
                             </div>
                             </div>

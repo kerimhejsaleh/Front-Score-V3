@@ -13,7 +13,7 @@ export class UploadimageService {
 
 
   uploadImage(image){
-    console.log("iiii",image)
-    return this.http.post(this._uploadImage, image );
+  /*   console.log("iiii",image) */
+    return this.http.post(this._uploadImage, {image :image} );
   }
 }

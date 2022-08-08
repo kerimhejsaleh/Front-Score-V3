@@ -13,6 +13,7 @@ import { FormGroup, FormControl , FormArray, FormBuilder, Validators} from '@ang
 import { Options,LabelType,ChangeContext,PointerType   } from 'ng5-slider';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatDialogConfig} from '@angular/material/dialog';
 import { DialogBodyComponent } from '../../../companent/dialog-body/dialog-body.component';
+import { UploadimageService } from 'src/app/services/uploadimage.service';
 interface SliderDetails {
   value: number;
   floor: number;
@@ -132,6 +133,7 @@ export class NgbdModalLock implements OnInit {
   incorrectPassword = false;
 
   constructor(public activeModal: NgbActiveModal, private _formData: FormsDataService,
+    private _iploadImg: UploadimageService,
     private route : Router,
     ) {
     /*   console.log("formmm",this.pass) */
@@ -299,6 +301,7 @@ export class DetailFormComponent implements OnInit , AfterViewInit{
               private modalService: NgbModal,
               public layout: LayoutService ,
               public matDialog: MatDialog,
+              private _iploadImg: UploadimageService,
               public element:ElementRef,
               private _fb: FormBuilder) { 
                 this.productForm = this._fb.group({  
@@ -533,7 +536,7 @@ newRange(i:any,s:any){
         let inc=0;
         this.form = res;
         
-       // console.log("this.form",this.form)
+        console.log("this.form",this.form)
       this.form.sections.map((res)=>{
    /*      console.log("kkk",res) */
          res.questions.map((res)=>{
@@ -1088,6 +1091,55 @@ if(this.form.sections[s].questions[q].switch==true){
   staticUrlQuestion = '';
   in = 0;
   j = 0;
+
+  fileToUpload: any;
+imageUrl: any;
+handleFileInput(file: FileList, s:any,type) {
+  this.fileToUpload = file.item(0);
+  if(type=="CM"){
+  //Show image preview
+  let reader = new FileReader();
+  reader.onload = (event: any) => {
+    this.imageUrl = event.target.result;
+  /*   console.log('hhh', this.imageUrl); */
+    this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+    /*   
+      this.url =result
+      this.doctor.photo= result */
+      console.log("reee", result)
+      this.result = result;
+      this.form.sections[s].questions[this.in].optioncm[this.j].image = this.result;
+      this.result = null;
+   
+
+      
+      this.staticUrl = '';
+    })
+  };
+  reader.readAsDataURL(this.fileToUpload);
+}else{
+  let reader = new FileReader();
+  reader.onload = (event: any) => {
+    this.imageUrl = event.target.result;
+  /*   console.log('hhh', this.imageUrl); */
+    this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+    /*   
+      this.url =result
+      this.doctor.photo= result */
+      console.log("reee", result)
+      this.result = result;
+     /*  this.form.sections[s].questions[this.in].optioncm[this.j].image = this.result; */
+     this.form.sections[s].questions[this.in].options[this.j].image = this.result;
+      this.result = null;
+   
+
+      
+      this.staticUrl = '';
+    })
+  };
+  reader.readAsDataURL(this.fileToUpload);
+}
+}
 
   onAdd(event: any, s:any,type) {
 /*     console.log("tyy.",type) */
