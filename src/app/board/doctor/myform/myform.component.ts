@@ -29,8 +29,9 @@ doctor:any;
 
 affectedToast = false;
 affectedToastWithSuccess = false;
+statusAbonement=false;
 formAffectations : any;
-
+dateFin:any;
 selectedDoctor = 0;
 
  ngOnInit() : void {
@@ -64,7 +65,21 @@ err=>{
 
 }
 );
+this._docor.getStatusAbonement(this.id ).subscribe((result)=>{
+  /* console.log("jjjj",result.doctor)
+  console.log("jjjj",result.doctor.length) */
+  if(result.doctor.length===0){
+    this.statusAbonement=true
+  }
+  if(result.doctor.length>0)
+  if(new Date()>result.doctor[0].datedefin){
+    this.statusAbonement=true
+  }else{
+    this.dateFin=result.doctor[0].datedefin.slice(0,10)
 
+  }
+ 
+})
 }
 
 response : any;

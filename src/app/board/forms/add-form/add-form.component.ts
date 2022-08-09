@@ -932,7 +932,9 @@ this.data = regForm.value
     let x =0;
     let y =0;
     let z = 0;
-
+    let c =0;
+    let v =0;
+    let b = 0;
     this.form.sections.map((result)=>{
       x= x+1 ;
      result.questions.map((resulttow)=>{
@@ -956,7 +958,7 @@ this.data = regForm.value
             })
      }
      if( resulttow.type=="Cases à cocher"){
-      z = z+1 ;
+      c = c+1 ;
 
             resulttow.options.map((resultthree)=>{
              /*  console.log("resulttow",resultthree) */

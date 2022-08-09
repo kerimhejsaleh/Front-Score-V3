@@ -1,6 +1,6 @@
 <div class="col-12">
-    <div class="card">
-        <div class="card-header">
+    <div *ngIf="!statusAbonement"  class="card" style=" background-color: #ddffdd;">
+  <!--       <div class="card-header">
             <div class="card-actions float-right">
                 <a href="#" class="mr-1">
                     <i class="align-middle" data-feather="refresh-cw"></i>
@@ -14,9 +14,14 @@
                 </div>
             </div>
             <h1 class="card-title mb-0">Formulaires affectées à {{doctor?.name}} :</h1>
-        </div>
+        </div> -->
         <div class="card-body">
-            <table id="datatables-clients" class="table table-striped" style="width:100%">
+            <div class="col-sm-3 col-xl-12  text-center">
+                      
+                <div style=" background-color: #ddffdd;"><h1>Abonnement valide, Abonnement valable jusqu'à {{dateFin || date}} </h1></div>
+          
+        </div>
+          <!--   <table id="datatables-clients" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -56,7 +61,18 @@
                     </tr>
          
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
+    <div *ngIf="statusAbonement"  class="card" style=" background-color: #ffdddd;">
+
+              <div class="card-body">
+                  <div class="col-sm-3 col-xl-12  text-center">
+                            
+                      <div ><h1>Abonnement épuisé </h1></div>
+                
+              </div>
+        
+              </div>
+          </div>
 </div>

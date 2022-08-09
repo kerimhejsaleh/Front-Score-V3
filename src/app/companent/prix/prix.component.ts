@@ -138,7 +138,16 @@ saveAn() {
 }
 }
 saveAll(){
-  if(this.form2.value.desc2.length>0&&this.form2.value.title2.length>0&&this.form2.value.prix2.length>0&&this.form2.value.currency2.length>0&&this.form.value.desc.length>0&&this.form.value.title.length>0&&this.form.value.prix.length>0&&this.form.value.currency.length>0){
+  if(this.form2.value.desc2.length>0
+    &&this.form2.value.title2.length>0
+    &&this.form2.value.prix2.length>0
+    &&this.form2.value.currency2.length>0
+    &&this.form.value.desc.length>0
+    &&this.form.value.title.length>0
+    &&this.form.value.prix.length>0
+    &&this.form.value.currency.length>0
+    &&this.form.value.prix>0
+    &&this.form2.value.prix2){
 
   this._prix.addPrixFormAn(this.form2.value).subscribe((res)=>{
   this.close()
@@ -153,7 +162,7 @@ saveAll(){
     verticalPosition: 'top'
   });
 }else{
-  if(this.form2.value.desc2.length>0&&this.form2.value.title2.length>0&&this.form2.value.prix2.length>0&&this.form2.value.currency2.length>0){
+  if(this.form2.value.desc2.length>0&&this.form2.value.title2.length>0&&this.form2.value.prix2.length>0&&this.form2.value.currency2.length>0&&this.form2.value.prix2){
 
   }else{
     this.validData2=true
@@ -161,7 +170,7 @@ saveAll(){
       this.validData2=false
     }, 3000);
   }
-  if(this.form.value.desc.length>0&&this.form.value.title.length>0&&this.form.value.prix.length>0&&this.form.value.currency.length>0){
+  if(this.form.value.desc.length>0&&this.form.value.title.length>0&&this.form.value.prix.length>0&&this.form.value.currency.length>0&&this.form.value.prix){
 
   }else{
     this.validData=true
