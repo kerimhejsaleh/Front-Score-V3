@@ -37,7 +37,7 @@
 
                         </label>
                         <br>
-                        <input #fileInput (change)="onAdd($event)"  style="display: none;" type="file" id="upt">
+                        <input #fileInput (change)="handleFileInput($event.target.files)"  style="display: none;" type="file" id="upt">
                         <button (click)="updatePhoto()" *ngIf="url" class="btn btn-primary mt-2" style="margin-left: -35px;" >Enregistrer 
                             <div   *ngIf="showSpinnerUpdatePhoto" class="spinner-border  " role="status">
                                 <span class="visually-hidden"></span>

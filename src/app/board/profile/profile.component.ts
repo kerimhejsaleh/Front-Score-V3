@@ -4,6 +4,8 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { EndpointService } from 'src/app/services/endpoint.service';
+import { UploadimageService } from 'src/app/services/uploadimage.service';
+import { DoctorDataService } from '../doctor/services/doctor-data.service';
 import { DataPatientService } from '../patient/services/data-patient.service';
 
 @Component({
@@ -17,6 +19,8 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, 
     private modalService: NgbModal,
     private auth: AuthService,
+    private _iploadImg: UploadimageService,
+    private _doctor: DoctorDataService,
     public path: EndpointService) { }
 
 id: any;
@@ -52,7 +56,7 @@ modalRef.componentInstance.admin = this.admin ;
 
     this.auth.getAdminById(this.id).subscribe(
       res=>{
-       /*  console.log("adddd",res) */
+     /* console.log("adddd",res)  */
         this.admin = res;
         if(res){
           this.user=true
@@ -68,8 +72,26 @@ modalRef.componentInstance.admin = this.admin ;
 
 
 url : any;
+fileToUpload: any;
+imageUrl: any;
+handleFileInput(file: FileList) {
+  this.fileToUpload = file.item(0);
 
-
+  //Show image preview
+  let reader = new FileReader();
+  reader.onload = (event: any) => {
+    this.imageUrl = event.target.result;
+  /*   console.log('hhh', this.imageUrl); */
+    this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
+      
+      this.url =result
+      this.admin.photo= result
+/*      console.log("this.url", this.url) 
+     console.log("this.admin.photo", this.admin.photo)  */
+    })
+  };
+  reader.readAsDataURL(this.fileToUpload);
+}
 onAdd(event: any) {
 
   if (event.target.files && event.target.files[0]) {
@@ -85,12 +107,12 @@ showSpinnerUpdatePhoto= false;
 updatePhoto(){
 
   this.showSpinnerUpdatePhoto = true;
-  const imageBlob = this.fileInput.nativeElement.files[0];
+  const imageBlob = this.url;
   const file = new FormData();
   file.set('image', imageBlob);
   
-
-
+/*   console.log("fill",file)
+  console.log("imageBlob",imageBlob) */
 
   this.auth.updateAdminPhoto( this.admin._id , file).subscribe(
 
@@ -101,7 +123,7 @@ updatePhoto(){
       this.showSpinnerUpdatePhoto = false;
 
       this.ngOnInit();
-         
+         location.reload()
      
     }, 
     err=>{

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { EndpointService } from './endpoint.service';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -132,7 +133,7 @@ getAdminById(id:any){
   return this.http.get(this._path + id);
 }
 
-updateAdminPhoto(id:any, photo:any){
+updateAdminPhoto(id:any, photo:any) : Observable<any>{
   return this.http.put(this._path + 'updatephoto/' +id , photo);
 }
 
