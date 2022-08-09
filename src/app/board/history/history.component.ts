@@ -22,7 +22,7 @@ export class HistoryComponent implements OnInit, AfterViewInit {
     this.screenWidth = window.innerWidth;
     this._history.getAllAchat().subscribe((res)=>{
       this.dataAchat=res
-      console.log("this.dataAchat",this.dataAchat.achat)
+     /*  console.log("this.dataAchat",this.dataAchat.achat) */
     })
     this._doctor.getAllDoctor().subscribe(
       res => {
@@ -48,7 +48,7 @@ export class HistoryComponent implements OnInit, AfterViewInit {
       err => { }
     );
     setTimeout(() => {
-      console.log("this.result",this.dataHistoryYear,this.dataHistoryMonth);  
+    /*   console.log("this.result",this.dataHistoryYear,this.dataHistoryMonth);   */
     }, 2000);
   
   }

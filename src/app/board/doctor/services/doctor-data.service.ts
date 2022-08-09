@@ -18,7 +18,12 @@ export class DoctorDataService {
   private urlForms = this.path.url + 'forms/';
   private urlAffectation = this.path.url + 'affectation/';
   private urlAffect = this.path.url + 'affect/'
+  private urlAchat = this.path.url + 'achat/'
+  getStatusAbonement(id){
 
+    return this.http.get<any>(this.urlAchat  + id);
+    
+  }
   createNewDoctor(user: any){
 
     /* console.log(this.urlDoctor,user) */

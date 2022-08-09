@@ -536,7 +536,7 @@ newRange(i:any,s:any){
         let inc=0;
         this.form = res;
         
-        console.log("this.form",this.form)
+    /*     console.log("this.form",this.form) */
       this.form.sections.map((res)=>{
    /*      console.log("kkk",res) */
          res.questions.map((res)=>{
@@ -875,14 +875,63 @@ if(this.form.sections[s].questions[q].switch==true){
   testFormileScore=false;
   saveChange() {
     
+    let x =0;
+    let y =0;
+    let z = 0;
+
     this.testFormule = false;
     this.testFormTitle = false;
     this.testFormSections = false;
     this.testFormQuestions = false;
     this.countError = 0;
-    if(this.form.calculeFormule){
-    this.form.calculeFormule.map((res)=>{
+   /*  console.log(this.form) */
+    this.form.sections.map((result)=>{
+      x= x+1 ;
+     result.questions.map((resulttow)=>{
+      y = y+1;
+   
+     if( resulttow.type=="Choix multiples"){
+      z = z+1 ;
+
+            resulttow.optioncm.map((resultthree)=>{
+             /*  console.log("resulttow",resultthree) */
+              if(resultthree.text.length==0){
+                this.countError++;
+                this.toastr.warning(
+                  `Les options de la question  ${
+                    x
+                  } sont obligatoires`
+                );
+              }
+        
+             
+            })
+     }
+     if( resulttow.type=="Cases à cocher"){
+      z = z+1 ;
+
+            resulttow.options.map((resultthree)=>{
+           /*    console.log("resulttow",resultthree) */
+              if(resultthree.text.length==0){
+                this.countError++;
+                this.toastr.warning(
+                  `Les options de la question  ${
+                    x
+                  } sont obligatoires`
+                );
+              }
+        
+             
+            })
+     }
+     })
+    })
+    if(this.form.formMuti){
+
+    this.form.formMuti.map((res)=>{
+  /*     console.log(res.formulCalcul) */
       if(res.formulCalcul.length<11){
+        this.countError++;
         this.toastr.warning(
           `Le formule de calcule est obligatoire`
         );
@@ -1045,11 +1094,17 @@ if(this.form.sections[s].questions[q].switch==true){
     setTimeout(() => {
       this._formData.updateForm(this.id, this.form).subscribe(
         (res) => {
-
-          this.toastr.success(
+/*     console.log("ress",res) */
+    if(!res){
+      this.toastr.warning(
+        'Formulaire c déja exit',
+  
+      );
+    }else
+      {    this.toastr.success(
             'Formulaire mis à jour avec succès! ',
             'succès!'
-          );
+          );}
         },
         (err) => {
           this.toastr.error('Erreur ! ', 'Erreur!');

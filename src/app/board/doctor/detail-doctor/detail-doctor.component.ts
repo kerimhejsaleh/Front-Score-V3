@@ -134,7 +134,7 @@ export class DetailDoctorComponent implements AfterViewInit, OnInit {
 
   updateToggle = false;
   updateTogglePhoto = false;
-
+  statusAbonement =false;
   open(i:any) {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.id = this.id ;
@@ -153,7 +153,7 @@ export class DetailDoctorComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
    
-
+   
   }
 
   ngAfterViewInit(){
@@ -169,6 +169,17 @@ export class DetailDoctorComponent implements AfterViewInit, OnInit {
         
       }
     );
+    this._doctor.getStatusAbonement(this.id ).subscribe((result)=>{
+      console.log("jjjj",result.doctor.length)
+      if(result.doctor.length===0){
+        this.statusAbonement=true
+      }
+      if(result.doctor.length>0)
+      if(new Date()>result.doctor[0].datedefin){
+        this.statusAbonement=true
+      }
+     
+    })
   }
 
 
