@@ -16,7 +16,7 @@ export class DossierService {
 
 
   createNewdossier(dossier: any){
-       console.log("djkslm",dossier)
+    /*    console.log("djkslm",dossier) */
     return this.http.post<any>(this.url  , dossier);
 
 
@@ -45,7 +45,7 @@ export class DossierService {
 
   }
   getdossierByIdAff(id: any){
-console.log(id)
+/* console.log(id) */
     return this.http.get<any>(this.url + 'getDossier/' + id);
 
   }

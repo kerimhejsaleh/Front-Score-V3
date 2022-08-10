@@ -235,9 +235,9 @@ export class AddDoctorComponent implements OnInit {
 const formData = new FormData();
 const file:File = event.target.files[0];
             formData.append("thumbnail", file);
-            setTimeout(() => {
+       /*      setTimeout(() => {
               console.log("formData",formData)
-            }, 2000);
+            }, 2000); */
           
 /* this._iploadImg.uploadImage(file).subscribe((result)=>{
   console.log("reee",result)
@@ -277,14 +277,14 @@ const file:File = event.target.files[0];
   onSubmit(){
  
     const formData = new FormData();
-    console.log("this.formData 1",formData)
+  /*   console.log("this.formData 1",formData) */
     formData.append('file', this.images);
 /*     this.widget.uploadFile(this.images).subscribe((res)=>{
  
      console.log(res)
   
     }) */
-    console.log("this.formData 2",formData)
+   /*  console.log("this.formData 2",formData) */
  
 /*     this.http.post<any>('http://localhost:3000/file', formData).subscribe(
       (res) => console.log(res),
@@ -307,7 +307,7 @@ const file:File = event.target.files[0];
       this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
         
         this.url =result
-        console.log("reee", result)
+    /*     console.log("reee", result) */
       })
     };
     reader.readAsDataURL(this.fileToUpload);

@@ -336,7 +336,7 @@ export class ListFormsComponent implements OnInit , AfterViewInit {
     }else{
       this._dossier.getMyForm(data).subscribe(
         res=>{
-          console.log('hhhh',res)
+    /*       console.log('hhhh',res) */
           this.forms = res;
           this.allForms =res;
  

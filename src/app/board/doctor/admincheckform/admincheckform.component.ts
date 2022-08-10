@@ -28,7 +28,7 @@ export class AdmincheckformComponent implements OnInit {
     this._doctor.getAllDoctorAffectationForm(this.id).subscribe(
       res=>{
         this.affectations = res;
-        console.log(this.affectations,this.route.snapshot.paramMap.get('id'));
+     /*    console.log(this.affectations,this.route.snapshot.paramMap.get('id')); */
         
       },
       err=>{

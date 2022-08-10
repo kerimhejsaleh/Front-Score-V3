@@ -878,7 +878,7 @@ if(this.form.sections[s].questions[q].switch==true){
     let x =0;
     let y =0;
     let z = 0;
-
+    let k =0;
     this.testFormule = false;
     this.testFormTitle = false;
     this.testFormSections = false;
@@ -923,6 +923,32 @@ if(this.form.sections[s].questions[q].switch==true){
         
              
             })
+     }
+     if( resulttow.type=="Grille de cases à cocher 2"){
+      k = k +1 ;
+          resulttow.grille.options.map((resultfor)=>{
+            if(resultfor.title.length===0){
+             
+                /* console.log("resultfor",resultfor.title) */
+                this.countError++;
+                this.toastr.warning(
+                  `Les options Lignes de la question  ${
+                    x
+                  } sont obligatoires`
+                );
+              }
+          })
+          resulttow.grille.scoreS.map((resultfive)=>{
+            if(resultfive.title.length===0){
+              this.countError++;
+              this.toastr.warning(
+                `Les options Colonnes de la question  ${
+                  k
+                } sont obligatoires`
+              );
+         /*    console.log("resultfive",resultfive.title) */
+          }
+          })
      }
      })
     })
@@ -1161,7 +1187,7 @@ handleFileInput(file: FileList, s:any,type) {
     /*   
       this.url =result
       this.doctor.photo= result */
-      console.log("reee", result)
+     /*  console.log("reee", result) */
       this.result = result;
       this.form.sections[s].questions[this.in].optioncm[this.j].image = this.result;
       this.result = null;
@@ -1181,7 +1207,7 @@ handleFileInput(file: FileList, s:any,type) {
     /*   
       this.url =result
       this.doctor.photo= result */
-      console.log("reee", result)
+   /*    console.log("reee", result) */
       this.result = result;
      /*  this.form.sections[s].questions[this.in].optioncm[this.j].image = this.result; */
      this.form.sections[s].questions[this.in].options[this.j].image = this.result;
@@ -1407,7 +1433,7 @@ handleFileInput(file: FileList, s:any,type) {
             }   
       }
       if(v=="0"||v=="1"||v=="2"||v=="3"||v=="4"||v=="5"||v=="6"||v=="7"||v=="8"||v=="9"){
-        console.log( this.form.formMuti[k].indexScoreForm[0].k)
+    /*     console.log( this.form.formMuti[k].indexScoreForm[0].k) */
         if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
           this.form.formMuti[k].indexScoreForm[0].k=v
           this.form.formMuti[k].indexScoreForm[0].type="number"            

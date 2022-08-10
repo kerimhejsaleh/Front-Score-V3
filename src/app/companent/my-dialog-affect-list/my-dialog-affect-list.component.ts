@@ -192,13 +192,13 @@ setTimeout(() => {
 err=>{
 console.log("err",err)
 }) */
-    console.log("kssk",affectation2)
+/*     console.log("kssk",affectation2) */
     this._doctor.affectAllForms(affectation2).subscribe(
      res=>{
-       console.log("kk",affectation2)
+      /*  console.log("kk",affectation2) */
      },
      err=>{
-      console.log("kssk",affectation2)
+    /*   console.log("kssk",affectation2) */
      }
      );
   affectation2.map((result)=>{
@@ -217,8 +217,8 @@ console.log("err",err)
    newDataAllFormFalse.push({idForm:res._id,idDossier:this.idDossier._id,status:false})
   })
   let m =0;
-  console.log("helooolis", data)
-  console.log("helooolistedossier", data.liste_dossier)
+ /*  console.log("helooolis", data)
+  console.log("helooolistedossier", data.liste_dossier) */
    data.liste_dossier.map((result)=>{
      
     if(this.idDossier._id==result.id){
@@ -312,7 +312,7 @@ setTimeout(() => {
   data.liste_dossier=newDataDossierd
   this._doctor.updateDoctor(data._id ,  data,newDataDossierd,"autre").subscribe(
     res=>{
-    console.log("hi update")
+   /*  console.log("hi update") */
     },
     err=>{
     }
@@ -320,7 +320,7 @@ setTimeout(() => {
 }, 6000);
 setTimeout(() => {
   this.spinerLoading=false
-  console.log("hi spiner")
+/*   console.log("hi spiner") */
 }, 15000);
 /* this._doctor.testGetText().subscribe( res=>{
            console.log("rssses",res)

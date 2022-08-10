@@ -290,7 +290,7 @@
                                     <div  *ngFor="let op of section.questions[i].grille.options; let o = index;">
                                         <div class="row m-2">
                                             <div class="col">
-                                            <input  class="question-short-text-response" [(ngModel)]="op.title" placeholder="option" disabled>
+                                            <input  class="question-short-text-response" [(ngModel)]="op.title" placeholder="option" >
                                         
                                         </div>
                                         <div class="col" style="width: 1%;">
@@ -317,7 +317,7 @@
                                                 
                                                   
                                                 <input  class="question-short-text-response" [(ngModel)]="op.title" placeholder="option" >
-                                                <input  [(ngModel)]="op.score"  class="question-score" placeholder="0" disabled>
+                                                <input  [(ngModel)]="op.score"  class="question-score" placeholder="0" >
                                                 <mat-icon class="ico" style="margin-left: 16px;cursor: pointer;"
                                                 (click)="removeOptionGrille2(i, o,s)"
                                                  *ngIf="section.questions[i].grille.scoreS.length > 1"

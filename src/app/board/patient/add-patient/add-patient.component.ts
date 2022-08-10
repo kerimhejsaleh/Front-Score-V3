@@ -70,7 +70,7 @@ export class AddPatientComponent implements OnInit {
       this._iploadImg.uploadImage(this.imageUrl).subscribe((result)=>{
         
         this.url =result
-        console.log("reee", result)
+    /*     console.log("reee", result) */
       })
     };
     reader.readAsDataURL(this.fileToUpload);
@@ -189,7 +189,7 @@ export class AddPatientComponent implements OnInit {
 
 
       this.showSpinner = true;
-      console.log("imageBlob",file)
+     /*  console.log("imageBlob",file) */
       this._patient.createNewUser(file).subscribe(
         res => {
 

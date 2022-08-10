@@ -334,7 +334,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
   }
 setNewCeil(newCeil: number,i:any,s:any): void {
   if(newCeil >100){
- console.log('ggg',i,s)
+/*  console.log('ggg',i,s) */
   }else{
  /*    console.log('ggg',i,s) */
   // Due to change detection rules in Angular, we need to re-create the options object to apply the change
@@ -421,7 +421,7 @@ setNewCeil(newCeil: number,i:any,s:any): void {
    /*  console.log(' this.form.calculeFormule', this.form.calculeFormule) */
   }
    createNewFormMutli(){
-     console.log('4444')
+  /*    console.log('4444') */
   } 
   createNewSection(){
    /*  console.log("hhhees",this.form.sections) */
@@ -644,7 +644,7 @@ handleFileInput(file: FileList, s:any,type) {
     /*   
       this.url =result
       this.doctor.photo= result */
-      console.log("reee", result)
+  /*     console.log("reee", result) */
       this.result = result;
       this.form.sections[s].questions[this.in].optioncm[this.j].image = this.result;
       this.result = null;
@@ -664,7 +664,7 @@ handleFileInput(file: FileList, s:any,type) {
     /*   
       this.url =result
       this.doctor.photo= result */
-      console.log("reee", result)
+      /* console.log("reee", result) */
       this.result = result;
      /*  this.form.sections[s].questions[this.in].optioncm[this.j].image = this.result; */
      this.form.sections[s].questions[this.in].options[this.j].image = this.result;
@@ -935,6 +935,8 @@ this.data = regForm.value
     let c =0;
     let v =0;
     let b = 0;
+    let k =0;
+    let n =0;
     this.form.sections.map((result)=>{
       x= x+1 ;
      result.questions.map((resulttow)=>{
@@ -974,7 +976,35 @@ this.data = regForm.value
              
             })
      }
+
+     if( resulttow.type=="Grille de cases à cocher 2"){
+      k = k +1 ;
+          resulttow.grille.options.map((resultfor)=>{
+            if(resultfor.title.length===0){
+             
+                /* console.log("resultfor",resultfor.title) */
+                this.countError++;
+                this.toastr.warning(
+                  `Les options Lignes de la question  ${
+                    k
+                  } sont obligatoires`
+                );
+              }
+          })
+          resulttow.grille.scoreS.map((resultfive)=>{
+            if(resultfive.title.length===0){
+              this.countError++;
+              this.toastr.warning(
+                `Les options Colonnes de la question  ${
+                  k
+                } sont obligatoires`
+              );
+         /*    console.log("resultfive",resultfive.title) */
+          }
+          })
+     }
      })
+     
     })
     this.form.calculeFormule.map((res)=>{
       if(res.formulCalcul.length<11){
@@ -1091,7 +1121,7 @@ this.data = regForm.value
 
   
   onAddQuestion(event: any, s: any) {
-    console.log("gggg",event)
+  /*   console.log("gggg",event) */
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       let file = new FormData();

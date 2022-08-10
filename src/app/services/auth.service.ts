@@ -95,7 +95,7 @@ checkLinkDoctor(id, token){
  }
 
 forgotPassword(email){
- console.log("email",email)
+/*  console.log("email",email) */
   return this.http.post(this._path + 'forgot-password' , email);
 
 }

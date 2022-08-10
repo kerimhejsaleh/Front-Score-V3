@@ -43,9 +43,9 @@ removeUpload: boolean = false;
   url;
   format;
   payment(price2){
-    console.log("paaa",) 
+   /*  console.log("paaa",)  */
     this._doctor.payement(price2).subscribe((result)=>{
-   console.log("result",result) 
+/*    console.log("result",result)  */
     })
   }
   onSelectFile(event) {
