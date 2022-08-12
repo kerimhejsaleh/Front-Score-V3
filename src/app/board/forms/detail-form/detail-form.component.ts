@@ -536,7 +536,7 @@ newRange(i:any,s:any){
         let inc=0;
         this.form = res;
         
-    /*     console.log("this.form",this.form) */
+        console.log("this.form",this.form.formMuti.length)
       this.form.sections.map((res)=>{
    /*      console.log("kkk",res) */
          res.questions.map((res)=>{

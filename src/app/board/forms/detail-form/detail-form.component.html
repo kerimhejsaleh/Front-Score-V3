@@ -838,7 +838,7 @@
             <div class="card-header row  mr-3">       
                 <h1 class="m-3">Formule Calcule {{k}}</h1>
                 <div class="card-header row mr-3 ml-auto" >
-                    <button (click)="deleteFormCalule(k)" *ngIf="form.formMuti.length>1" mat-button>
+                    <button (click)="deleteFormCalule(k)" *ngIf="form.formMuti.length==0" mat-button>
                         <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
                         Supprimer
                     </button>

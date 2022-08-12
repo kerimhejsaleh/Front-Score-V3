@@ -265,7 +265,7 @@ return this.http.put<any>(this.urlDoctor  + id , doctor);
   }
 
   updateDoctorPhoto(id:any, photo:any){
-  /*   console.log(id,photo) */
+    console.log(id,photo,this.urlDoctor + 'updatephoto/') 
     return this.http.put(this.urlDoctor + 'updatephoto/' +id , photo);
   }
 
