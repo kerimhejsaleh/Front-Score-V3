@@ -13,7 +13,7 @@
         <div class="container2" classs="row">
             <button>
               <div class="text-container">
-                <select name="" id=""  class=" form-control" style="width: 250px;height: 50px;background-color: transparent;" (change)="onChange($event.target.value)">
+                <select name="" id=""  class=" form-control" style="width: 100%;height: 50px;background-color: transparent;" (change)="onChange($event.target.value)">
                     <option value=""> Tout </option>
                     <option  [value]="item._id" *ngFor="let item of listeDossierSelect"><h6 *ngIf="item.name!='Aucune dossier'"> {{item.name}}</h6></option>
                 </select>
