@@ -8,6 +8,7 @@ import { DossierService } from '../dossier/services/dossier.service';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { FormBuilder, FormArray, Validators } from "@angular/forms";
+import { HistoryService } from 'src/app/services/history.service';
 /*  import { UploadClient } from '@uploadcare/upload-client'; */ 
 @Component({
   selector: 'app-statistics',
@@ -15,12 +16,14 @@ import { FormBuilder, FormArray, Validators } from "@angular/forms";
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements  AfterViewInit, OnInit {
+  
  /*  client = new UploadClient({ publicKey: '8984836541096889c993' }) */
   constructor(private _doctor: DoctorDataService,
               private _patient: DataPatientService,
               private _form: FormsDataService,
               private _dossier: DossierService,
               private router: Router,
+              private _history :HistoryService,
               public fb: FormBuilder,
               private cd: ChangeDetectorRef,
             ) { }
@@ -142,7 +145,7 @@ removeUpload: boolean = false;
     { data: [], label: 'Nombre des patients inscrits par mois' },
   ];
   lineChartDataF: ChartDataSets[] = [
-    { data: [], label: 'Nombre des formulaires affctéer par mois' },
+    { data: [], label: 'Nombre des payment par mois' },
   ];
   lineChartDataFT: ChartDataSets[] = [
     { data: [], label: 'Nombre des formulaires ' },
@@ -192,7 +195,8 @@ removeUpload: boolean = false;
   spinerFormulaireAff = false;
   dataFormAFF;
   taille=0;
-  listPayment:any
+  listPayment:any;
+  dataAchat:any;
   ngOnInit(): void {  
 
    /*  this._doctor.history().subscribe((result)=>{
@@ -217,7 +221,7 @@ removeUpload: boolean = false;
     this._form.getFormAffectaionAll().subscribe(
       res=>{        
          this.numberFormulAff=res
-         this.taille = this.numberFormulAff.taile
+      //   this.taille = this.numberFormulAff.taile
       },
       err=>{
         console.log(err)
@@ -235,8 +239,9 @@ removeUpload: boolean = false;
           resq=>{
            
             this.dataFormAFF=resq
+            /* this.taille=this.dataFormAFF.length */
             if(resq.length>0){
-            this.spinerFormulaireAff=true
+           
          /*   console.log('ress',this.spinerFormulaire) */
             }
     
@@ -247,7 +252,15 @@ removeUpload: boolean = false;
       }
     );
 
-   
+    this._history.getAllAchat().subscribe((res)=>{
+      
+       this.dataAchat=res 
+       this.taille=this.dataAchat.achat.length
+       console.log(this.dataAchat.achat.length)
+       if(res)
+       this.spinerFormulaireAff=true
+     /*  console.log("this.dataAchat",this.dataAchat.achat) */
+    })
 
 
   }
@@ -306,11 +319,11 @@ removeUpload: boolean = false;
   }
   makeFormulaireStatData(y){
     // AJOUTT DATE AFFEC
-    this._form.getFormAffectaionAll().subscribe(
+    this._history.getAllAchat().subscribe(
       res=>{
         this.spinerFormulaireAff=true
         this.numberFormulAff=res
-        this.formsAff = this.numberFormulAff.allForms;
+        this.formsAff = this.numberFormulAff.achat;
        
         let j=0;
         let f=0;
@@ -330,7 +343,7 @@ removeUpload: boolean = false;
        ) */
         for(let i = 0; i<this.formsAff.length; i++ ){
 /*        console.log("this.formsAff[i].created_date",this.formsAff[i].created_date) */
-          let d = this.formsAff[i].date;
+          let d = this.formsAff[i].datedebut;
            let date = d.substr(5, 2);
            let year = d.substr(0,4);
            date === '01' && year == y ? j++ :
