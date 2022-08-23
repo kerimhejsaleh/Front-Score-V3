@@ -161,6 +161,7 @@
                                     
                                     </tbody>
                                   </table>
+
                             </div>
                            
                         </div>
@@ -168,7 +169,13 @@
                   
                 </div>
 
-               
+              <!--   <p>
+                    Image/Video Preview
+                  </p>
+                  
+                  <img [src]="url2" *ngIf="format==='image' && url2" height="200"> <br/>
+                  <video [src]="url2" *ngIf="format==='video' && url2" height="200" controls></video> <br/>
+                  <input type='file' (change)="onSelectFile($event)" /> -->
                 <div class="col-lg-6">
                     <div class="card" style="cursor: pointer;">
                         <div class="card-body">

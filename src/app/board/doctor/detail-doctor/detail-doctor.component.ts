@@ -181,6 +181,7 @@ url : any;
 fileToUpload: any;
 imageUrl: any;
 handleFileInput(file: FileList) {
+  console.log("file",file)
   this.fileToUpload = file.item(0);
 
   //Show image preview

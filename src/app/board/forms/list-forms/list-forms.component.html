@@ -5,23 +5,42 @@
     </h1>
 
 
-    <div class="ml-auto col-6" style="display: flex;justify-content: space-between;">
+    <div class="ml-auto col-6">
 
-        <select name="" id=""  class=" form-control" style="width: 250px;height: 50px" (change)="onChange($event.target.value)">
-            <option value=""> Tout </option>
-            <option  [value]="item._id" *ngFor="let item of listeDossierSelect"><h6 *ngIf="item.name!='Aucune dossier'"> {{item.name}}</h6></option>
-        </select>
-        <div class="box">
+  <!--   
+      
+        -->
+        <div class="container2" classs="row">
+            <button>
+              <div class="text-container">
+                <select name="" id=""  class=" form-control" style="width: 250px;height: 50px;background-color: transparent;" (change)="onChange($event.target.value)">
+                    <option value=""> Tout </option>
+                    <option  [value]="item._id" *ngFor="let item of listeDossierSelect"><h6 *ngIf="item.name!='Aucune dossier'"> {{item.name}}</h6></option>
+                </select>
+             
+              </div>
+             </button>
+            <button>
+              <div class="text-container">
+                <div class="box">
 
-            <i class="fa fa-search" aria-hidden="true"></i>
-        
-            <input type="text" placeholder="Nom formulaire ..." (input)="filterItem($event.target.value)"
-           >
-        
-        </div>
-   <!--      <input type="text" placeholder="Nom formulaire ..." (input)="filterItem($event.target.value)"
-        class="col-2 form-control form-control-sm" style="height: 50px"  > -->
-        <button routerLink="/admin/forms/new" mat-raised-button>Créer un nouveau formulaire</button>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                
+                    <input type="text" placeholder="Nom formulaire ..." (input)="filterItem($event.target.value)"
+                   >
+                
+                </div>
+              
+              </div>
+             </button>
+            <button>
+              <div >
+                <button class="button" routerLink="/admin/forms/new" mat-raised-button>Créer un nouveau formulaire</button>
+         
+              </div>
+             </button>
+          
+          </div>
     </div>
 </div>
 

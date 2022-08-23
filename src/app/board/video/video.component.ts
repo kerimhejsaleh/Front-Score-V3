@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UrlvideoService } from './services/urlvideo.service';
-import { DoctorDataService } from '../doctor/services/doctor-data.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { UploadimageService } from 'src/app/services/uploadimage.service';
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
@@ -9,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class VideoComponent implements OnInit {
 
-  constructor(  private _urlVideo: UrlvideoService,private _urlVideoo :DoctorDataService ,private _domsantitizer :DomSanitizer) { }
+  constructor(  private _urlVideo: UrlvideoService,  private _iploadImg: UploadimageService,) { }
  video = {
   url :"",
   etat:false,
@@ -57,6 +56,44 @@ roleP ={
 
  /*  this.reloadPage()  */}
   }
+  url : any;
+fileToUpload: any;
+imageUrl: any;
+handleFileInput(file: FileList) {
+  console.log("file",file)
+  this.fileToUpload = file.item(0);
+
+  //Show image preview
+  let reader = new FileReader();
+  reader.onload = (event: any) => {
+    this.imageUrl = event.target.result;
+  /*   console.log('hhh', this.imageUrl); */
+   console.log("this.imageUrl",this.imageUrl)
+  };
+  reader.readAsDataURL(this.fileToUpload);
+}
+/* url2;
+format;
+onSelectFile(event) {
+  const file = event.target.files && event.target.files[0];
+  if (file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    if(file.type.indexOf('image')> -1){
+      this.format = 'image';
+    } else if(file.type.indexOf('video')> -1){
+      this.format = 'video';
+    }
+    reader.onload = (event) => {
+      this.url2 = (<FileReader>event.target).result;
+      this._iploadImg.uploadImage(this.url2).subscribe((result)=>{
+      
+
+      })
+      console.log("this.url2 ",this.url2 )
+    }
+  }
+} */
   roleVideo(role:any){
 /*     console.log(role) */
     if(role==1){
