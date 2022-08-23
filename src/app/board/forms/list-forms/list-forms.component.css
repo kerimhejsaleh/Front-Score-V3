@@ -184,6 +184,7 @@ div.displayed {
     }
   }
   
+  
   .text-container {
     display: flex;
     flex-direction: column;
@@ -192,10 +193,11 @@ div.displayed {
     margin-right: 0.5rem;
     width: 230px;
   }
+
   
   .button {
      border-color: transparent;
-    background-color: transparent;
+    background-color: transparent; 
     font-size: 1rem;
     
   }
