@@ -256,7 +256,7 @@ removeUpload: boolean = false;
       
        this.dataAchat=res 
        this.taille=this.dataAchat.achat.length
-       console.log(this.dataAchat.achat.length)
+  /*      console.log(this.dataAchat.achat.length) */
        if(res)
        this.spinerFormulaireAff=true
      /*  console.log("this.dataAchat",this.dataAchat.achat) */

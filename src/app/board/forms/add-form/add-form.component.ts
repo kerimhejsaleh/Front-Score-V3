@@ -790,7 +790,7 @@ handleFileInput(file: FileList, s:any,type) {
     )
   }
   public getNumber(v: string,val1,val2,k,val){
-    /* console.log("v",v,"vall",val,"val1",val1,"val22",val2,"k",k) */
+     console.log("v",v,"vall",val,"val1",val1,"val22",val2,"k",k) 
     if(this.waitForSecondNumber)
     {
       this.currentNumber = v;

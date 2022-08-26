@@ -1393,8 +1393,8 @@ handleFileInput(file: FileList, s:any,type) {
   firstOperand = null;
   operator = null;
   waitForSecondNumber = false;
-  public getNumber(v: string,val1,val2,k,val){
-/*     console.log(v,k) */
+  public getNumber(v,val1,val2,k,val){
+   /*   console.log(typeof v,k)  */
     if(this.waitForSecondNumber)
     {
       this.currentNumber = v;
@@ -1432,13 +1432,23 @@ handleFileInput(file: FileList, s:any,type) {
               this.form.formMuti[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"operation"})
             }   
       }
-      if(v=="0"||v=="1"||v=="2"||v=="3"||v=="4"||v=="5"||v=="6"||v=="7"||v=="8"||v=="9"){
-    /*     console.log( this.form.formMuti[k].indexScoreForm[0].k) */
+      if(v==0||v==1||v==2||v==3||v==4||v==5||v==6||v==7||v==8||v==9){
+         console.log( this.form.formMuti[k].indexScoreForm.length) 
+  
         if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
-          this.form.formMuti[k].indexScoreForm[0].k=v
+          console.log(1)
+          this.form.formMuti[k].indexScoreForm[0].k=Number(v)
+  
           this.form.formMuti[k].indexScoreForm[0].type="number"            
         }else{
-          this.form.formMuti[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"number"})
+          console.log(2)
+          console.log( this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1] , v)
+          if(this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1].type==="number"){
+            const concat = '' + this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1].desc.toString() +''+ v.toString();
+            this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1].desc=Number(concat)
+ /*            this.form.formMuti[k].indexScoreForm.push({i:0,j:0,k:0,desc:Number(concat),type:"number"}) */
+          }else{
+          this.form.formMuti[k].indexScoreForm.push({i:0,j:0,k:0,desc:Number(v),type:"number"})}
         }   
       }
       if(v=="("||v==")"||v==","){
