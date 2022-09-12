@@ -1117,8 +1117,8 @@ if(this.form.sections[s].questions[q].switch==true){
 
         }  */
 /*         console.log( ".messages.length",this.form.messages) */
-console.log('12222',this.form)
- /*    setTimeout(() => {
+/* console.log('12222',this.form) */
+   setTimeout(() => {
       this._formData.updateForm(this.id, this.form).subscribe(
         (res) => {
     if(!res){
@@ -1136,7 +1136,7 @@ console.log('12222',this.form)
           this.toastr.error('Erreur ! ', 'Erreur!');
         }
       ); 
-    }, 2000); */
+    }, 2000); 
       }
     }
   }
