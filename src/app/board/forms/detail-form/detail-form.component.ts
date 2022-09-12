@@ -1117,10 +1117,10 @@ if(this.form.sections[s].questions[q].switch==true){
 
         }  */
 /*         console.log( ".messages.length",this.form.messages) */
-    setTimeout(() => {
+console.log('12222',this.form)
+ /*    setTimeout(() => {
       this._formData.updateForm(this.id, this.form).subscribe(
         (res) => {
-/*     console.log("ress",res) */
     if(!res){
       this.toastr.warning(
         'Formulaire c déja exit',
@@ -1136,7 +1136,7 @@ if(this.form.sections[s].questions[q].switch==true){
           this.toastr.error('Erreur ! ', 'Erreur!');
         }
       ); 
-    }, 2000);
+    }, 2000); */
       }
     }
   }
@@ -1394,20 +1394,27 @@ handleFileInput(file: FileList, s:any,type) {
   operator = null;
   waitForSecondNumber = false;
   public getNumber(v,val1,val2,k,val){
-   /*   console.log(typeof v,k)  */
     if(this.waitForSecondNumber)
     {
       this.currentNumber = v;
-
+     /*  console.log("7777dddddddddd7",this.form.formMuti[k].indexScoreForm)  */
       this.waitForSecondNumber = false;
     }else{
-      this.currentNumber === '0'? this.currentNumber = v: this.currentNumber += v;
-      this.form.formMuti[k].formulCalcul === '0'? this.form.formMuti[k].formulCalcul = v: this.form.formMuti[k].formulCalcul += v;
+    /*   this.currentNumber === '0'? this.currentNumber = v: this.currentNumber += v;
+      console.log(11111,this.form.calculeFormule[k].formulCalcul)
+      this.form.calculeFormule[k].formulCalcul === '0'? this.form.calculeFormule[k].formulCalcul = v: this.form.calculeFormule[k].formulCalcul += v; */
+    /*   console.log(11111 ) */
+     this.currentNumber === '0'? this.currentNumber = v: this.currentNumber += v;
+   /*   console.log(222222 ) */
+      this.form.formMuti[k].formulCalcul === '0'? this.form.formMuti[k].formulCalcul = v: this.form.formMuti[k].formulCalcul += v; 
+/*       console.log(33333 ) */
     }
-
+  /*   console.log('helloooval',val) */
     if(val==1){
-
+ /*      console.log("77777",this.form.formMuti[k-1].indexScoreForm)  */
+  if(this.form.calculeFormule){
       if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
+      /*   console.log('hellooo') */
     /*     console.log("val1",val1)
         console.log("val2",val2)
         console.log("      this.form.formMuti[k].indexScoreForm[0].i",      this.form.formMuti[k].indexScoreForm[0].i)
@@ -1419,11 +1426,14 @@ handleFileInput(file: FileList, s:any,type) {
         console.log("      this.form.formMuti[k].indexScoreForm[0].j",      this.form.formMuti[k].indexScoreForm[0].j)
         console.log("      this.form.formMuti[k].indexScoreForm[0].type",      this.form.formMuti[k].indexScoreForm[0].type) */
       
-      }else{
+      }}else{
+ /*        console.log('hellooo22') */
+        if(this.form.formMuti[k].indexScoreForm==undefined){
+        this.form.formMuti[k].indexScoreForm=[]}
         this.form.formMuti[k].indexScoreForm.push({i:val1,j:val2,k:0,desc:"",type:"index"})
       }
     }else{
-/*       console.log("77777",this.form.formMuti[k].indexScoreForm.length) */
+      /*  console.log("77777",this.form.formMuti[k].indexScoreForm)  */
       if(v=="+"||v=="-"||v=="×"||v=="/"){
         if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
               this.form.formMuti[k].indexScoreForm[0].desc=v
@@ -1433,16 +1443,16 @@ handleFileInput(file: FileList, s:any,type) {
             }   
       }
       if(v==0||v==1||v==2||v==3||v==4||v==5||v==6||v==7||v==8||v==9){
-         console.log( this.form.formMuti[k].indexScoreForm.length) 
+      /*    console.log( this.form.formMuti[k].indexScoreForm.length)  */
   
         if(this.form.formMuti[k].indexScoreForm.length==1&&this.form.formMuti[k].indexScoreForm[0].type==""){
-          console.log(1)
+         /*  console.log(1) */
           this.form.formMuti[k].indexScoreForm[0].k=Number(v)
   
           this.form.formMuti[k].indexScoreForm[0].type="number"            
         }else{
-          console.log(2)
-          console.log( this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1] , v)
+       /*    console.log(2) */
+         /*  console.log( this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1] , v) */
           if(this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1].type==="number"){
             const concat = '' + this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1].desc.toString() +''+ v.toString();
             this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1].desc=Number(concat)

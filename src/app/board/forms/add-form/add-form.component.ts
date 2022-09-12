@@ -96,7 +96,7 @@ export class AddFormComponent implements OnInit, AfterViewInit {
           formulCalcul:"",
           val:[{   value:null,
           descValue:""}],
-          indexScoreForm:[{i:0,j:0,k:0,desc:"",type:""}]
+          indexScoreForm:[]
         }
       ]
     }
@@ -790,7 +790,7 @@ handleFileInput(file: FileList, s:any,type) {
     )
   }
   public getNumber(v: string,val1,val2,k,val){
-     console.log("v",v,"vall",val,"val1",val1,"val22",val2,"k",k) 
+/*      console.log("v",v,"vall",val,"val1",val1,"val22",val2,"k",k)  */
     if(this.waitForSecondNumber)
     {
       this.currentNumber = v;
@@ -802,7 +802,7 @@ handleFileInput(file: FileList, s:any,type) {
 
     }
     if(val==1){
-
+     // console.log("77777",this.form.calculeFormule[k].indexScoreForm) 
       if(this.form.calculeFormule[k].indexScoreForm.length==1&&this.form.calculeFormule[k].indexScoreForm[0].type==""){
         this.form.calculeFormule[k].indexScoreForm[0].i=val1
         this.form.calculeFormule[k].indexScoreForm[0].j=val2
@@ -822,12 +822,22 @@ handleFileInput(file: FileList, s:any,type) {
       }
       if(v=="0"||v=="1"||v=="2"||v=="3"||v=="4"||v=="5"||v=="6"||v=="7"||v=="8"||v=="9"){
        /*  console.log( this.form.calculeFormule[k].indexScoreForm[0].k) */
+  
+        
         if(this.form.calculeFormule[k].indexScoreForm.length==1&&this.form.calculeFormule[k].indexScoreForm[0].type==""){
-          this.form.calculeFormule[k].indexScoreForm[0].k=+v
-          this.form.calculeFormule[k].indexScoreForm[0].type="number"            
-        }else{
-          this.form.calculeFormule[k].indexScoreForm.push({i:0,j:0,k:0,desc:v,type:"number"})
-        }   
+          /*  console.log(1) */    
+           this.form.calculeFormule[k].indexScoreForm[0].k=Number(v)
+           this.form.calculeFormule[k].indexScoreForm[0].type="number"         
+         }else{
+        /*    console.log(2) */
+          /*  console.log( this.form.formMuti[k].indexScoreForm[this.form.formMuti[k].indexScoreForm.length-1] , v) */
+           if(this.form.calculeFormule[k].indexScoreForm[this.form.calculeFormule[k].indexScoreForm.length-1].type==="number"){
+             const concat = '' + this.form.calculeFormule[k].indexScoreForm[this.form.calculeFormule[k].indexScoreForm.length-1].desc.toString() +''+ v.toString();
+             this.form.calculeFormule[k].indexScoreForm[this.form.calculeFormule[k].indexScoreForm.length-1].desc=Number(concat)
+  /*            this.form.formMuti[k].indexScoreForm.push({i:0,j:0,k:0,desc:Number(concat),type:"number"}) */
+           }else{
+           this.form.calculeFormule[k].indexScoreForm.push({i:0,j:0,k:0,desc:Number(v),type:"number"})}
+         } 
       }
       if(v=="("||v==")"||v==","){
         if(this.form.calculeFormule[k].indexScoreForm.length==1&&this.form.calculeFormule[k].indexScoreForm[0].type==""){
