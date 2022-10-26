@@ -98,7 +98,7 @@ export class DossierService {
   }
 
   getMyForm(id: any){
-
+console.log(this.urlAffectation + 'getmyform/' )
     return this.http.get<any>(this.urlAffectation + 'getmyform/' + id);
 
   }

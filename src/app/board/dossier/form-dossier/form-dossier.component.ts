@@ -156,6 +156,7 @@ if(result){
   this.id = this.router.snapshot.paramMap.get('id');
     this._dossier.getMyForm(this.id).subscribe(
       res=>{
+        console.log(res)
        this.allForms = res;
   },
   err=>{

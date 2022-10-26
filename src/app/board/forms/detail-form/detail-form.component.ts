@@ -911,11 +911,11 @@ if(this.form.sections[s].questions[q].switch==true){
       z = z+1 ;
 
             resulttow.options.map((resultthree)=>{
-           /*    console.log("resulttow",resultthree) */
+        
               if(resultthree.text.length==0){
                 this.countError++;
                 this.toastr.warning(
-                  `Les options de la question  ${
+                  `Les options de la questiondd  ${
                     x
                   } sont obligatoires`
                 );
